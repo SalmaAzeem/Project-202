@@ -1,5 +1,5 @@
 ﻿@page
-@model Project_DB.Pages.ProfileModel
+@model Project_DB.Pages.DeliveryProfileModel
 @{
 }
 <!DOCTYPE html>
@@ -33,7 +33,6 @@
             border: 0 solid rgba(0, 0, 0, .125);
             border-radius: .25rem;
         }
-
 
         .btnred {
             background-color: #8b0000; /* Darker Red Color */
@@ -123,7 +122,7 @@
                                 <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Admin" class="rounded-circle" width="150">
                                 <div class="mt-3">
                                     <h4>Kenneth Valdez</h4>
-                                    <p class="text-secondary mb-1">Customer</p>
+                                    <p class="text-secondary mb-1">Delivery</p>
                                     <p class="text-muted font-size-sm">Giza, Dokki</p>
                                 </div>
                             </div>
@@ -148,7 +147,7 @@
                             <hr>
                             <div class="row">
                                 <!-- Individual Detail -->
-                                <div class="col-sm-3">
+                                <div class="col-sm-3 ">
                                     <h6 class="mb-0">Email</h6>
                                 </div>
                                 <div class="col-sm-9 text-secondary">
@@ -176,60 +175,39 @@
                                     6th of October
                                 </div>
                             </div>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-
-
-
-            <div class="row gutters-sm">
-                <div class="col-md-4 mb-3">
-                    <div class="card">
-                    </div>
-                </div>
-                <div class="col-md-8">
-                    <!-- Profile Details Card -->
-                    <div class="card mb-3">
-                        <div class="card-body">
-                            <!-- Profile Details Content -->
+                            <hr>
                             <div class="row">
                                 <!-- Individual Detail -->
                                 <div class="col-sm-3">
-                                    <h6 class="mb-0">Last orders</h6>
+                                    <h6 class="mb-0">Current Orders</h6>
+                                </div>
+                                <div class="col-sm-9 text-success font-weight-bold">
+                                    1- From Dokki to 6 October Zewail City dorms <br />
+                                    2- From Benha 6 October Zewail City dorms
                                 </div>
                             </div>
                             <hr>
                             <div class="row">
                                 <!-- Individual Detail -->
-                                <div class="col-sm-3 text-secondary">
-                                    Ma7shy
+                                <div class="col-sm-3">
+                                    <h6 class="mb-0">Requested Orders</h6>
                                 </div>
-                                <div class="col-sm-9">
-                                    <a class="btngreen btn-success" asp-area="" asp-page="/Rating">Rate Cooker</a>
-                                    <a class="btngreen btn-success" asp-area="" asp-page="/Rating">Rate Delivery</a>
-                                </div>
-                            </div>
-                            <hr />
-                            <div class="row">
-                                <!-- Individual Detail -->
-                                <div class="col-sm-3 text-secondary">
-                                    <h6 class="mb-0">Salad</h6>
-                                </div>
-                                <div class="col-sm-9">
-                                    <a class="btngreen btn-success" asp-area="" asp-page="/Rating">Rate Cooker</a>
-                                    <a class="btngreen btn-success" asp-area="" asp-page="/Rating">Rate Delivery</a>
+                                <div class="col-sm-9 font-weight-bold align-self-center">
+                                    <p>From Madenet Nasr to Madenty</p>
+                                    <div>
+                                        <button type="button" class="btngreen btn-success">Accept</button>
+                                        <button type="button" class="btnred btn-danger">Reject</button>
+                                    </div>
                                 </div>
                             </div>
-
                         </div>
                     </div>
-
                 </div>
-            </div>
 
+            </div>
         </div>
+
+    </div>
     </div>
 
 </body>
