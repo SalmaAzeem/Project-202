@@ -17,18 +17,23 @@
         <div class="row g-0 ">
 
 
-            <form action="forms/book-a-table.php" method="post" role="form" class="php-email-form" data-aos="fade-up" data-aos-delay="100">
+            <form  method="post" role="form" class="php-email-form" data-aos="fade-up" data-aos-delay="100">
                 <div class="row gy-4">
                     <div class="col-lg-4 col-md-6">
-                        <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" data-rule="minlen:4" data-msg="Please enter at least 4 chars">
-                        <div class="validate"></div>
+                        <div class="input-group flex-nowrap">
+                          <span class="input-group-text" id="addon-wrapping">@@</span>
+                          <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="addon-wrapping">
+                        </div>
                     </div>
                     <div class="col-lg-4 col-md-6">
                         <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" data-rule="email" data-msg="Please enter a valid email">
                         <div class="validate"></div>
                     </div>
                     <div class="col-lg-4 col-md-6">
-                        <input type="text" class="form-control" name="phone" id="phone" placeholder="Your Phone" data-rule="minlen:4" data-msg="Please enter at least 4 chars">
+                        <div class="input-group flex-nowrap">
+                            <span class="input-group-text" id="addon-wrapping">+20</span>
+                            <input type="text" class="form-control" placeholder="Phone Number" aria-label="Username" aria-describedby="addon-wrapping" data-rule="minlen:4" data-msg="Please enter at least 4 chars">
+                        </div>
                         <div class="validate"></div>
                     </div>
                     <div class="col-lg-4 col-md-6">
@@ -37,7 +42,15 @@
                     </div>
 
                     <div class="col-lg-4 col-md-6">
-                        <input type="text" name="text" class="form-control" id="User_type" placeholder="User type" data-rule="minlen:4" data-msg="Please enter at least 4 chars">
+                        <div class="input-group mb-3">
+                            <label class="input-group-text" for="inputGroupSelect01">User Type</label>
+                            <select class="form-select" id="inputGroupSelect01">
+                                <option selected>Choose...</option>
+                                <option value="1">Customer</option>
+                                <option value="2">Cooker</option>
+                                <option value="3">Delivery</option>
+                            </select>
+                        </div>
                         <div class="validate"></div>
                     </div>
 
@@ -51,7 +64,7 @@
                         <div class="error-message"></div>
                         <div class="sent-message">Welcome, We will call back or send an Email to confirm your Order. Thank you!</div>
                     </div>
-                    <div class="text-center"><button type="submit">Sign In</button></div>
+                    <a class="text-center" asp-area="" asp-page="/Home"><button type="submit">Sign In</button></a>
             </form>
         </div><!-- End Reservation Form -->
 
