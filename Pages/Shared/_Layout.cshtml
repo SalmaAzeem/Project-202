@@ -62,17 +62,21 @@
 
                 </ul>
             </nav><!-- .navbar -->
-            <div class="btn-group" role="group" aria-label="Basic outlined example">
-                <a class="btn-book-a-table" asp-area="" asp-page="/signin">Sign In</a>
-                <a class="btn-book-a-table" asp-area="" asp-page="/signup">Sign Up</a>
-
-            </div>
 
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
             <a class="nav-link text-dark" asp-area="" asp-page="/Cart"><i class="fa fa-shopping-cart" asp-area="" asp-page="/Cart"></i></a>
 
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+            <a class="nav-link text-dark" asp-area="" asp-page="/Profile"><i class="bi bi-person-fill-gear"></i></a>
+
             <i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>
             <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
+
+            <div class="btn-group" role="group" aria-label="Basic outlined example">
+                <a class="btn btn-danger" asp-area="" asp-page="/signin">Sign In</a>
+                <a class="btn btn-danger" asp-area="" asp-page="/signup">Sign Up</a>
+
+            </div>
 
         </div>
     </header>
