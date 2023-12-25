@@ -38,7 +38,7 @@ namespace Project_DB.Pages
                             {
                                 for (int i = 0; i < ids.Count(); i++)
                                 {
-                                    cmd_2.Parameters.AddWithValue("@Id", ids[i]);
+                                    cmd_2.Parameters["@Id"].Value = ids[i];
                                     Person cooker = new Person();
                                     cooker.UserName = reader_2["UserName"].ToString();
                                     cooker.Email = reader_2["Email"].ToString();
