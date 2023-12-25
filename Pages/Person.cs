@@ -7,11 +7,8 @@ namespace Project_DB.Pages
         public string UserName { get; set; } 
         public string Email { get; set; }
         public string Phone_Number { get; set; }
-
         public string User_Password { get; set; }
-
         public string Birthdate { get; set; }
-
         public string User_Type;
     }
 }

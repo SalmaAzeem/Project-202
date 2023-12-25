@@ -298,9 +298,9 @@
                     <div class="card">
                         <div class="card-body">
                             <div class="d-flex flex-column align-items-center text-center">
-                                <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Admin" class="rounded-circle" width="150">
+                                <img src="~/img/chefs/female-avatar.png" alt="Admin" class="rounded-circle" width="150">
                                 <div class="mt-3">
-                                    <h4>Kenneth Valdez</h4>
+                                    <h4>@Model.UserName</h4>
                                     <p class="text-secondary mb-1">Cooker</p>
                                     <p class="text-muted font-size-sm">Giza, Dokki</p>
                                 </div>
@@ -320,7 +320,7 @@
                                     <h6 class="mb-0">Full Name</h6>
                                 </div>
                                 <div class="col-sm-9 text-secondary">
-                                    Doha 
+                                    @Model.UserName
                                 </div>
                             </div>
                             <hr>
@@ -330,7 +330,7 @@
                                     <h6 class="mb-0">Email</h6>
                                 </div>
                                 <div class="col-sm-9 text-secondary">
-                                    Kenneth@gmail.com
+                                    @Model.Email
                                 </div>
                             </div>
                             <hr>
@@ -340,7 +340,7 @@
                                     <h6 class="mb-0">Phone Number</h6>
                                 </div>
                                 <div class="col-sm-9 text-secondary">
-                                    01117034939
+                                    @Model.phone_number
                                 </div>
                             </div>
 
