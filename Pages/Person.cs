@@ -4,14 +4,14 @@ namespace Project_DB.Pages
 {
     public class Person
     {
-        public string name { get; set; } 
-        public string email { get; set; }
-        public int phone { get; set; }
+        public string UserName { get; set; } 
+        public string Email { get; set; }
+        public string Phone_Number { get; set; }
 
-        public string password { get; set; }
+        public string User_Password { get; set; }
 
-        public string bdate { get; set; }
+        public string Birthdate { get; set; }
 
-        public string type;
+        public string User_Type;
     }
 }
