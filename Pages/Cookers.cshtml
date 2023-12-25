@@ -1,7 +1,7 @@
 ﻿@page
 @model Project_DB.Pages.CookersModel
 @{
-    int number_of_cookers = 4;
+    int number_of_cookers = 13;
 }
 
 <br />
@@ -30,7 +30,7 @@
 
                         </div>
                         <div class="member-info">
-                            <a asp-page="/Cooker_interface"> <h4>Salma Sherif</h4> </a>
+                            <a asp-page="/Cooker_interface"> <h4>@Model.cookers[i].UserName</h4> </a>
                             <span>Cook</span>
                             <p>Vero omnis enim consequatur. Voluptas consectetur unde qui molestiae deserunt. Voluptates enim aut architecto porro aspernatur molestiae modi.</p>
                         </div>
