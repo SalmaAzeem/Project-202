@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using System.Data;
 using System.Data.SqlClient;
 
 namespace Project_DB.Pages
@@ -8,8 +9,10 @@ namespace Project_DB.Pages
     public class CookersModel : PageModel
     {
         //public Person user = new Person();
+        public string name { get; set; }
         public List<Person> cookers {  get; set; } = new List<Person>();
         public List<string> ids { get; set; } = new List<string>();
+        public List<string> names { get; set; } = new List<string>();
 		public void OnGet()
 		{
             string connection = "Data Source=Tamer;Initial Catalog=\"Project 2.0\";Integrated Security=True";
@@ -19,7 +22,6 @@ namespace Project_DB.Pages
                 {
                     conn.Open();
                     string query = "select Cooker_id from Cooker";
-                    string query2 = "select UserName, Email, Phone_Number from Userr where ID = @Id";
                     using (SqlCommand cmd = new SqlCommand(query, conn))
                     {
                         using (SqlDataReader reader = cmd.ExecuteReader()) 
@@ -30,19 +32,28 @@ namespace Project_DB.Pages
                             }
                         }
                     }
+                    string query2 = "SELECT UserName, Email, Phone_Number FROM Userr WHERE ID = @Id";
                     using (SqlCommand cmd_2 = new SqlCommand(query2, conn))
                     {
-                        using (SqlDataReader reader_2 = cmd_2.ExecuteReader())
+                        // Define the parameter outside the loop
+                        cmd_2.Parameters.Add(new SqlParameter("@Id", SqlDbType.VarChar));
+
+                        foreach (string id in ids)
                         {
-                            if (reader_2.Read())
+                            cmd_2.Parameters["@Id"].Value = id;
+
+                            using (SqlDataReader reader_2 = cmd_2.ExecuteReader())
                             {
-                                for (int i = 0; i < ids.Count(); i++)
+                                while (reader_2.Read())
                                 {
-                                    cmd_2.Parameters["@Id"].Value = ids[i];
                                     Person cooker = new Person();
                                     cooker.UserName = reader_2["UserName"].ToString();
+                                    //Person cooker = new Person();
+                                    //cooker.UserName = reader_2["UserName"].ToString();
+                                    //cooker.Email = reader_2["Email"].ToString();
+                                    //cooker.Phone_Number = (int)reader_2["Phone_Number"];
+                                    //cookers.Add(cooker);
                                     cooker.Email = reader_2["Email"].ToString();
-                                    cooker.Phone_Number = (int)reader_2["Phone_Number"];
                                     cookers.Add(cooker);
                                 }
                             }
