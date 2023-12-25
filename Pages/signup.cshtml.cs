@@ -78,7 +78,7 @@ namespace Project_DB.Pages
             }
             else
             {
-            return RedirectToPage("/DeliveryProfile", new { personinfo2 = personinfo });
+            return RedirectToPage("/DeliveryQA", new { personinfo2 = personinfo });
             }
         }
 

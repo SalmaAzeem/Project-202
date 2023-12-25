@@ -13,5 +13,6 @@ namespace Project_DB.Pages
         public string User_Password { get; set; }
         public string Birthdate { get; set; }
         public string User_Type { get; set; }
+        public int Vehicle_number { get; set;}
     }
 }
