@@ -1,5 +1,7 @@
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using System;
 using System.Data.SqlClient;
 using System.Runtime;
 
@@ -18,7 +20,14 @@ namespace Project_DB.Pages
             personinfo.Email = Request.Form["Email"];
             personinfo.User_Password = Request.Form["User_Password"];
             personinfo.User_Type = Request.Form["User_Type"];
-            personinfo.Phone_Number = Request.Form["Phone_Number"];
+            string phoneString = Request.Form["Phone_Number"];
+
+
+            if (int.TryParse(phoneString, out int idValue))
+            {
+                personinfo.Phone_Number = idValue;
+            }
+
             personinfo.Birthdate = Request.Form["Birthdate"];
 
 
@@ -47,28 +56,26 @@ namespace Project_DB.Pages
                     }
                 }
 
-         }
+
+            }
             catch (Exception ex)
             {
                 Console.WriteLine(ex.ToString());
             }
-
-            if (personinfo.User_Type == "Cooker")
-            {
-                Console.WriteLine(personinfo.User_Type);
-            Response.Redirect("/CookerProfile", new { personinfo = presoninfo2 });
-            }
-            else if(personinfo.User_Type == "Customer")
-            {
-                Response.Redirect("/Profile", new { personinfo = presoninfo2 });
-            }
-            else
-            {
-                Response.Redirect("/DeliveryProfile",new { personinfo = presoninfo2 });
-            }
+            //if (personinfo.User_Type == "Cooker")
+            //{
+            //    Response.Redirect("/CookerProfile", new { personinfo2 = personinfo });
+            //}
+            //else if (personinfo.User_Type == "Customer")
+            //{
+            //    Response.Redirect("/Profile", new { personinfo2 = personinfo });
+            //}
+            //else
+            //{
+            //    Response.Redirect("/DeliveryProfile", new { personinfo2 = personinfo });
+            //}
 
 
-            
 
         }
 
