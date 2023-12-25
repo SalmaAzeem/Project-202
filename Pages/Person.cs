@@ -1,7 +1,9 @@
-﻿using System.Data.SqlClient;
+﻿using Microsoft.AspNetCore.Mvc;
+using System.Data.SqlClient;
 
 namespace Project_DB.Pages
 {
+    [BindProperties(SupportsGet = true)]
     public class Person
     {
         public string UserName { get; set; } 
@@ -9,6 +11,6 @@ namespace Project_DB.Pages
         public int Phone_Number { get; set; }
         public string User_Password { get; set; }
         public string Birthdate { get; set; }
-        public string User_Type;
+        public string User_Type { get; set; }
     }
 }
