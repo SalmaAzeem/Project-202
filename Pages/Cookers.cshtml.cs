@@ -8,6 +8,7 @@ namespace Project_DB.Pages
     [BindProperties]
     public class CookersModel : PageModel
     {
+        //public Person user = new Person();
         public string name { get; set; }
         public List<Person> cookers { get; set; } = new List<Person>();
         public List<string> ids { get; set; } = new List<string>();
@@ -34,6 +35,7 @@ namespace Project_DB.Pages
                     string query2 = "SELECT UserName, Email, Phone_Number FROM Userr WHERE ID = @Id";
                     using (SqlCommand cmd_2 = new SqlCommand(query2, conn))
                     {
+                        // Define the parameter outside the loop
                         cmd_2.Parameters.Add(new SqlParameter("@Id", SqlDbType.VarChar));
 
                         foreach (string id in ids)
@@ -47,6 +49,7 @@ namespace Project_DB.Pages
                                     Person cooker = new Person();
                                     cooker.UserName = reader_2["UserName"].ToString();
                                     cooker.Email = reader_2["Email"].ToString();
+                                    cookers.Add(cooker);
                                 }
                             }
                         }
