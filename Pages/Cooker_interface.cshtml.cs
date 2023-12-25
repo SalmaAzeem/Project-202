@@ -7,43 +7,51 @@ namespace Project_DB.Pages
     [BindProperties]
     public class Cooker_interfaceModel : PageModel
     {
-		public int Id { get; set; }
-		public string UserName { get; set; }
-		public string Email { get; set; }
-		public string phone_number { get; set; }
-		public void OnGet()
+		public List<Person> Cookers = new List<Person>();
+		public int CookerId { get; set; }
+		public string CookerName { get; set; }
+		public string CookerEmail { get; set; }
+		public int CookerPhone { get; set; }
+		public void OnGet(int cookerid)
 		{
-			string connection = "Data Source=Tamer;Initial Catalog=\"Project 2.0\";Integrated Security=True";
-			using (SqlConnection con = new SqlConnection(connection))
+			CookerId = cookerid;
+			if (TempData.TryGetValue("cookers", out var cookers))
 			{
-				try
+				Cookers = cookers as List<Person>;
+			}
+			foreach (var cooker in Cookers)
+			{
+				if (CookerId == cooker.Id)
 				{
-					con.Open();
-					Id = 4;
-					string query = "select UserName, Email, Phone_Number from Userr where ID = @Id";
-					using (SqlCommand cmd = new SqlCommand(query, con))
-					{
-						cmd.Parameters.AddWithValue("@Id", Id);
-						using (SqlDataReader reader = cmd.ExecuteReader())
-						{
-							if (reader.Read())
-							{
-								UserName = reader["UserName"].ToString();
-								Email = reader["Email"].ToString();
-								phone_number = reader["Phone_Number"].ToString();
-							}
-						}
-					}
-				}
-				catch (Exception ex)
-				{
-					Console.WriteLine($"An error occurred: {ex.Message}");
-				}
-				finally
-				{
-					con.Close();
+					CookerName = cooker.UserName;
+					CookerEmail = cooker.Email;
+					CookerPhone = cooker.Phone_Number;
 				}
 			}
+			//string connection = "Data Source=Tamer;Initial Catalog=\"Project 2.0\";Integrated Security=True";
+			//using (SqlConnection con = new SqlConnection(connection))
+			//{
+			//	try
+			//	{
+			//		con.Open();
+			//		string query = "select UserName, Email, Phone_Number from Userr where ID = @CookerID";
+			//		using (SqlCommand cmd = new SqlCommand(query, con))
+			//		{
+   //                     using (SqlDataReader reader = cmd.ExecuteReader())
+			//			{
+
+			//			}
+   //                 }
+			//	}
+			//	catch (Exception ex)
+			//	{
+			//		Console.WriteLine($"An error occurred: {ex.Message}");
+			//	}
+			//	finally
+			//	{
+			//		con.Close();
+			//	}
+			//}
 		}
 	}
 }

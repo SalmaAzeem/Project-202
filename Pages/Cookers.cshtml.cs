@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.Data;
 using System.Data.SqlClient;
 using System.Text.RegularExpressions;
+using Newtonsoft.Json;
 
 namespace Project_DB.Pages
 {
@@ -14,7 +15,7 @@ namespace Project_DB.Pages
         public List<Person> cookers {  get; set; } = new List<Person>();
         public List<string> ids { get; set; } = new List<string>();
         public List<string> names { get; set; } = new List<string>();
-		public void OnGet()
+		public IActionResult OnGet()
 		{
             string connection = "Data Source=Tamer;Initial Catalog=\"Project 2.0\";Integrated Security=True";
             using (SqlConnection conn = new SqlConnection(connection))
@@ -48,13 +49,10 @@ namespace Project_DB.Pages
                                 while (reader_2.Read())
                                 {
                                     Person cooker = new Person();
+                                    cooker.Id = Int32.Parse(id);
                                     cooker.UserName = reader_2["UserName"].ToString();
-                                    //Person cooker = new Person();
-                                    //cooker.UserName = reader_2["UserName"].ToString();
-                                    //cooker.Email = reader_2["Email"].ToString();
-                                    //cooker.Phone_Number = (int)reader_2["Phone_Number"];
-                                    //cookers.Add(cooker);
                                     cooker.Email = reader_2["Email"].ToString();
+                                    cooker.Phone_Number = (int)reader_2["Phone_Number"];
                                     cookers.Add(cooker);
                                 }
                             }
@@ -70,6 +68,8 @@ namespace Project_DB.Pages
                     conn.Close();
                 }
             }
+            TempData["Cookers"] = cookers;
+            return RedirectToPage("/Cooker_interface");
         }
     }
 }
