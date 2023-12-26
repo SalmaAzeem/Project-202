@@ -4,7 +4,7 @@ using System.Data.SqlClient;
 
 namespace Project_DB.Pages
 {
-    [BindProperties]
+    [BindProperties(SupportsGet = true)]
     public class Cooker_interfaceModel : PageModel
     {
 		public string CookerGender { get; set; }
@@ -12,6 +12,7 @@ namespace Project_DB.Pages
 		public string CookerName { get; set; }
 		public string CookerEmail { get; set; }
 		public int CookerPhone { get; set; }
+		public int Rating {  get; set; }
 		//public string Image_path { get; set; }
 		public void OnGet(string name, string email, string phone, string id)
 		{
@@ -40,6 +41,24 @@ namespace Project_DB.Pages
 			}
 			finally { con.Close(); }
 			
+		}
+		public void OnPost(int ratingRadio)
+		{
+			Rating = ratingRadio;
+			string connection = "Data Source=Tamer;Initial Catalog=\"Project 2.0\";Integrated Security=True";
+			SqlConnection con = new SqlConnection(connection);
+			con.Open();
+			string query = "insert into rating_cooker_two values (@CookerID, @Rating)";
+			SqlCommand cmd = new SqlCommand(@query, con);
+			try
+			{
+				cmd.Parameters.AddWithValue("@CookerID", CookerID);
+				cmd.Parameters.AddWithValue("@Rating", ratingRadio);
+				cmd.ExecuteNonQuery();
+				Console.WriteLine("success");
+			}
+			catch (Exception ex) { Console.WriteLine(ex.ToString()); }
+			finally { con.Close(); }
 		}
 	}
 }

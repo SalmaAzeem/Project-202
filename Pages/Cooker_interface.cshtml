@@ -177,6 +177,11 @@
                 color: #FFC107;
             }
 
+        .margin-container {
+            margin-top: 50px;
+            margin-right: 50px;
+        }
+
         .content {
             text-align: center;
         }
@@ -362,16 +367,21 @@
                                 </div>
                                 <div class="col-sm-9 text-secondary">
                                     <div class="wrapper">
-                                        <input name="ratingRadio" type="radio" id="st1" value="1" />
-                                        <label for="st1"></label>
-                                        <input name="ratingRadio" type="radio" id="st2" value="2" />
-                                        <label for="st2"></label>
-                                        <input name="ratingRadio" type="radio" id="st3" value="3" />
-                                        <label for="st3"></label>
-                                        <input name="ratingRadio" type="radio" id="st4" value="4" />
-                                        <label for="st4"></label>
-                                        <input name="ratingRadio" type="radio" id="st5" value="5" />
-                                        <label for="st5"></label>
+                                        <form method="post">
+											<input name="ratingRadio" type="radio" id="st1" value="5" />
+											<label for="st1"></label>
+											<input name="ratingRadio" type="radio" id="st2" value="4" />
+											<label for="st2"></label>
+											<input name="ratingRadio" type="radio" id="st3" value="3" />
+											<label for="st3"></label>
+											<input name="ratingRadio" type="radio" id="st4" value="2" />
+											<label for="st4"></label>
+											<input name="ratingRadio" type="radio" id="st5" value="1" />
+											<label for="st5"></label>
+											<div>
+												<button type="submit" class="btn">Submit</button>
+                                            </div>
+                                        </form>
                                     </div>
                                 </div>
                             </div>
