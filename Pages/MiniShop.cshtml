@@ -29,60 +29,22 @@
                 </div>
 
                 <div class="row gy-5">
+                    @for (int i = 0; i < Model.food_cans_names.Count; i++)
+                    {
+                        <div class="col-lg-4 minishop-item">
+                            <a asp-page="/MealInfo"><img src="~/img/menu/menu-item-1.png" class="menu-img img-fluid" alt=""></a>
+                            <h4>@Model.food_cans_names[i]</h4>
 
-                    <div class="col-lg-4 minishop-item">
-                        <a asp-page="/MealInfo"><img src="~/img/menu/menu-item-1.png" class="menu-img img-fluid" alt=""></a>
-                        <h4>Magnam Tiste</h4>
+                            <p class="price">
+                                @Model.prices[i] EGP
+                            </p>
+                        </div>
 
-                        <p class="price">
-                            EGP5.95
-                        </p>
-                    </div><!-- Menu Item -->
+                        <!-- Menu Item -->
+                    }
+                    
 
-                    <div class="col-lg-4 minishop-item">
-                        <a asp-page="/MealInfo"><img src="~/img/menu/menu-item-2.png" class="menu-img img-fluid" alt=""></a>
-                        <h4>Aut Luia</h4>
-
-                        <p class="price">
-                            EGP14.95
-                        </p>
-                    </div><!-- Menu Item -->
-
-                    <div class="col-lg-4 minishop-item">
-                        <a asp-page="/MealInfo"><img src="~/img/menu/menu-item-3.png" class="menu-img img-fluid" alt=""></a>
-                        <h4>Est Eligendi</h4>
-
-                        <p class="price">
-                            EGP8.95
-                        </p>
-                    </div><!-- Menu Item -->
-
-                    <div class="col-lg-4 minishop-item">
-                        <a asp-page="/MealInfo"><img src="~/img/menu/menu-item-4.png" class="menu-img img-fluid" alt=""></a>
-                        <h4>Eos Luibusdam</h4>
-
-                        <p class="price">
-                            EGP12.95
-                        </p>
-                    </div><!-- Menu Item -->
-
-                    <div class="col-lg-4 minishop-item">
-                        <a asp-page="/MealInfo"><img src="~/img/menu/menu-item-5.png" class="menu-img img-fluid" alt=""></a>
-                        <h4>Eos Luibusdam</h4>
-
-                        <p class="price">
-                            EGP12.95
-                        </p>
-                    </div><!-- Menu Item -->
-
-                    <div class="col-lg-4 minishop-item">
-                        <a asp-page="/MealInfo"><img src="~/img/menu/menu-item-6.png" class="menu-img img-fluid" alt=""></a>
-                        <h4>Laboriosam Direva</h4>
-
-                        <p class="price">
-                            EGP9.95
-                        </p>
-                    </div><!-- Menu Item -->
+                 
 
                 </div>
             </div><!-- End Starter Menu Content -->
