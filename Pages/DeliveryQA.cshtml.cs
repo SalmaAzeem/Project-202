@@ -7,7 +7,10 @@ namespace Project_DB.Pages
     public class DeliveryQAModel : PageModel
     {
         [BindProperty (SupportsGet = true)]
-        public Person personinfo2 { get; set; }
+        public Person deliveryinfo { get; set; }
+
+        [BindProperty]
+        public int ID { get; set; }
 
         public void OnGet()
         {
@@ -28,8 +31,8 @@ namespace Project_DB.Pages
 
                     using (SqlCommand cmd = new SqlCommand(q, con))
                     {
-                        cmd.Parameters.AddWithValue("@delivery_id", personinfo2.Id);
-                        cmd.Parameters.AddWithValue("@Vehicle_number", personinfo2.Vehicle_number);
+                        cmd.Parameters.AddWithValue("@Vehicle_number", deliveryinfo.Vehicle_number);
+                        cmd.Parameters.AddWithValue("@delivery_id", ID);
                         cmd.ExecuteNonQuery();
                     }
                 }
@@ -41,7 +44,7 @@ namespace Project_DB.Pages
             }
 
             
-            return RedirectToPage("/DeliveryProfile", new { personinfo3 = personinfo2 });
+            return RedirectToPage("/DeliveryProfile", new {ID2 = ID});
             
         }
 

@@ -7,7 +7,7 @@ namespace Project_DB.Pages
     public class DeliveryProfileModel : PageModel
     {
         [BindProperty]
-        public  int Id { get; set; }
+        public  int ID2 { get; set; }
         public void OnGet()
         {
         }
