@@ -276,6 +276,35 @@
             .wrapper label:hover:before {
                 color: #FFC107;
             }
+
+        .table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            border-radius: 10px; /* Add border-radius to make the corners curved */
+            overflow: hidden; /* Ensure the curved corners are visible */
+        }
+
+            .table th {
+                background-color: #f2f2f2;
+                border: 1px solid #dddddd;
+                text-align: left;
+                padding: 8px;
+            }
+
+            .table tr {
+                border: 1px solid #dddddd;
+            }
+
+                .table tr:nth-child(even) {
+                    background-color: #f9f9f9;
+                }
+
+            .table td {
+                border: 1px solid #dddddd;
+                text-align: left;
+                padding: 8px;
+            }
     </style>
 </head>
 <body>
@@ -389,7 +418,25 @@
                             <div class="row">
                                 <!-- Individual Detail -->
                                 <div class="col-sm-3">
-                                    <h6 class="mb-0">Meals</h6>
+                                    <form action="OnGetMeals">
+                                        @{
+                                            <table class="table">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Meals</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    @foreach (var meal in Model.Meals)
+                                                    {
+                                                        <tr>
+                                                            <td>@meal</td>
+                                                        </tr>
+                                                    }
+                                                </tbody>
+                                            </table>
+                                        }
+                                    </form>
                                 </div>
                                 <div class="col-sm-9 text-secondary">
                                 </div>
