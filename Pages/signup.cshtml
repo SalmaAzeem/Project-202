@@ -46,29 +46,11 @@
                         <div class="validate"></div>
                     </div>
 
-@*                     <div class="col-lg-4 col-md-6">
-                        <div class="input-group mb-3">
-                            <label class="input-group-text" for="inputGroupSelect01">User Type</label>
-                            <select class="form-select" id="inputGroupSelect01" value="@Model.personinfo.type">
-                                <option selected>Choose...</option>
-                                <option value="1">Customer</option>
-                                <option value="2">Cooker</option>
-                                <option value="3">Delivery</option>
-                            </select>
-                        </div>
-                        <div class="validate"></div>
-                    </div>
- *@
                     <div class="col-lg-4 col-md-6">
                         <input type="text" name="Birthdate" value="@Model.personinfo.Birthdate" class="form-control" id="Birthdate" placeholder="Your Birthdate" data-rule="minlen:4" data-msg="Please enter at least 4 chars">
                         <div class="validate"></div>
                     </div>
 
-                    <div class="mb-3">
-                        <div class="loading">Loading</div>
-                        <div class="error-message"></div>
-                        <div class="sent-message">Welcome, We will call back or send an Email to confirm your Order. Thank you!</div>
-                    </div>
                     <a class="text-center" asp-area="" asp-page="/Home"><button type="submit">Sign In</button></a>
             </form>
         </div><!-- End Reservation Form -->
