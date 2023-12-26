@@ -29,8 +29,8 @@
                             <a href=""><i class="bi bi-linkedin"></i></a>
 
                         </div>
-                        <div class="member-info">
-                            <a asp-page="/Cooker_interface" asp-route-name="@cooker.UserName" asp-route-email="@cooker.Email" asp-route-number="@cooker.Phone_Number"> <h4>@cooker.UserName</h4> </a>
+                        <div class="member-info"> <!-- I want to pass an object here -->
+                            <a asp-page="/Cooker_interface" asp-route-name="@cooker.UserName" asp-route-email ="@cooker.Email" asp-route-phone="@cooker.Phone_Number" asp-route-id ="@cooker.Id"> <h4>@cooker.UserName</h4> </a>
                             <span>Cook</span>
                             <p>Vero omnis enim consequatur. Voluptas consectetur unde qui molestiae deserunt. Voluptates enim aut architecto porro aspernatur molestiae modi.</p>
                         </div>
