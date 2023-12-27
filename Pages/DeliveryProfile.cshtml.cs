@@ -8,15 +8,16 @@ namespace Project_DB.Pages
     public class DeliveryProfileModel : PageModel
     {
         [BindProperty(SupportsGet = true)]
-        public  int ID2 { get; set; }
+        public int ID2 { get; set; }
 
+        [BindProperty(SupportsGet = true)]
         public Person deliveryinfo { get; set; }
         public void OnGet()
         {
             try
             {
                 string connectionString = "Data Source =LAPTOP-8L98OTBR; Initial Catalog = Project 2.0; Integrated Security = True";
-
+                //deliveryinfo.Id = ID2;
                 using (SqlConnection con = new SqlConnection(connectionString))
                 {
                     con.Open();
@@ -26,18 +27,18 @@ namespace Project_DB.Pages
                     using (SqlCommand cmd = new SqlCommand(q2, con))
                     {
                         cmd.Parameters.AddWithValue("@ID", ID2);
-
+                        
                         using (SqlDataReader reader = cmd.ExecuteReader())
                         {
-                            //reader.Read();
+                            reader.Read();
                             //deliveryinfo.Id = Convert.ToInt32(reader["ID"]);
-                            //deliveryinfo.UserName = reader["UserName"].ToString();
-                            //deliveryinfo.Email = reader["Email"].ToString();
-                            //deliveryinfo.Phone_Number = Convert.ToInt32(reader["Phone_Number"]);
-                            //deliveryinfo.Birthdate = reader["Birthdate"].ToString();
-                            //deliveryinfo.Vehicle_number = Convert.ToInt32(reader["Vehicle_number"]);
-                            //deliveryinfo.User_Password = reader["User_Password"].ToString();
-                            
+                            deliveryinfo.UserName = reader["UserName"].ToString();
+                            deliveryinfo.Email = reader["Email"].ToString();
+                            deliveryinfo.Phone_Number = Convert.ToInt32(reader["Phone_Number"]);
+                            deliveryinfo.Birthdate = reader["Birthdate"].ToString();
+                            deliveryinfo.Vehicle_number = Convert.ToInt32(reader["Vehicle_number"]);
+                            deliveryinfo.User_Password = reader["User_Password"].ToString();
+
                         }
                     }
                 }
