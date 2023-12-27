@@ -338,17 +338,7 @@
                     <div class="card">
                         <div class="card-body">
                             <div class="d-flex flex-column align-items-center text-center">
-                                @{
-                                    //da ely hwa ay kalam lhad ma a handle hewar el sewar fel database
-                                    if (Model.CookerGender == "Female")
-                                    {
-                                        <img src="~/img/chefs/female-avatar.png" alt="Admin" class="rounded-circle" width="150">
-                                    }
-                                    else
-                                    {
-                                        <img src="~/img/chefs/male-avatar.png" alt="Admin" class="rounded-circle" width="150">
-                                    }
-                                }
+                                <img src="~/img/chefs/female-avatar.png" alt="Admin" class="rounded-circle" width="150">
                                 <div class="mt-3">
                                     <h4>@Model.CookerName</h4>
                                     <p class="text-secondary mb-1">Cooker</p>
@@ -359,6 +349,7 @@
                     </div>
 
                 </div>
+                
                 <div class="col-md-8">
                     <!-- Profile Details Card -->
                     <div class="card mb-3">
@@ -402,7 +393,7 @@
                                 </div>
                                 <div class="col-sm-9 text-secondary">
                                     <div class="wrapper">
-                                        <form method="post">
+                                        <form method="post" asp-route-id = "@Model.CookerID">
 											<input name="ratingRadio" type="radio" id="st1" value="5" />
 											<label for="st1"></label>
 											<input name="ratingRadio" type="radio" id="st2" value="4" />
@@ -421,29 +412,29 @@
                                 </div>
                             </div>
                             <hr>
-                            <div class="row">
-                                <!-- Individual Detail -->
-                                <div class="col-sm-3">
-                                    <form action="OnGetMeals">
-                                        @{
-                                            foreach (var meal in Model.Meals)
-                                            {
-                                                <div class="mealinfo">
-													<h4>@meal</h4>
-                                                </div>                                              
-                                            }
+                        </div>
+                    </div>                  
+
+                </div>
+                <div>
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="d-flex flex-column align-items-center text-center">
+                                <div class="mt-3">
+                                    @{
+                                        foreach (var meal in Model.Meals)
+                                        {
+                                            <h4>@meal</h4>
                                         }
-                                    </form>
-                                </div>
-                                <div class="col-sm-9 text-secondary">
+                                    }
                                 </div>
                             </div>
                         </div>
                     </div>
-
                 </div>
+                
             </div>
-
+            
         </div>
     </div>
 
