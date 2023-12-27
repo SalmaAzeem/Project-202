@@ -305,6 +305,12 @@
                 text-align: left;
                 padding: 8px;
             }
+            .mealinfo {
+                font-weight: 700;
+                margin-bottom: 5px;
+                font-size: 20px;
+                color: var(--color-secondary);
+            }
     </style>
 </head>
 <body>
@@ -420,21 +426,12 @@
                                 <div class="col-sm-3">
                                     <form action="OnGetMeals">
                                         @{
-                                            <table class="table">
-                                                <thead>
-                                                    <tr>
-                                                        <th>Meals</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    @foreach (var meal in Model.Meals)
-                                                    {
-                                                        <tr>
-                                                            <td>@meal</td>
-                                                        </tr>
-                                                    }
-                                                </tbody>
-                                            </table>
+                                            foreach (var meal in Model.Meals)
+                                            {
+                                                <div class="mealinfo">
+													<h4>@meal</h4>
+                                                </div>                                              
+                                            }
                                         }
                                     </form>
                                 </div>

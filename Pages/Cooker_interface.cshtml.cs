@@ -9,6 +9,7 @@ namespace Project_DB.Pages
     {
 		public string CookerGender { get; set; }
 		public int CookerID { get; set; }
+        public int Rating_CookerID { get; set; }
 		public string CookerName { get; set; }
 		public string CookerEmail { get; set; }
 		public int CookerPhone { get; set; }
@@ -21,6 +22,7 @@ namespace Project_DB.Pages
             CookerEmail = email;
             CookerPhone = Convert.ToInt32(phone);
             CookerID = Convert.ToInt32(id);
+            Rating_CookerID = Convert.ToInt32(id);
             string connection = "Data Source=Tamer;Initial Catalog=Project 2.0;Integrated Security=True";
 
             using (SqlConnection con = new SqlConnection(connection))
@@ -68,6 +70,7 @@ namespace Project_DB.Pages
 		public void OnPost(int ratingRadio)
 		{
 			Rating = ratingRadio;
+
 			string connection = "Data Source=Tamer;Initial Catalog=\"Project 2.0\";Integrated Security=True";
 			SqlConnection con = new SqlConnection(connection);
 			con.Open();
@@ -75,7 +78,7 @@ namespace Project_DB.Pages
 			SqlCommand cmd = new SqlCommand(@query, con);
 			try
 			{
-				cmd.Parameters.AddWithValue("@CookerID", CookerID);
+				cmd.Parameters.AddWithValue("@CookerID", Rating_CookerID);
 				cmd.Parameters.AddWithValue("@Rating", ratingRadio);
 				cmd.ExecuteNonQuery();
 				Console.WriteLine("success");
