@@ -54,7 +54,7 @@ namespace Project_DB.Pages
 		{
 
 		}
-		public void OnPost(int ratingRadio, int id)
+		public IActionResult OnPost(int ratingRadio, int id)
 		{
 			Rating = ratingRadio;
             Rating_CookerID = Convert.ToInt32(id);
@@ -74,6 +74,7 @@ namespace Project_DB.Pages
 			}
 			catch (Exception ex) { Console.WriteLine(ex.ToString()); }
 			finally { con.Close(); }
+            return RedirectToPage("/Rating_Success", new { rating = Rating });
 		}
 	}
 }
