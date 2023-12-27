@@ -57,72 +57,21 @@
                 </div>
 
                 <div class="row gy-5">
-
+                    @for (int i = 0; i < Model.Main_Courses_Meal_names.Count; i++)
+                    {
                     <div class="col-lg-4 menu-item">
                         <a asp-page="/MealInfo"> <img src="/img/menu/menu-item-1.png" class="menu-img img-fluid" alt=""></a>
-                        <h4>Magnam Tiste</h4>
+                        <h4>@Model.Main_Courses_Meal_names[i]</h4>
                         <p class="ingredients">
-                            Lorem, deren, trataro, filede, nerada
+                                @Model.Main_Courses_Meal_ingredients[i]
                         </p>
                         <p class="price">
-                            EGP 5.95
+                                @Model.prices_Main_Courses[i] EGP
                         </p>
                     </div><!-- Menu Item -->
+                    }
 
-                    <div class="col-lg-4 menu-item">
-                        <a asp-page="/MealInfo"> <img src="/img/menu/menu-item-2.png" class="menu-img img-fluid" alt=""></a>
-                        <h4>Aut Luia</h4>
-                        <p class="ingredients">
-                            Lorem, deren, trataro, filede, nerada
-                        </p>
-                        <p class="price">
-                            EGP 14.95
-                        </p>
-                    </div><!-- Menu Item -->
-
-                    <div class="col-lg-4 menu-item">
-                        <a asp-page="/MealInfo"> <img src="/img/menu/menu-item-3.png" class="menu-img img-fluid" alt=""></a>
-                        <h4>Est Eligendi</h4>
-                        <p class="ingredients">
-                            Lorem, deren, trataro, filede, nerada
-                        </p>
-                        <p class="price">
-                            EGP 8.95
-                        </p>
-                    </div><!-- Menu Item -->
-
-                    <div class="col-lg-4 menu-item">
-                        <a asp-page="/MealInfo"> <img src="/img/menu/menu-item-4.png" class="menu-img img-fluid" alt=""></a>
-                        <h4>Eos Luibusdam</h4>
-                        <p class="ingredients">
-                            Lorem, deren, trataro, filede, nerada
-                        </p>
-                        <p class="price">
-                            EGP 12.95
-                        </p>
-                    </div><!-- Menu Item -->
-
-                    <div class="col-lg-4 menu-item">
-                        <a asp-page="/MealInfo"> <img src="/img/menu/menu-item-5.png" class="menu-img img-fluid" alt=""></a>
-                        <h4>Eos Luibusdam</h4>
-                        <p class="ingredients">
-                            Lorem, deren, trataro, filede, nerada
-                        </p>
-                        <p class="price">
-                            EGP 12.95
-                        </p>
-                    </div><!-- Menu Item -->
-
-                    <div class="col-lg-4 menu-item">
-                        <a asp-page="/MealInfo"> <img src="/img/menu/menu-item-6.png" class="menu-img img-fluid" alt=""></a>
-                        <h4>Laboriosam Direva</h4>
-                        <p class="ingredients">
-                            Lorem, deren, trataro, filede, nerada
-                        </p>
-                        <p class="price">
-                            EGP 9.95
-                        </p>
-                    </div><!-- Menu Item -->
+ 
 
                 </div>
             </div><!-- End Starter Menu Content -->
@@ -135,72 +84,23 @@
                 </div>
 
                 <div class="row gy-5">
+                    @for (int i = 0; i < Model.Breakfast_Meal_names.Count; i++)
+                    {
+                        <div class="col-lg-4 menu-item">
+                            <a asp-page="/MealInfo"> <img src="/img/menu/menu-item-1.png" class="menu-img img-fluid" alt=""></a>
+                            <h4>@Model.Breakfast_Meal_names[i]</h4>
+                            <p class="ingredients">
+                                @Model.Breakfast_Meal_ingredients[i]
+                            </p>
+                            <p class="price">
+                                @Model.prices_Breakfast[i] EGP
+                            </p>
+                        </div>
 
-                    <div class="col-lg-4 menu-item">
-                        <a asp-page="/MealInfo"> <img src="/img/menu/menu-item-1.png" class="menu-img img-fluid" alt=""></a>
-                        <h4>Magnam Tiste</h4>
-                        <p class="ingredients">
-                            Lorem, deren, trataro, filede, nerada
-                        </p>
-                        <p class="price">
-                            EGP 5.95
-                        </p>
-                    </div><!-- Menu Item -->
+                        <!-- Menu Item -->
+                    }
 
-                    <div class="col-lg-4 menu-item">
-                        <a asp-page="/MealInfo"> <img src="/img/menu/menu-item-2.png" class="menu-img img-fluid" alt=""></a>
-                        <h4>Aut Luia</h4>
-                        <p class="ingredients">
-                            Lorem, deren, trataro, filede, nerada
-                        </p>
-                        <p class="price">
-                            EGP 14.95
-                        </p>
-                    </div><!-- Menu Item -->
 
-                    <div class="col-lg-4 menu-item">
-                        <a asp-page="/MealInfo"> <img src="/img/menu/menu-item-3.png" class="menu-img img-fluid" alt=""></a>
-                        <h4>Est Eligendi</h4>
-                        <p class="ingredients">
-                            Lorem, deren, trataro, filede, nerada
-                        </p>
-                        <p class="price">
-                            EGP 8.95
-                        </p>
-                    </div><!-- Menu Item -->
-
-                    <div class="col-lg-4 menu-item">
-                        <a asp-page="/MealInfo"> <img src="/img/menu/menu-item-4.png" class="menu-img img-fluid" alt=""></a>
-                        <h4>Eos Luibusdam</h4>
-                        <p class="ingredients">
-                            Lorem, deren, trataro, filede, nerada
-                        </p>
-                        <p class="price">
-                            EGP 12.95
-                        </p>
-                    </div><!-- Menu Item -->
-
-                    <div class="col-lg-4 menu-item">
-                        <a asp-page="/MealInfo"> <img src="/img/menu/menu-item-5.png" class="menu-img img-fluid" alt=""></a>
-                        <h4>Eos Luibusdam</h4>
-                        <p class="ingredients">
-                            Lorem, deren, trataro, filede, nerada
-                        </p>
-                        <p class="price">
-                            EGP 12.95
-                        </p>
-                    </div><!-- Menu Item -->
-
-                    <div class="col-lg-4 menu-item">
-                        <a asp-page="/MealInfo"> <img src="/img/menu/menu-item-6.png" class="menu-img img-fluid" alt=""></a>
-                        <h4>Laboriosam Direva</h4>
-                        <p class="ingredients">
-                            Lorem, deren, trataro, filede, nerada
-                        </p>
-                        <p class="price">
-                            EGP 9.95
-                        </p>
-                    </div><!-- Menu Item -->
 
                 </div>
             </div><!-- End Breakfast Menu Content -->
@@ -213,72 +113,22 @@
                 </div>
 
                 <div class="row gy-5">
+                    @for (int i = 0; i < Model.Appetizers_Meal_names.Count; i++)
+                    {
 
                     <div class="col-lg-4 menu-item">
                         <a asp-page="/MealInfo"> <img src="/img/menu/menu-item-1.png" class="menu-img img-fluid" alt=""></a>
-                        <h4>Magnam Tiste</h4>
+                            <h4>@Model.Appetizers_Meal_names[i]</h4>
                         <p class="ingredients">
-                            Lorem, deren, trataro, filede, nerada
+                            @Model.Appetizers_Meal_ingredients[i]
                         </p>
                         <p class="price">
-                            EGP 5.95
+                                @Model.prices_Appetizers[i] EGP
                         </p>
                     </div><!-- Menu Item -->
+                    }
 
-                    <div class="col-lg-4 menu-item">
-                        <a asp-page="/MealInfo"> <img src="/img/menu/menu-item-2.png" class="menu-img img-fluid" alt=""></a>
-                        <h4>Aut Luia</h4>
-                        <p class="ingredients">
-                            Lorem, deren, trataro, filede, nerada
-                        </p>
-                        <p class="price">
-                            EGP 14.95
-                        </p>
-                    </div><!-- Menu Item -->
-
-                    <div class="col-lg-4 menu-item">
-                        <a asp-page="/MealInfo"> <img src="/img/menu/menu-item-3.png" class="menu-img img-fluid" alt=""></a>
-                        <h4>Est Eligendi</h4>
-                        <p class="ingredients">
-                            Lorem, deren, trataro, filede, nerada
-                        </p>
-                        <p class="price">
-                            EGP 8.95
-                        </p>
-                    </div><!-- Menu Item -->
-
-                    <div class="col-lg-4 menu-item">
-                        <a asp-page="/MealInfo"> <img src="/img/menu/menu-item-4.png" class="menu-img img-fluid" alt=""></a>
-                        <h4>Eos Luibusdam</h4>
-                        <p class="ingredients">
-                            Lorem, deren, trataro, filede, nerada
-                        </p>
-                        <p class="price">
-                            EGP 12.95
-                        </p>
-                    </div><!-- Menu Item -->
-
-                    <div class="col-lg-4 menu-item">
-                        <a asp-page="/MealInfo"> <img src="/img/menu/menu-item-5.png" class="menu-img img-fluid" alt=""></a>
-                        <h4>Eos Luibusdam</h4>
-                        <p class="ingredients">
-                            Lorem, deren, trataro, filede, nerada
-                        </p>
-                        <p class="price">
-                            EGP 12.95
-                        </p>
-                    </div><!-- Menu Item -->
-
-                    <div class="col-lg-4 menu-item">
-                        <a asp-page="/MealInfo"> <img src="/img/menu/menu-item-6.png" class="menu-img img-fluid" alt=""></a>
-                        <h4>Laboriosam Direva</h4>
-                        <p class="ingredients">
-                            Lorem, deren, trataro, filede, nerada
-                        </p>
-                        <p class="price">
-                            EGP 9.95
-                        </p>
-                    </div><!-- Menu Item -->
+                
 
                 </div>
             </div><!-- End Lunch Menu Content -->
@@ -291,78 +141,54 @@
                 </div>
 
                 <div class="row gy-5">
-
+                    @for (int i = 0; i < Model.Desserts_Meal_names.Count; i++)
+                    {
                     <div class="col-lg-4 menu-item">
                         <a asp-page="/MealInfo"> <img src="/img/menu/menu-item-1.png" class="menu-img img-fluid" alt=""></a>
-                        <h4>Magnam Tiste</h4>
+                            <h4>@Model.Desserts_Meal_names[i]</h4>
                         <p class="ingredients">
-                            Lorem, deren, trataro, filede, nerada
+                                @Model.Desserts_Meal_ingredients[i]
                         </p>
                         <p class="price">
-                            EGP 5.95
+                                @Model.prices_Desserts[i] EGP
                         </p>
                     </div><!-- Menu Item -->
+                    }
 
-                    <div class="col-lg-4 menu-item">
-                        <a asp-page="/MealInfo"> <img src="/img/menu/menu-item-2.png" class="menu-img img-fluid" alt=""></a>
-                        <h4>Aut Luia</h4>
-                        <p class="ingredients">
-                            Lorem, deren, trataro, filede, nerada
-                        </p>
-                        <p class="price">
-                            EGP 14.95
-                        </p>
-                    </div><!-- Menu Item -->
-
-                    <div class="col-lg-4 menu-item">
-                        <a asp-page="/MealInfo"> <img src="/img/menu/menu-item-3.png" class="menu-img img-fluid" alt=""></a>
-                        <h4>Est Eligendi</h4>
-                        <p class="ingredients">
-                            Lorem, deren, trataro, filede, nerada
-                        </p>
-                        <p class="price">
-                            EGP 8.95
-                        </p>
-                    </div><!-- Menu Item -->
-
-                    <div class="col-lg-4 menu-item">
-                        <a asp-page="/MealInfo"> <img src="/img/menu/menu-item-4.png" class="menu-img img-fluid" alt=""></a>
-                        <h4>Eos Luibusdam</h4>
-                        <p class="ingredients">
-                            Lorem, deren, trataro, filede, nerada
-                        </p>
-                        <p class="price">
-                            EGP 12.95
-                        </p>
-                    </div><!-- Menu Item -->
-
-                    <div class="col-lg-4 menu-item">
-                        <a asp-page="/MealInfo"> <img src="/img/menu/menu-item-5.png" class="menu-img img-fluid" alt=""></a>
-                        <h4>Eos Luibusdam</h4>
-                        <p class="ingredients">
-                            Lorem, deren, trataro, filede, nerada
-                        </p>
-                        <p class="price">
-                            EGP 12.95
-                        </p>
-                    </div><!-- Menu Item -->
-
-                    <div class="col-lg-4 menu-item">
-                        <a asp-page="/MealInfo"> <img src="/img/menu/menu-item-6.png" class="menu-img img-fluid" alt=""></a>
-                        <h4>Laboriosam Direva</h4>
-                        <p class="ingredients">
-                            Lorem, deren, trataro, filede, nerada
-                        </p>
-                        <p class="price">
-                            EGP 9.95
-                        </p>
-                    </div><!-- Menu Item -->
 
                 </div>
             </div><!-- End Dinner Menu Content -->
 
+            <div class="tab-pane fade" id="menu-others">
+
+                <div class="tab-header text-center">
+                    <p>Menu</p>
+                    <h3>Others</h3>
+                </div>
+
+                <div class="row gy-5">
+                    @for (int i = 0; i < Model.Others_Meal_names.Count; i++)
+                    {
+                        <div class="col-lg-4 menu-item">
+                            <a asp-page="/MealInfo"> <img src="/img/menu/menu-item-1.png" class="menu-img img-fluid" alt=""></a>
+                            <h4>@Model.Others_Meal_names[i]</h4>
+                            <p class="ingredients">
+                                @Model.Others_Meal_ingredients[i]
+                            </p>
+                            <p class="price">
+                                @Model.prices_Others[i] EGP
+                            </p>
+                        </div>
+
+                        <!-- Menu Item -->
+                    }
+
+
+                </div>
+            </div><!-- End Dinner Menu Content -->
 
         </div>
+
 
     </div>
 </body><!-- End Menu Section -->
