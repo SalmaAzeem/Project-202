@@ -4,13 +4,16 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using System;
 using System.Data.SqlClient;
 using System.Runtime;
+using System.ComponentModel.DataAnnotations;
 
 namespace Project_DB.Pages
 {
     public class signupModel : PageModel
     {
         [BindProperty (SupportsGet =true)]
+        [Required]
         public Person personinfo { get; set; }
+
         Random rnd = new Random();
 
 

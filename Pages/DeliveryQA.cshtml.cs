@@ -9,7 +9,7 @@ namespace Project_DB.Pages
         [BindProperty (SupportsGet = true)]
         public Person deliveryinfo { get; set; }
 
-        [BindProperty]
+        [BindProperty(SupportsGet = true)]
         public int ID { get; set; }
 
         public void OnGet()

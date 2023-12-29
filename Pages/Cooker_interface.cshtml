@@ -305,6 +305,12 @@
                 text-align: left;
                 padding: 8px;
             }
+            .mealinfo {
+                font-weight: 700;
+                margin-bottom: 5px;
+                font-size: 20px;
+                color: var(--color-secondary);
+            }
     </style>
 </head>
 <body>
@@ -332,19 +338,9 @@
                     <div class="card">
                         <div class="card-body">
                             <div class="d-flex flex-column align-items-center text-center">
-                                @{
-                                    //da ely hwa ay kalam lhad ma a handle hewar el sewar fel database
-                                    if (Model.CookerGender == "Female")
-                                    {
-                                        <img src="~/img/chefs/female-avatar.png" alt="Admin" class="rounded-circle" width="150">
-                                    }
-                                    else
-                                    {
-                                        <img src="~/img/chefs/male-avatar.png" alt="Admin" class="rounded-circle" width="150">
-                                    }
-                                }
+                                <img src="~/img/chefs/female-avatar.png" alt="Admin" class="rounded-circle" width="150">
                                 <div class="mt-3">
-                                    <h4>@Model.CookerName</h4>
+                                    <h4>@Model.Cooker.UserName</h4>
                                     <p class="text-secondary mb-1">Cooker</p>
                                     <p class="text-muted font-size-sm">Giza, Dokki</p>
                                 </div>
@@ -353,6 +349,7 @@
                     </div>
 
                 </div>
+                
                 <div class="col-md-8">
                     <!-- Profile Details Card -->
                     <div class="card mb-3">
@@ -364,7 +361,7 @@
                                     <h6 class="mb-0">Full Name</h6>
                                 </div>
                                 <div class="col-sm-9 text-secondary">
-                                    @Model.CookerName
+                                    @Model.Cooker.UserName
                                 </div>
                             </div>
                             <hr>
@@ -374,7 +371,7 @@
                                     <h6 class="mb-0">Email</h6>
                                 </div>
                                 <div class="col-sm-9 text-secondary">
-                                    @Model.CookerEmail
+                                    @Model.Cooker.Email
                                 </div>
                             </div>
                             <hr>
@@ -384,7 +381,7 @@
                                     <h6 class="mb-0">Phone Number</h6>
                                 </div>
                                 <div class="col-sm-9 text-secondary">
-                                    @Model.CookerPhone
+                                    @Model.Cooker.Phone_Number
                                 </div>
                             </div>
 
@@ -396,7 +393,7 @@
                                 </div>
                                 <div class="col-sm-9 text-secondary">
                                     <div class="wrapper">
-                                        <form method="post">
+                                        <form method="post" asp-route-id = "@Model.Cooker.Id">
 											<input name="ratingRadio" type="radio" id="st1" value="5" />
 											<label for="st1"></label>
 											<input name="ratingRadio" type="radio" id="st2" value="4" />
@@ -415,38 +412,29 @@
                                 </div>
                             </div>
                             <hr>
-                            <div class="row">
-                                <!-- Individual Detail -->
-                                <div class="col-sm-3">
-                                    <form action="OnGetMeals">
-                                        @{
-                                            <table class="table">
-                                                <thead>
-                                                    <tr>
-                                                        <th>Meals</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    @foreach (var meal in Model.Meals)
-                                                    {
-                                                        <tr>
-                                                            <td>@meal</td>
-                                                        </tr>
-                                                    }
-                                                </tbody>
-                                            </table>
+                        </div>
+                    </div>                  
+
+                </div>
+                <div>
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="d-flex flex-column align-items-center text-center">
+                                <div class="mt-3">
+                                    @{
+                                        foreach (var meal in Model.Meals)
+                                        {
+                                            <h4>@meal</h4>
                                         }
-                                    </form>
-                                </div>
-                                <div class="col-sm-9 text-secondary">
+                                    }
                                 </div>
                             </div>
                         </div>
                     </div>
-
                 </div>
+                
             </div>
-
+            
         </div>
     </div>
 
