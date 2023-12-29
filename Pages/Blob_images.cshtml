@@ -1,0 +1,14 @@
+﻿@page
+@model Project_DB.Pages.Blob_imagesModel
+@{
+}
+
+@if (Model.Image != null)
+{
+    string base64Image = Convert.ToBase64String(Model.Image);
+    <img src="data:image/png;base64,@base64Image" alt="Your Image" />
+}
+else
+{
+    <p>No image available.</p>
+}
