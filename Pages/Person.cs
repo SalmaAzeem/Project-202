@@ -23,5 +23,6 @@ namespace Project_DB.Pages
         public string User_Type { get; set; }
         [Required(ErrorMessage = "An Album Title is required")]
         public int Vehicle_number { get; set;}
+        public string Description { get; set; }
     }
 }

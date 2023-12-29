@@ -56,6 +56,22 @@ namespace Project_DB.Pages
                             }
                         }
                     }
+                    string query3 = "select Description_Cooker from Cooker where Cooker_id = @Id";
+                    using (SqlCommand cmd_3 = new SqlCommand(query3, conn))
+                    {
+                        cmd_3.Parameters.Add(new SqlParameter("@Id", SqlDbType.VarChar));
+                        foreach (Person Cooker in cookers)
+                        {                        
+                            cmd_3.Parameters["@Id"].Value = Cooker.Id.ToString();
+                            using ( SqlDataReader reader_3 = cmd_3.ExecuteReader()) 
+                            {
+                                while (reader_3.Read())
+                                {
+                                    Cooker.Description = reader_3["Description_Cooker"].ToString();
+                                }
+                            } 
+                        }
+                    }
                 }
                 catch (Exception ex)
                 {
