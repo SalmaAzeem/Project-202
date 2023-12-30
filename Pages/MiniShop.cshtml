@@ -31,13 +31,31 @@
                 <div class="row gy-5">
                     @for (int i = 0; i < Model.food_cans_names.Count; i++)
                     {
-                        <div class="col-lg-4 minishop-item">
-                            <a asp-page="/MealInfo"><img src="~/img/menu/menu-item-1.png" class="menu-img img-fluid" alt=""></a>
-                            <h4>@Model.food_cans_names[i]</h4>
 
-                            <p class="price">
-                                @Model.prices[i] EGP
-                            </p>
+                        <div class="col-lg-4 minishop-item">
+                            @{
+                                await Model.OnGetImagesAsync();
+                            }
+                            <form method="get" asp-page-handler="ImagesAsync">
+
+                                @if (Model.Images_Minishop[i] != null)
+                                {
+                                    string base64Image = Convert.ToBase64String(Model.Images_Minishop[i]);
+                                    <img class="menu-img img-fluid" src="data:image/jpeg;base64,@base64Image" alt="Meal Image" width="500" />
+                                    <a asp-page="/MealInfo"> </a>
+                                    <h4>@Model.food_cans_names[i]</h4>
+                                  
+                                    <p class="price">
+                                        @Model.prices[i] EGP
+                                    </p>
+                                }
+                                else
+                                {
+                                    <p>No image available.</p>
+                                }
+                            </form>
+
+                            
                         </div>
 
                         <!-- Menu Item -->
