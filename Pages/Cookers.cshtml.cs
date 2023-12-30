@@ -14,6 +14,7 @@ namespace Project_DB.Pages
         public List<Person> cookers { get; set; } = new List<Person>();
         public List<string> ids { get; set; } = new List<string>();        
         public List<string> names { get; set; } = new List<string>();
+        public List<byte[]> Images { get; set; } = new List<byte[]>();
         public void OnGet()
         {
             string connection = "Data Source=Tamer;Initial Catalog=\"Project 2.0\";Integrated Security=True";
@@ -84,7 +85,7 @@ namespace Project_DB.Pages
                 }
             }
         }
-        public async Task OnGetImagesAsync()
+        public async Task<IActionResult> OnGetImagesAsync()
         {
             string connection = "Data Source=Tamer;Initial Catalog=\"Project 2.0\";Integrated Security=True";
             using (SqlConnection con =  new SqlConnection(connection))
@@ -94,9 +95,9 @@ namespace Project_DB.Pages
                 using (SqlCommand cmd_4 = new SqlCommand(query4, con))
                 {
                     cmd_4.Parameters.Add(new SqlParameter("@Id", SqlDbType.VarChar));
-                    foreach (Person Cooker in cookers)
+                    foreach (string id in ids)
                     {
-                        cmd_4.Parameters["@Id"].Value = Cooker.Id.ToString();
+                        cmd_4.Parameters["@Id"].Value = id;
                         using (SqlDataReader reader_4 = await cmd_4.ExecuteReaderAsync())
                         {
                             if (await reader_4.ReadAsync())
@@ -113,9 +114,8 @@ namespace Project_DB.Pages
                                         await ms.WriteAsync(buffer, 0, (int)bytesRead);
                                         field_offset += bytesRead;
                                     }
-
-                                    Cooker.Image = ms.ToArray();
-                                    Cooker.Image_string = Convert.ToBase64String(Cooker.Image);
+                                    Images.Add(ms.ToArray());
+                                    Console.WriteLine(Images.Count());
                                     //Cooker_image = ms.ToArray();
                                 }
                             }
@@ -123,6 +123,7 @@ namespace Project_DB.Pages
                     }
                 }
             }
+            return new EmptyResult();
         }
     }
 }
