@@ -5,14 +5,16 @@ using System.Data.SqlClient;
 
 namespace Project_DB.Pages
 {
-    [BindProperties]
+    [BindProperties(SupportsGet = true)]
     public class CookersModel : PageModel
     {
         //public Person user = new Person();
         public string name { get; set; }
+        public byte[] Cooker_image {  get; set; }
         public List<Person> cookers { get; set; } = new List<Person>();
-        public List<string> ids { get; set; } = new List<string>();
+        public List<string> ids { get; set; } = new List<string>();        
         public List<string> names { get; set; } = new List<string>();
+        public List<byte[]> Images { get; set; } = new List<byte[]>();
         public void OnGet()
         {
             string connection = "Data Source=Tamer;Initial Catalog=\"Project 2.0\";Integrated Security=True";
@@ -82,6 +84,46 @@ namespace Project_DB.Pages
                     conn.Close();
                 }
             }
+        }
+        public async Task<IActionResult> OnGetImagesAsync()
+        {
+            string connection = "Data Source=Tamer;Initial Catalog=\"Project 2.0\";Integrated Security=True";
+            using (SqlConnection con =  new SqlConnection(connection))
+            {
+                await con.OpenAsync();
+                string query4 = "select Cooker_Image from Cooker where Cooker_id = @Id";
+                using (SqlCommand cmd_4 = new SqlCommand(query4, con))
+                {
+                    cmd_4.Parameters.Add(new SqlParameter("@Id", SqlDbType.VarChar));
+                    foreach (string id in ids)
+                    {
+                        cmd_4.Parameters["@Id"].Value = id;
+                        using (SqlDataReader reader_4 = await cmd_4.ExecuteReaderAsync())
+                        {
+                            if (await reader_4.ReadAsync())
+                            {
+                                const int buffersize = 4096;
+                                long bytesRead;
+                                long field_offset = 0; // Reset field_offset for each cooker
+                                long stream_length = reader_4.GetBytes(0, field_offset, null, 0, 0);
+                                using (MemoryStream ms = new MemoryStream())
+                                {
+                                    byte[] buffer = new byte[buffersize];
+                                    while ((bytesRead = reader_4.GetBytes(0, field_offset, buffer, 0, buffersize)) > 0)
+                                    {
+                                        await ms.WriteAsync(buffer, 0, (int)bytesRead);
+                                        field_offset += bytesRead;
+                                    }
+                                    Images.Add(ms.ToArray());
+                                    Console.WriteLine(Images.Count());
+                                    //Cooker_image = ms.ToArray();
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            return new EmptyResult();
         }
     }
 }

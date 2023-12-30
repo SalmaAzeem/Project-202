@@ -1,0 +1,20 @@
+﻿@page
+@model Project_DB.Pages.Blob_imagesModel
+@{
+}
+
+@{
+    foreach (var image in Model.Images)
+    {
+        @if (image != null)
+        {
+            <div>
+                <img src="data:image/jpg;base64,@image" alt="Your Image" />
+            </div>
+        }
+        else
+        {
+            <p>No image available.</p>
+        }
+    }
+}
