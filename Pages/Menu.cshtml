@@ -5,7 +5,15 @@
 <br />
 <br />
 <br />
+<style>
+    .circular-image {
+        width: 450px; /* Set your desired width */
+        height: 300px; /* Set your desired height */
+        border-radius: 50%; /* This makes the element circular */
+        object-fit: cover; /* Maintain aspect ratio and cover the container */
+    }
 
+</style>
 
 <body id="menu" class="menu">
     <div class="container" data-aos="fade-up">
@@ -66,7 +74,7 @@
                                 @if (Model.Images_Main[i] != null)
                                 {
                                     string base64Image = Convert.ToBase64String(Model.Images_Main[i]);
-                                    <img class="menu-img img-fluid" src="data:image/jpeg;base64,@base64Image" alt="Meal Image" width="500" />
+                                    <img class="menu-img img-fluid circular-image" src="data:image/jpeg;base64,@base64Image" alt="Meal Image" width="500" />
                                     <a asp-page="/MealInfo"> </a>
                                     <h4>@Model.Main_Courses_Meal_names[i]</h4>
                                     <p class="ingredients">
@@ -108,7 +116,7 @@
                                 @if (Model.Images_Breakfast[i] != null)
                                 {
                                     string base64Image = Convert.ToBase64String(Model.Images_Breakfast[i]);
-                                    <img class="menu-img img-fluid" src="data:image/jpeg;base64,@base64Image" alt="Meal Image" width="500" />
+                                    <img class="menu-img img-fluid circular-image" src="data:image/jpeg;base64,@base64Image" alt="Meal Image" width="500" />
                                     <a asp-page="/MealInfo"> </a>
                                     <h4>@Model.Breakfast_Meal_names[i]</h4>
                                     <p class="ingredients">
@@ -153,7 +161,7 @@
                                 @if (Model.Images_Appetizers[i] != null)
                                 {
                                     string base64Image = Convert.ToBase64String(Model.Images_Appetizers[i]);
-                                    <img class="menu-img img-fluid" src="data:image/jpeg;base64,@base64Image" alt="Meal Image" width="500" />
+                                    <img class="menu-img img-fluid circular-image" src="data:image/jpeg;base64,@base64Image" alt="Meal Image" width="500" />
                                     <a asp-page="/MealInfo"> </a>
                                     <h4>@Model.Appetizers_Meal_names[i]</h4>
                                     <p class="ingredients">
@@ -195,7 +203,7 @@
                                 @if (Model.Images_Desserts[i] != null)
                                 {
                                     string base64Image = Convert.ToBase64String(Model.Images_Desserts[i]);
-                                    <img class="menu-img img-fluid" src="data:image/jpeg;base64,@base64Image" alt="Meal Image" width="500" />
+                                    <img class="menu-img img-fluid circular-image" src="data:image/jpeg;base64,@base64Image" alt="Meal Image" width="500" />
                                     <a asp-page="/MealInfo"> </a>
                                     <h4>@Model.Desserts_Meal_names[i]</h4>
                                     <p class="ingredients">
@@ -236,7 +244,7 @@
                                 @if (Model.Images_Others[i] != null)
                                 {
                                     string base64Image = Convert.ToBase64String(Model.Images_Others[i]);
-                                    <img class="menu-img img-fluid" src="data:image/jpeg;base64,@base64Image" alt="Meal Image" width="500" />
+                                    <img class="menu-img img-fluid circular-image1` vc" src="data:image/jpeg;base64,@base64Image" alt="Meal Image" width="500" />
                                     <a asp-page="/MealInfo"> </a>
                                     <h4>@Model.Others_Meal_names[i]</h4>
                                     <p class="ingredients">

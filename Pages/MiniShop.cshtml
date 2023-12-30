@@ -8,7 +8,15 @@
 <br />
 <br />
 <br />
+<style>
+    .circular-image {
+        width: 400px; /* Set your desired width */
+        height: 400px; /* Set your desired height */
+        border-radius: 50%; /* This makes the element circular */
+        object-fit: cover; /* Maintain aspect ratio and cover the container */
+    }
 
+</style>
 <class id="minishop" class="minishop">
     <div class="container" data-aos="fade-up">
 
@@ -41,7 +49,7 @@
                                 @if (Model.Images_Minishop[i] != null)
                                 {
                                     string base64Image = Convert.ToBase64String(Model.Images_Minishop[i]);
-                                    <img class="menu-img img-fluid" src="data:image/jpeg;base64,@base64Image" alt="Meal Image" width="500" />
+                                    <img class="menu-img img-fluid circular-image" src="data:image/jpeg;base64,@base64Image" alt="Meal Image" width="500" />
                                     <a asp-page="/MealInfo"> </a>
                                     <h4>@Model.food_cans_names[i]</h4>
                                   
