@@ -24,5 +24,7 @@ namespace Project_DB.Pages
         [Required(ErrorMessage = "An Album Title is required")]
         public int Vehicle_number { get; set;}
         public string Description { get; set; }
+        public byte[] Image { get; set; }
+        public string Image_string { get; set; }
     }
 }
