@@ -3,7 +3,14 @@
 @{
     ViewData["Title"] = "Home page";
 }
-
+<style>
+    .image{
+        width: 400px;
+        height: 650px;
+        object-fit: cover;
+        margin: auto;
+    }
+</style>
 <section id="hero" class="hero d-flex align-items-center section-bg">
     <div class="container">
         <div class="row justify-content-between gy-5">
@@ -28,15 +35,15 @@
 
             <div class="col-lg-3 col-md-6">
                 <div class="stats-item text-center w-100 h-100">
-                    <span data-purecounter-start="0" data-purecounter-end="232" data-purecounter-duration="1" class="purecounter"></span>
-                    <p>Clients</p>
+                    <span data-purecounter-start="0" data-purecounter-end="14" data-purecounter-duration="1" class="purecounter"></span>
+                    <p>Cookers</p>
                 </div>
             </div><!-- End Stats Item -->
 
             <div class="col-lg-3 col-md-6">
                 <div class="stats-item text-center w-100 h-100">
-                    <span data-purecounter-start="0" data-purecounter-end="521" data-purecounter-duration="1" class="purecounter"></span>
-                    <p>Projects</p>
+                    <span data-purecounter-start="0" data-purecounter-end="30" data-purecounter-duration="1" class="purecounter"></span>
+                    <p>Meals</p>
                 </div>
             </div><!-- End Stats Item -->
 
@@ -49,7 +56,7 @@
 
             <div class="col-lg-3 col-md-6">
                 <div class="stats-item text-center w-100 h-100">
-                    <span data-purecounter-start="0" data-purecounter-end="32" data-purecounter-duration="1" class="purecounter"></span>
+                    <span data-purecounter-start="0" data-purecounter-end="28" data-purecounter-duration="1" class="purecounter"></span>
                     <p>Workers</p>
                 </div>
             </div><!-- End Stats Item -->
@@ -431,7 +438,7 @@
                 <div class="chef-member">
 
 
-                    <a asp-page="/Cooker_interface"> <img src="~/img/chefs/chefs-1.jpg" class="menu-img img-fluid" alt=""></a>
+                    <a asp-page="/Cooker_interface" asp-route-name="Mariam" asp-route-email="mariam@gmail.com" asp-route-phone="1167334097" asp-route-id="4"> <img src="~/img/chefs/4.jpg" class="menu-img img-fluid image" alt=""></a>
                     <div class="social">
                         <a href=""><i class="bi bi-twitter"></i></a>
                         <a href=""><i class="bi bi-facebook"></i></a>
@@ -440,9 +447,9 @@
 
                     </div>
                     <div class="member-info">
-                        <h4>Walter White</h4>
+                        <h4>Mariam</h4>
                         <span>Master Chef</span>
-                        <p>Velit aut quia fugit et et. Dolorum ea voluptate vel tempore tenetur ipsa quae aut. Ipsum exercitationem iure minima enim corporis et voluptate.</p>
+                        <p>Mariam, a seasoned chef, effortlessly combines traditional and modern flavors to create culinary masterpieces. With years of experience, her kitchen finesse is unmatched, making every meal a delightful journey for the taste buds.</p>
                     </div>
                 </div>
             </div><!-- End Chefs Member -->
@@ -450,7 +457,7 @@
             <div class="col-lg-4 col-md-6 d-flex align-items-stretch tab-content" data-aos="fade-up" data-aos-delay="200">
                 <div class="chef-member">
 
-                    <a asp-page="/Cooker_interface"> <img src="~/img/chefs/chefs-2.jpg" class="img-fluid" alt=""></a>
+                    <a asp-page="/Cooker_interface" asp-route-name="Lily" asp-route-email="Lily@gmail.com" asp-route-phone="1118911198" asp-route-id="15"> <img src="~/img/chefs/15.jpg" class="img-fluid image" alt=""></a>
                     <div class="social">
                         <a href=""><i class="bi bi-twitter"></i></a>
                         <a href=""><i class="bi bi-facebook"></i></a>
@@ -459,9 +466,9 @@
 
                     </div>
                     <div class="member-info">
-                        <h4>Sarah Jhonson</h4>
-                        <span>Patissier</span>
-                        <p>Quo esse repellendus quia id. Est eum et accusantium pariatur fugit nihil minima suscipit corporis. Voluptate sed quas reiciendis animi neque sapiente.</p>
+                        <h4>Lily</h4>
+                        <span>Cook</span>
+                        <p>Lily's mastery lies in seamlessly fusing diverse culinary traditions into a singular, unforgettable experience. Each dish tells a story of cultural richness and innovation, reflecting her dedication to pushing the boundaries of flavor.</p>
                     </div>
                 </div>
             </div><!-- End Chefs Member -->
@@ -469,7 +476,7 @@
             <div class="col-lg-4 col-md-6 d-flex align-items-stretch tab-content" data-aos="fade-up" data-aos-delay="300">
                 <div class="chef-member">
 
-                    <a asp-page="/Cooker_interface"> <img src="~/img/chefs/chefs-3.jpg" class="img-fluid" alt=""></a>
+                    <a asp-page="/Cooker_interface" asp-route-name="Sohair" asp-route-email="Aaron@gmail.com" asp-route-phone="1129376911" asp-route-id="30"> <img src="~/img/chefs/30.jpg" class="img-fluid image" alt=""></a>
 
                     <div class="social">
                         <a href=""><i class="bi bi-twitter"></i></a>
@@ -479,9 +486,9 @@
 
                     </div>
                     <div class="member-info">
-                        <h4>William Anderson</h4>
+                        <h4>Sohair</h4>
                         <span>Cook</span>
-                        <p>Vero omnis enim consequatur. Voluptas consectetur unde qui molestiae deserunt. Voluptates enim aut architecto porro aspernatur molestiae modi.</p>
+                        <p>Sohair, a culinary ambassador, brings the world to the table through her expertise in diverse cultural cuisines. Her kitchen is a celebration of global flavors, showcasing the richness and diversity of culinary traditions from around the world.</p>
                     </div>
                 </div>
             </div><!-- End Chefs Member -->
