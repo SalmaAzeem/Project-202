@@ -22,7 +22,7 @@ namespace Project_DB.Pages
             Cooker.Phone_Number = phone;
             Cooker.Id = Convert.ToInt32(id);
             
-            string connection = "Data Source =LAPTOP-8L98OTBR; Initial Catalog = Project 2.0; Integrated Security = True";
+            string connection = "Data Source=Doha-PC;Initial Catalog=\"Project 2.0\";Integrated Security=True";
 
             using (SqlConnection con = new SqlConnection(connection))
             {
@@ -81,7 +81,7 @@ namespace Project_DB.Pages
 			Rating = ratingRadio;
             Rating_CookerID = Convert.ToInt32(id);
             Rating_Id = random.Next();
-            string connection = "Data Source =LAPTOP-8L98OTBR; Initial Catalog = Project 2.0; Integrated Security = True";
+            string connection = "Data Source=Doha-PC;Initial Catalog=\"Project 2.0\";Integrated Security=True";
 			SqlConnection con = new SqlConnection(connection);
 			con.Open();
 			string query = "insert into Rating_Cooker values (@Rating_Id, @CookerID, @Rating, null)";

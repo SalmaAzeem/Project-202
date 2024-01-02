@@ -84,7 +84,11 @@ namespace Project_DB.Pages
         }
         public async Task<IActionResult> OnGetImagesAsync()
         {
+<<<<<<< HEAD
             string connection = "Data Source=Salma_Sherif;Initial Catalog=\"Project 2.0\";Integrated Security=True";
+=======
+            string connection = "Data Source=Doha-PC;Initial Catalog=\"Project 2.0\";Integrated Security=True";
+>>>>>>> 4a9bcd1db4099c98685b6c6ded32e48f453358af
             using (SqlConnection con = new SqlConnection(connection))
             {
                 await con.OpenAsync();
