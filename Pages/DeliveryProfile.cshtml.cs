@@ -34,8 +34,8 @@ namespace Project_DB.Pages
                             //deliveryinfo.Id = Convert.ToInt32(reader["ID"]);
                             deliveryinfo.UserName = reader["UserName"].ToString();
                             deliveryinfo.Email = reader["Email"].ToString();
-                            deliveryinfo.Phone_Number = Convert.ToInt32(reader["Phone_Number"]);
-                            deliveryinfo.Birthdate = reader["Birthdate"].ToString();
+                            deliveryinfo.Phone_Number = reader["Phone_Number"].ToString();
+                            deliveryinfo.Birthdate = DateOnly.Parse(reader["Birthdate"].ToString());
                             deliveryinfo.Vehicle_number = Convert.ToInt32(reader["Vehicle_number"]);
                             deliveryinfo.User_Password = reader["User_Password"].ToString();
 
