@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Project_DB.Models;
 using System.Data;
 using System.Data.SqlClient;
 
@@ -11,13 +12,13 @@ namespace Project_DB.Pages
         //public Person user = new Person();
         public string name { get; set; }
         public byte[] Cooker_image {  get; set; }
-        public List<Person> cookers { get; set; } = new List<Person>();
+        public List<Cooker> cookers { get; set; } = new List<Cooker>();
         public List<string> ids { get; set; } = new List<string>();        
         public List<string> names { get; set; } = new List<string>();
         public List<byte[]> Images { get; set; } = new List<byte[]>();
         public void OnGet()
         {
-            string connection = "Data Source=Doha-PC;Initial Catalog=\"Project 2.0\";Integrated Security=True;";
+            string connection = "Data Source =LAPTOP-8L98OTBR; Initial Catalog = Project 2.0; Integrated Security = True";
             using (SqlConnection conn = new SqlConnection(connection))
             {
                 try
@@ -48,11 +49,11 @@ namespace Project_DB.Pages
                             {
                                 while (reader_2.Read())
                                 {
-                                    Person cooker = new Person();
+                                    Cooker cooker = new Cooker();
                                     cooker.Id = Convert.ToInt32(id);
                                     cooker.UserName = reader_2["UserName"].ToString();
                                     cooker.Email = reader_2["Email"].ToString();
-                                    cooker.Phone_Number = Convert.ToInt32(reader_2["Phone_Number"]);
+                                    cooker.Phone_Number = reader_2["Phone_Number"].ToString();
                                     cookers.Add(cooker);
                                 }
                             }
@@ -62,7 +63,7 @@ namespace Project_DB.Pages
                     using (SqlCommand cmd_3 = new SqlCommand(query3, conn))
                     {
                         cmd_3.Parameters.Add(new SqlParameter("@Id", SqlDbType.VarChar));
-                        foreach (Person Cooker in cookers)
+                        foreach (Cooker Cooker in cookers)
                         {                        
                             cmd_3.Parameters["@Id"].Value = Cooker.Id.ToString();
                             using ( SqlDataReader reader_3 = cmd_3.ExecuteReader()) 
@@ -87,7 +88,7 @@ namespace Project_DB.Pages
         }
         public async Task<IActionResult> OnGetImagesAsync()
         {
-            string connection = "Data Source=Doha-PC;Initial Catalog=\"Project 2.0\";Integrated Security=True;";
+            string connection = "Data Source =LAPTOP-8L98OTBR; Initial Catalog = Project 2.0; Integrated Security = True";
             using (SqlConnection con =  new SqlConnection(connection))
             {
                 await con.OpenAsync();

@@ -31,7 +31,6 @@
                         <input type="Email" class="form-control" name="Email" id="Email" placeholder="Your Email" data-rule="Email" asp-for="@Model.personinfo.Email">
                         <span asp-validation-for="@Model.personinfo.Email" class="text-danger"></span>
 
-                        <div class="validate"></div>
                     </div>
                     <div class="col-lg-4 col-md-6">
                         <div class="input-group flex-nowrap">
@@ -45,7 +44,6 @@
                     <div class="col-lg-4 col-md-6">
                         <input type="text" name="User_Password" asp-for="@Model.personinfo.User_Password" class="form-control" id="User_Password" placeholder="User_Password" >
                         <span asp-validation-for="@Model.personinfo.User_Password" class="text-danger"></span>
-                        <div class="validate"></div>
                     </div>
 
 
@@ -64,7 +62,6 @@
                         <div class="col-lg-4 col-md-6">
                             <input type="text" name="Birthdate" asp-for="@Model.personinfo.Birthdate" class="form-control" id="Birthdate" placeholder="MM/DD/YYYY" />
                             <span asp-validation-for="@Model.personinfo.User_Password" class="text-danger"></span>
-                            <div class="validate"></div>
                         </div>
 
                     <button type="submit">Sign In</button>
