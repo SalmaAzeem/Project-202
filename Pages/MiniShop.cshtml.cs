@@ -18,9 +18,11 @@ namespace Project_DB.Pages
         public List<double> prices = new List<double>();
         public List<string> ids_Minishop { get; set; } = new List<string>();
         public List<byte[]> Images_Minishop { get; set; } = new List<byte[]>();
+        public string identifier  { get; set; }
         public void OnGet()
         {
-            string connectionString = "Data Source =LAPTOP-8L98OTBR; Initial Catalog = Project 2.0; Integrated Security = True";
+            identifier= "MiniShop";
+            string connectionString = "Data Source=Doha-PC;Initial Catalog=\"Project 2.0\";Integrated Security=True";
             SqlConnection con = new SqlConnection(connectionString);
             con.Open();
             string query = "SELECT COUNT(*) FROM MiniShop";
