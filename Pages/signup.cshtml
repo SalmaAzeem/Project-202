@@ -28,54 +28,43 @@
                         </div>
                     </div>
                     <div class="col-lg-4 col-md-6">
-                        <input type="Email" class="form-control" name="Email" id="Email" placeholder="Your Email" data-rule="Email" data-msg="Please enter a valid email" asp-for="@Model.personinfo.Email">
+                        <input type="Email" class="form-control" name="Email" id="Email" placeholder="Your Email" data-rule="Email" asp-for="@Model.personinfo.Email">
                         <span asp-validation-for="@Model.personinfo.Email" class="text-danger"></span>
 
-                        <div class="validate"></div>
                     </div>
                     <div class="col-lg-4 col-md-6">
                         <div class="input-group flex-nowrap">
                             <span class="input-group-text" id="addon-wrapping">+20</span>
-                            <input type="text" name="Phone_Number" asp-for="@Model.personinfo.Phone_Number" class="form-control" placeholder="Phone Number" aria-label="Username" aria-describedby="addon-wrapping" data-rule="minlen:4" data-msg="Please enter at least 4 chars">
+                            <input type="text" name="Phone_Number" asp-for="@Model.personinfo.Phone_Number" class="form-control" placeholder="Phone Number" aria-label="Username" aria-describedby="addon-wrapping" >
                             <span asp-validation-for="@Model.personinfo.Phone_Number" class="text-danger"></span>
 
                         </div>
                         <div class="validate"></div>
                     </div>
                     <div class="col-lg-4 col-md-6">
-                        <input type="text" name="User_Password" asp-for="@Model.personinfo.User_Password" class="form-control" id="User_Password" placeholder="User_Password" data-rule="minlen:4" data-msg="Please enter at least 4 chars">
+                        <input type="text" name="User_Password" asp-for="@Model.personinfo.User_Password" class="form-control" id="User_Password" placeholder="User_Password" >
                         <span asp-validation-for="@Model.personinfo.User_Password" class="text-danger"></span>
-                        <div class="validate"></div>
                     </div>
 
-                    <div class="col-lg-4 col-md-6">
-                        <input type="text" name="User_Type" asp-for="@Model.personinfo.User_Type" class="form-control" id="User_Type" placeholder="User_Type" data-rule="minlen:4" data-msg="Please enter at least 4 chars">
-                        <span asp-validation-for="@Model.personinfo.User_Type" class="text-danger"></span>
-                        <div class="validate"></div>
-                    </div>
 
-@*                     <div class="col-lg-4 col-md-6">
-                        <div class="form-group">
 
-                        <select value="@Model.personinfo.User_Type" class="form-control">
+                    <div class="col-lg-4 col-md-6"> 
+                        <select name="user_type" class="form-control">
                             <option value="">Select User Type</option>
                             <option value="Cooker">Cooker</option>
                             <option value="Customer">Customer</option>
                             <option value="Driver">Driver</option>
                         </select>
-                        <div class="validate"></div>
+                        <span asp-validation-for="@Model.personinfo.User_Type" class="text-danger"></span>
+                    </div> 
+ 
 
+                        <div class="col-lg-4 col-md-6">
+                            <input type="text" name="Birthdate" asp-for="@Model.personinfo.Birthdate" class="form-control" id="Birthdate" placeholder="MM/DD/YYYY" />
+                            <span asp-validation-for="@Model.personinfo.User_Password" class="text-danger"></span>
                         </div>
-                    </div> *@
 
-
-                    <div class="col-lg-4 col-md-6">
-                        <input type="text" name="Birthdate" asp-for="@Model.personinfo.Birthdate" class="form-control" id="Birthdate" placeholder="Your Birthdate" data-rule="minlen:4" data-msg="Please enter at least 4 chars">
-                        <span asp-validation-for="@Model.personinfo.Birthdate" class="text-danger"></span>
-                        <div class="validate"></div>
-                    </div>
-
-                    <a class="text-center" asp-area="" asp-page="/Home"><button type="submit">Sign In</button></a>
+                    <button type="submit">Sign In</button>
             </form>
         </div><!-- End Reservation Form -->
 

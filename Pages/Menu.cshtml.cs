@@ -58,7 +58,7 @@ namespace Project_DB.Pages
 
         public void OnGet()
         {
-            string connectionString = "Data Source=Tamer;Initial Catalog=\"Project 2.0\";Integrated Security=True";
+            string connectionString = "Data Source =LAPTOP-8L98OTBR; Initial Catalog = Project 2.0; Integrated Security = True";
             SqlConnection con = new SqlConnection(connectionString);
             con.Open();
    
@@ -251,7 +251,7 @@ namespace Project_DB.Pages
 
         public async Task<IActionResult> OnGetImagesAsync(string name_of_section)
         {
-            string connection = "Data Source=Tamer;Initial Catalog=\"Project 2.0\";Integrated Security=True";
+            string connection = "Data Source =LAPTOP-8L98OTBR; Initial Catalog = Project 2.0; Integrated Security = True";
            
    
             using (SqlConnection con = new SqlConnection(connection))
@@ -283,7 +283,7 @@ namespace Project_DB.Pages
                                             field_offset += bytesRead;
                                         }
                                         Images_Breakfast.Add(ms.ToArray());
-                                        Console.WriteLine(Images_Breakfast.Count());
+                                        //Console.WriteLine(Images_Breakfast.Count());
                                         //Cooker_image = ms.ToArray();
                                     }
                                 }
@@ -313,7 +313,7 @@ namespace Project_DB.Pages
                                                 field_offset += bytesRead;
                                             }
                                             Images_Main.Add(ms.ToArray());
-                                            Console.WriteLine(Images_Main.Count());
+                                            //Console.WriteLine(Images_Main.Count());
                                             //Cooker_image = ms.ToArray();
                                         }
                                     }
@@ -343,7 +343,7 @@ namespace Project_DB.Pages
                                             field_offset += bytesRead;
                                         }
                                         Images_Desserts.Add(ms.ToArray());
-                                        Console.WriteLine(Images_Desserts.Count());
+                                        //Console.WriteLine(Images_Desserts.Count());
                                         //Cooker_image = ms.ToArray();
                                     }
                                 }
@@ -373,7 +373,7 @@ namespace Project_DB.Pages
                                             field_offset += bytesRead;
                                         }
                                         Images_Appetizers.Add(ms.ToArray());
-                                        Console.WriteLine(Images_Appetizers.Count());
+                                        //Console.WriteLine(Images_Appetizers.Count());
                                         //Cooker_image = ms.ToArray();
                                     }
                                 }

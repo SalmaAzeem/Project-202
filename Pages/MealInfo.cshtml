@@ -18,14 +18,19 @@
         transition: background-color 0.3s ease;
     }
 </style>
+
+<form method="post">
 <div class="col-lg-4 minishop-item">
    <img src="~/img/menu/menu-item-6.png" class="menu-img img-fluid" alt=""></a>
-    <h4>Laboriosam Direva</h4>
+    <h4>@Model.Minishop_name</h4>
+
 
     <p class="price">
-        $9.95
+        @Model.Minishop_price
     </p>
 </div><!-- Menu Item -->
 
-<button type="button" class="btn_add_to_cart btn-danger">ِAdd To Cart</button>
+    <a class="btn btn_add_to_cart btn-danger" asp-page="/Cart" asp-route-id="@Model.id_minishop" asp-route-identifier="@Model.Minishop_identifier">Add To Cart</a>
+
+</form>
 <br /><br /><br />

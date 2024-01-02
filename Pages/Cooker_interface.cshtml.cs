@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Project_DB.Models;
 using System.Data.SqlClient;
 
 namespace Project_DB.Pages
@@ -8,7 +9,7 @@ namespace Project_DB.Pages
     public class Cooker_interfaceModel : PageModel
     {
         public int Rating_CookerID { get; set; }
-        public Person Cooker = new Person();
+        public Cooker Cooker = new Cooker();
 		public int Rating {  get; set; }
         public int Rating_Id { get; set; }
 		public List<string> Meals { get; set; } = new List<string>();
@@ -18,10 +19,10 @@ namespace Project_DB.Pages
         {
             Cooker.UserName = name;
             Cooker.Email = email;
-            Cooker.Phone_Number = Convert.ToInt32(phone);
+            Cooker.Phone_Number = phone;
             Cooker.Id = Convert.ToInt32(id);
             
-            string connection = "Data Source=Tamer;Initial Catalog=Project 2.0;Integrated Security=True";
+            string connection = "Data Source =LAPTOP-8L98OTBR; Initial Catalog = Project 2.0; Integrated Security = True";
 
             using (SqlConnection con = new SqlConnection(connection))
             {
@@ -80,7 +81,7 @@ namespace Project_DB.Pages
 			Rating = ratingRadio;
             Rating_CookerID = Convert.ToInt32(id);
             Rating_Id = random.Next();
-            string connection = "Data Source=Tamer;Initial Catalog=\"Project 2.0\";Integrated Security=True";
+            string connection = "Data Source =LAPTOP-8L98OTBR; Initial Catalog = Project 2.0; Integrated Security = True";
 			SqlConnection con = new SqlConnection(connection);
 			con.Open();
 			string query = "insert into Rating_Cooker values (@Rating_Id, @CookerID, @Rating, null)";

@@ -11,7 +11,6 @@ namespace Project_DB.Pages
     public class signupModel : PageModel
     {
         [BindProperty (SupportsGet =true)]
-        [Required]
         public Person personinfo { get; set; }
 
         Random rnd = new Random();
@@ -22,7 +21,21 @@ namespace Project_DB.Pages
         {
         }
 
-        public IActionResult OnPost() { 
+        public IActionResult OnPost(string user_type) {
+            personinfo.User_Type = user_type;
+
+            if(!ModelState.IsValid)
+            {
+                foreach (var modelState in ModelState.Values)
+                {
+                    foreach (var error in modelState.Errors)
+                    {
+                        TempData["ErrorMessage"] = error.ErrorMessage;
+                        Console.WriteLine($"Model error: {error.ErrorMessage}");
+                    }
+                }
+                return Page();
+            }
             /*personinfo.UserName = Request.Form["UserName"];
             string passString = Request.Form["User_Password"];
             personinfo.Email = Request.Form["Email"];
@@ -59,7 +72,7 @@ namespace Project_DB.Pages
                         cmd.Parameters.AddWithValue("@User_Password", personinfo.User_Password);
                         cmd.Parameters.AddWithValue("@Email", personinfo.Email);
                         cmd.Parameters.AddWithValue("@Phone_Number", personinfo.Phone_Number);
-                        cmd.Parameters.AddWithValue("@Birthdate", personinfo.Birthdate);
+                        cmd.Parameters.AddWithValue("@Birthdate", personinfo.Birthdate.ToString());
                         cmd.Parameters.AddWithValue("@User_Type", personinfo.User_Type);
                         cmd.ExecuteNonQuery();
 

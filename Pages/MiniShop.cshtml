@@ -49,8 +49,9 @@
                                 @if (Model.Images_Minishop[i] != null)
                                 {
                                     string base64Image = Convert.ToBase64String(Model.Images_Minishop[i]);
-                                    <img class="menu-img img-fluid circular-image" src="data:image/jpeg;base64,@base64Image" alt="Meal Image" width="500" />
-                                    <a asp-page="/MealInfo"> </a>
+                                    <a asp-page="/MealInfo" asp-route-id="@Model.ids_Minishop[i]" asp-route-identifier="@Model.identifier">
+                                        <img class="menu-img img-fluid circular-image" src="data:image/jpeg;base64,@base64Image" alt="Meal Image" width="500" />
+                                    </a>
                                     <h4>@Model.food_cans_names[i]</h4>
                                   
                                     <p class="price">
