@@ -7,6 +7,7 @@ namespace Project_DB.Pages
     {
         public void OnGet()
         {
+
         }
     }
 }
