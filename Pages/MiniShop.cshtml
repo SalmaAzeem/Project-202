@@ -8,7 +8,15 @@
 <br />
 <br />
 <br />
+<style>
+    .circular-image {
+        width: 400px; /* Set your desired width */
+        height: 400px; /* Set your desired height */
+        border-radius: 50%; /* This makes the element circular */
+        object-fit: cover; /* Maintain aspect ratio and cover the container */
+    }
 
+</style>
 <class id="minishop" class="minishop">
     <div class="container" data-aos="fade-up">
 
@@ -31,13 +39,32 @@
                 <div class="row gy-5">
                     @for (int i = 0; i < Model.food_cans_names.Count; i++)
                     {
-                        <div class="col-lg-4 minishop-item">
-                            <a asp-page="/MealInfo"><img src="~/img/menu/menu-item-1.png" class="menu-img img-fluid" alt=""></a>
-                            <h4>@Model.food_cans_names[i]</h4>
 
-                            <p class="price">
-                                @Model.prices[i] EGP
-                            </p>
+                        <div class="col-lg-4 minishop-item">
+                            @{
+                                await Model.OnGetImagesAsync();
+                            }
+                            <form method="get" asp-page-handler="ImagesAsync">
+
+                                @if (Model.Images_Minishop[i] != null)
+                                {
+                                    string base64Image = Convert.ToBase64String(Model.Images_Minishop[i]);
+                                    <a asp-page="/MealInfo" asp-route-id="@Model.ids_Minishop[i]"> 
+                                    <img class="menu-img img-fluid circular-image" src="data:image/jpeg;base64,@base64Image" alt="Meal Image" width="500" />
+                                    </a>
+                                    <h4>@Model.food_cans_names[i]</h4>
+                                  
+                                    <p class="price">
+                                        @Model.prices[i] EGP
+                                    </p>
+                                }
+                                else
+                                {
+                                    <p>No image available.</p>
+                                }
+                            </form>
+
+                            
                         </div>
 
                         <!-- Menu Item -->

@@ -18,10 +18,10 @@ namespace Project_DB.Pages
         {
             Cooker.UserName = name;
             Cooker.Email = email;
-            Cooker.Phone_Number = phone;
+            Cooker.Phone_Number = Convert.ToInt32(phone);
             Cooker.Id = Convert.ToInt32(id);
-
-            string connection = "Data Source =LAPTOP-8L98OTBR; Initial Catalog = Project 2.0; Integrated Security = True";
+            
+            string connection = "Data Source=Doha-PC;Initial Catalog=\"Project 2.0\";Integrated Security=True;";
 
             using (SqlConnection con = new SqlConnection(connection))
             {
@@ -47,6 +47,27 @@ namespace Project_DB.Pages
                     Console.WriteLine(ex.ToString());
                 }
                 finally { con.Close(); }
+                try
+                {
+                    con.Open();
+                    string query2 = "select city from Cooker where Cooker_id = @Id";
+                    using (SqlCommand cmd2 = new SqlCommand(query2, con))
+                    {
+                        cmd2.Parameters.AddWithValue("@Id", Cooker.Id);
+                        SqlDataReader reader2 = cmd2.ExecuteReader();
+
+                        while (reader2.Read())
+                        {
+                            Cooker.city = reader2["city"].ToString();
+                        }
+
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.ToString());
+                }
+                finally { con.Close(); }
             }
         }
 
@@ -59,7 +80,7 @@ namespace Project_DB.Pages
 			Rating = ratingRadio;
             Rating_CookerID = Convert.ToInt32(id);
             Rating_Id = random.Next();
-            string connection = "Data Source=Tamer;Initial Catalog=\"Project 2.0\";Integrated Security=True";
+            string connection = "Data Source=Doha-PC;Initial Catalog=\"Project 2.0\";Integrated Security=True;";
 			SqlConnection con = new SqlConnection(connection);
 			con.Open();
 			string query = "insert into Rating_Cooker values (@Rating_Id, @CookerID, @Rating, null)";

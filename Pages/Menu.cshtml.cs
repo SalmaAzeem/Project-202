@@ -1,6 +1,9 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using System.Data;
 using System.Data.SqlClient;
+using System.Net.Mime;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace Project_DB.Pages
 {
@@ -10,6 +13,11 @@ namespace Project_DB.Pages
         public string Meal_name { get; set; }
         public double price { get; set; }
         public string Ingredient { get; set; }
+        public List<string> ids_Main_Courses { get; set; } = new List<string>();
+        public List<string> ids_Breakfast { get; set; } = new List<string>();
+        public List<string> ids_Desserts { get; set; } = new List<string>();
+        public List<string> ids_Appetizers { get; set; } = new List<string>();
+        public List<string> ids_Others { get; set; } = new List<string>();
 
         public List<string> Main_Courses_Meal_names = new List<string>();
 
@@ -40,6 +48,11 @@ namespace Project_DB.Pages
         public List<double> prices_Appetizers = new List<double>();
 
         public List<double> prices_Others = new List<double>();
+        public List<byte[]> Images_Main { get; set; } = new List<byte[]>();
+        public List<byte[]> Images_Breakfast { get; set; } = new List<byte[]>();
+        public List<byte[]> Images_Desserts { get; set; } = new List<byte[]>();
+        public List<byte[]> Images_Appetizers { get; set; } = new List<byte[]>();
+        public List<byte[]> Images_Others { get; set; } = new List<byte[]>();
 
 
 
@@ -48,7 +61,9 @@ namespace Project_DB.Pages
             string connectionString = "Data Source=Doha-PC;Initial Catalog=\"Project 2.0\";Integrated Security=True";
             SqlConnection con = new SqlConnection(connectionString);
             con.Open();
-            string query_Main_Courses = "select Meal_Name, Ingredients, price from Meals where category_id = 6";
+   
+
+            string query_Main_Courses = "select Meal_Name, Ingredients, price, meal_id from Meals where category_id = 6";
 
 
             try
@@ -67,6 +82,7 @@ namespace Project_DB.Pages
                         Main_Courses_Meal_names.Add(Meal_name);
                         prices_Main_Courses.Add(price);
                         Main_Courses_Meal_ingredients.Add(Ingredient);
+                        ids_Main_Courses.Add(reader[3].ToString());
                     }
 
                 }
@@ -82,8 +98,10 @@ namespace Project_DB.Pages
 
             }
 
+
+
             con.Open();
-            string query_Breakfast = "select Meal_Name, Ingredients, price from Meals where category_id = 4";
+            string query_Breakfast = "select Meal_Name, Ingredients, price, meal_id from Meals where category_id = 4";
 
             try
             {
@@ -102,6 +120,7 @@ namespace Project_DB.Pages
                         Breakfast_Meal_names.Add(Meal_name);
                         prices_Breakfast.Add(price);
                         Breakfast_Meal_ingredients.Add(Ingredient);
+                        ids_Breakfast.Add(reader_Breakfast[3].ToString());
                     }
 
                 }
@@ -118,7 +137,7 @@ namespace Project_DB.Pages
             }
 
             con.Open();
-            string query_Appetizers = "select Meal_Name, Ingredients, price from Meals where category_id = 5";
+            string query_Appetizers = "select Meal_Name, Ingredients, price, meal_id from Meals where category_id = 5";
 
             try
             {
@@ -137,6 +156,7 @@ namespace Project_DB.Pages
                         Appetizers_Meal_names.Add(Meal_name);
                         prices_Appetizers.Add(price);
                         Appetizers_Meal_ingredients.Add(Ingredient);
+                        ids_Appetizers.Add(reader_Appetizers[3].ToString());
                     }
 
                 }
@@ -152,7 +172,7 @@ namespace Project_DB.Pages
             }
 
             con.Open();
-            string query_Desserts = "select Meal_Name, Ingredients, price from Meals where category_id = 3";
+            string query_Desserts = "select Meal_Name, Ingredients, price , meal_id from Meals where category_id = 3";
 
             try
             {
@@ -171,6 +191,7 @@ namespace Project_DB.Pages
                         Desserts_Meal_names.Add(Meal_name);
                         prices_Desserts.Add(price);
                         Desserts_Meal_ingredients.Add(Ingredient);
+                        ids_Desserts.Add(reader_Desserts[3].ToString());
                     }
 
                 }
@@ -187,7 +208,7 @@ namespace Project_DB.Pages
 
 
             con.Open();
-            string query_others = "select Meal_Name, Ingredients, price from Meals where category_id not in (3, 4, 5, 6)";
+            string query_others = "select Meal_Name, Ingredients, price , meal_id from Meals where category_id not in (3, 4, 5, 6)";
 
             try
             {
@@ -206,6 +227,7 @@ namespace Project_DB.Pages
                         Others_Meal_names.Add(Meal_name);
                         prices_Others.Add(price);
                         Others_Meal_ingredients.Add(Ingredient);
+                        ids_Others.Add(reader_Others[3].ToString());
                     }
 
                 }
@@ -222,6 +244,179 @@ namespace Project_DB.Pages
 
 
 
+
+
         }
+
+
+        public async Task<IActionResult> OnGetImagesAsync(string name_of_section)
+        {
+            string connection = "Data Source=Doha-PC;Initial Catalog=\"Project 2.0\";Integrated Security=True";
+           
+   
+            using (SqlConnection con = new SqlConnection(connection))
+            {
+                await con.OpenAsync();
+                string query4 = "select Meal_Image from Meals where meal_id = @Id";
+                using (SqlCommand cmd_4 = new SqlCommand(query4, con))
+                {
+                    cmd_4.Parameters.Add(new SqlParameter("@Id", SqlDbType.VarChar));
+                    if (name_of_section == "Breakfast")
+                    {
+                        foreach (string id in ids_Breakfast)
+                        {
+                            cmd_4.Parameters["@Id"].Value = id;
+                            using (SqlDataReader reader_4 = await cmd_4.ExecuteReaderAsync())
+                            {
+                                if (await reader_4.ReadAsync())
+                                {
+                                    const int buffersize = 4096;
+                                    long bytesRead;
+                                    long field_offset = 0; // Reset field_offset for each cooker
+                                    long stream_length = reader_4.GetBytes(0, field_offset, null, 0, 0);
+                                    using (MemoryStream ms = new MemoryStream())
+                                    {
+                                        byte[] buffer = new byte[buffersize];
+                                        while ((bytesRead = reader_4.GetBytes(0, field_offset, buffer, 0, buffersize)) > 0)
+                                        {
+                                            await ms.WriteAsync(buffer, 0, (int)bytesRead);
+                                            field_offset += bytesRead;
+                                        }
+                                        Images_Breakfast.Add(ms.ToArray());
+                                        //Console.WriteLine(Images_Breakfast.Count());
+                                        //Cooker_image = ms.ToArray();
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    else if (name_of_section == "Main")
+                    {
+                       
+                            foreach (string id in ids_Main_Courses)
+                            {
+                                cmd_4.Parameters["@Id"].Value = id;
+                                using (SqlDataReader reader_4 = await cmd_4.ExecuteReaderAsync())
+                                {
+                                    if (await reader_4.ReadAsync())
+                                    {
+                                        const int buffersize = 4096;
+                                        long bytesRead;
+                                        long field_offset = 0; // Reset field_offset for each cooker
+                                        long stream_length = reader_4.GetBytes(0, field_offset, null, 0, 0);
+                                        using (MemoryStream ms = new MemoryStream())
+                                        {
+                                            byte[] buffer = new byte[buffersize];
+                                            while ((bytesRead = reader_4.GetBytes(0, field_offset, buffer, 0, buffersize)) > 0)
+                                            {
+                                                await ms.WriteAsync(buffer, 0, (int)bytesRead);
+                                                field_offset += bytesRead;
+                                            }
+                                            Images_Main.Add(ms.ToArray());
+                                            //Console.WriteLine(Images_Main.Count());
+                                            //Cooker_image = ms.ToArray();
+                                        }
+                                    }
+                                }
+                            }
+                    }
+                    else if (name_of_section == "Dessert")
+                    {
+
+                        foreach (string id in ids_Desserts)
+                        {
+                            cmd_4.Parameters["@Id"].Value = id;
+                            using (SqlDataReader reader_4 = await cmd_4.ExecuteReaderAsync())
+                            {
+                                if (await reader_4.ReadAsync())
+                                {
+                                    const int buffersize = 4096;
+                                    long bytesRead;
+                                    long field_offset = 0; // Reset field_offset for each cooker
+                                    long stream_length = reader_4.GetBytes(0, field_offset, null, 0, 0);
+                                    using (MemoryStream ms = new MemoryStream())
+                                    {
+                                        byte[] buffer = new byte[buffersize];
+                                        while ((bytesRead = reader_4.GetBytes(0, field_offset, buffer, 0, buffersize)) > 0)
+                                        {
+                                            await ms.WriteAsync(buffer, 0, (int)bytesRead);
+                                            field_offset += bytesRead;
+                                        }
+                                        Images_Desserts.Add(ms.ToArray());
+                                        //Console.WriteLine(Images_Desserts.Count());
+                                        //Cooker_image = ms.ToArray();
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    else if (name_of_section == "Appetizers")
+                    {
+
+                        foreach (string id in ids_Appetizers)
+                        {
+                            cmd_4.Parameters["@Id"].Value = id;
+                            using (SqlDataReader reader_4 = await cmd_4.ExecuteReaderAsync())
+                            {
+                                if (await reader_4.ReadAsync())
+                                {
+                                    const int buffersize = 4096;
+                                    long bytesRead;
+                                    long field_offset = 0; // Reset field_offset for each cooker
+                                    long stream_length = reader_4.GetBytes(0, field_offset, null, 0, 0);
+                                    using (MemoryStream ms = new MemoryStream())
+                                    {
+                                        byte[] buffer = new byte[buffersize];
+                                        while ((bytesRead = reader_4.GetBytes(0, field_offset, buffer, 0, buffersize)) > 0)
+                                        {
+                                            await ms.WriteAsync(buffer, 0, (int)bytesRead);
+                                            field_offset += bytesRead;
+                                        }
+                                        Images_Appetizers.Add(ms.ToArray());
+                                        //Console.WriteLine(Images_Appetizers.Count());
+                                        //Cooker_image = ms.ToArray();
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    else if (name_of_section == "Others")
+                    {
+
+                        foreach (string id in ids_Others)
+                        {
+                            cmd_4.Parameters["@Id"].Value = id;
+                            using (SqlDataReader reader_4 = await cmd_4.ExecuteReaderAsync())
+                            {
+                                if (await reader_4.ReadAsync())
+                                {
+                                    const int buffersize = 4096;
+                                    long bytesRead;
+                                    long field_offset = 0; // Reset field_offset for each cooker
+                                    long stream_length = reader_4.GetBytes(0, field_offset, null, 0, 0);
+                                    using (MemoryStream ms = new MemoryStream())
+                                    {
+                                        byte[] buffer = new byte[buffersize];
+                                        while ((bytesRead = reader_4.GetBytes(0, field_offset, buffer, 0, buffersize)) > 0)
+                                        {
+                                            await ms.WriteAsync(buffer, 0, (int)bytesRead);
+                                            field_offset += bytesRead;
+                                        }
+                                        Images_Others.Add(ms.ToArray());
+                                        //Console.WriteLine(Images_Others.Count());
+                                        //Cooker_image = ms.ToArray();
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+
+                }
+            }
+            return new ContentResult { Content = string.Empty, ContentType = "text/html" };
+        }
+       
     }
+
 }
