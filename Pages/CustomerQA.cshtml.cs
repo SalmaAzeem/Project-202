@@ -5,10 +5,10 @@ using System.Data.SqlClient;
 
 namespace Project_DB.Pages
 {
-    public class DeliveryQAModel : PageModel
+    public class customerQAModel : PageModel
     {
-        [BindProperty (SupportsGet = true)]
-        public Person deliveryinfo { get; set; }
+        [BindProperty(SupportsGet = true)]
+        public Customer customerinfo { get; set; }
 
         [BindProperty(SupportsGet = true)]
         public int ID { get; set; }
@@ -18,7 +18,6 @@ namespace Project_DB.Pages
         }
         public IActionResult OnPost()
         {
-            
 
             try
             {
@@ -38,14 +37,18 @@ namespace Project_DB.Pages
                 using (SqlConnection con = new SqlConnection(connectionString))
                 {
                     con.Open();
-                    string q = "INSERT INTO Delivery" +
-                        "(Vehicle_number, delivery_id) VALUES" +
-                        "(@Vehicle_number,@delivery_id)";
+                    string q = "INSERT INTO Customer" +
+                         "(customer_id, city,street,Apartment_Number) VALUES" +
+                        "(@customer_id, @city,@street,@Apartment_Number)";
 
                     using (SqlCommand cmd = new SqlCommand(q, con))
                     {
-                        cmd.Parameters.AddWithValue("@Vehicle_number", deliveryinfo.Vehicle_number);
-                        cmd.Parameters.AddWithValue("@delivery_id", ID);
+                        cmd.Parameters.AddWithValue("@customer_id", ID);
+                        cmd.Parameters.AddWithValue("@city", customerinfo.city);
+                        cmd.Parameters.AddWithValue("@street", customerinfo.street);
+                        cmd.Parameters.AddWithValue("@Apartment_Number", customerinfo.Apartment_Number);
+
+
                         cmd.ExecuteNonQuery();
                     }
                 }
@@ -56,9 +59,9 @@ namespace Project_DB.Pages
                 Console.WriteLine(ex.ToString());
             }
 
-            
-            return RedirectToPage("/DeliveryProfile", new {ID2 = ID});
-            
+
+            return RedirectToPage("/Profile", new { ID2 = ID });
+
         }
 
     }

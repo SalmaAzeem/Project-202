@@ -7,7 +7,13 @@
     <br>
     <br>
     <br>
-    <div class="container" data-aos="fade-up ">
+    @if (TempData.ContainsKey("ErrorMessage"))
+    {
+        <div class="alert alert-danger" role="alert">
+            @TempData["ErrorMessage"]
+        </div>
+    }
+    <div class="container">
 
         <div class="section-header">
             <h2>Sign In</h2>
@@ -17,33 +23,31 @@
         <div class="row g-0 ">
 
 
-            <form  method="post" role="form" data-aos="fade-up" data-aos-delay="100">
+            <form  method="post" >
                 <div class="row gy-4">
                     <div class="col-lg-4 col-md-6">
                         <div class="input-group flex-nowrap">
                           <span class="input-group-text" id="addon-wrapping">@@</span>
-                            <input type="text" class="form-control" placeholder="UserName" aria-label="UserName" aria-describedby="addon-wrapping" name="UserName" asp-for="@Model.personinfo.UserName">
-                            <span asp-validation-for="@Model.personinfo.UserName" class="text-danger"></span>
+                           <input type="TEXT" class="form-control" id="UserName" placeholder="UserName" data-rule="UserName" asp-for="@Model.personinfo.UserName">
 
                         </div>
                     </div>
                     <div class="col-lg-4 col-md-6">
-                        <input type="Email" class="form-control" name="Email" id="Email" placeholder="Your Email" data-rule="Email" asp-for="@Model.personinfo.Email">
-                        <span asp-validation-for="@Model.personinfo.Email" class="text-danger"></span>
+                        <input type="Email" class="form-control" id="Email" placeholder="Your Email" data-rule="Email" asp-for="@Model.personinfo.Email">
+
 
                     </div>
                     <div class="col-lg-4 col-md-6">
                         <div class="input-group flex-nowrap">
                             <span class="input-group-text" id="addon-wrapping">+20</span>
-                            <input type="text" name="Phone_Number" asp-for="@Model.personinfo.Phone_Number" class="form-control" placeholder="Phone Number" aria-label="Username" aria-describedby="addon-wrapping" >
-                            <span asp-validation-for="@Model.personinfo.Phone_Number" class="text-danger"></span>
+                            <input type="text" asp-for="@Model.personinfo.Phone_Number" class="form-control" placeholder="Phone Number" aria-label="Username" aria-describedby="addon-wrapping" >
 
                         </div>
                         <div class="validate"></div>
                     </div>
                     <div class="col-lg-4 col-md-6">
-                        <input type="text" name="User_Password" asp-for="@Model.personinfo.User_Password" class="form-control" id="User_Password" placeholder="User_Password" >
-                        <span asp-validation-for="@Model.personinfo.User_Password" class="text-danger"></span>
+                        <input type="text" asp-for="@Model.personinfo.User_Password" class="form-control" id="User_Password" placeholder="User_Password" >
+
                     </div>
 
 
@@ -55,16 +59,24 @@
                             <option value="Customer">Customer</option>
                             <option value="Driver">Driver</option>
                         </select>
-                        <span asp-validation-for="@Model.personinfo.User_Type" class="text-danger"></span>
-                    </div> 
- 
+                    </div>
 
-                        <div class="col-lg-4 col-md-6">
-                            <input type="text" name="Birthdate" asp-for="@Model.personinfo.Birthdate" class="form-control" id="Birthdate" placeholder="MM/DD/YYYY" />
-                            <span asp-validation-for="@Model.personinfo.User_Password" class="text-danger"></span>
-                        </div>
 
-                    <button type="submit">Sign In</button>
+                    <style>
+                        .btngreen {
+                            background-color: #E34234; 
+                            border: none;
+                            color: white;
+                            padding: 10px 20px;
+                            text-align: center;
+                            text-decoration: none;
+                            display: inline-block;
+                            font-size: 16px;
+                            border-radius: 20px;
+                        }
+                    </style>
+
+                    <button class="btngreen btn-success" type="submit">Sign Up</button>
             </form>
         </div><!-- End Reservation Form -->
 
