@@ -50,7 +50,7 @@ namespace Project_DB.Pages
                                     cooker.Id = Convert.ToInt32(id);
                                     cooker.UserName = reader_2["UserName"].ToString();
                                     cooker.Email = reader_2["Email"].ToString();
-                                    cooker.Phone_Number = Convert.ToInt32(reader_2["Phone_Number"]);
+                                    cooker.Phone_Number = reader_2["Phone_Number"].ToString();
                                     cookers.Add(cooker);
                                 }
                             }
