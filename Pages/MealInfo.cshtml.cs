@@ -25,30 +25,58 @@ namespace Project_DB.Pages
             SqlConnection con = new SqlConnection(connectionString);
             con.Open();
 
-
             string query_minishop = "select Food_cans, prices from MiniShop where minishop_id = @minishop_id";
+            string query_menu = "select Meal_Name, price from Meals where meal_id = @minishop_id";
+            
+
+           
 
 
             try
             {
 
-                SqlCommand query_minishop_Command = new SqlCommand(query_minishop, con);
-                query_minishop_Command.Parameters.AddWithValue("@minishop_id", id);
-                SqlDataReader reader = query_minishop_Command.ExecuteReader();
-                while (reader.Read())
+                if (Minishop_identifier == "Menu")
                 {
-
-                    if (reader[0].ToString() != null && reader[1].ToString() != null)
+                    SqlCommand query_minishop_Command = new SqlCommand(query_menu, con);
+                    query_minishop_Command.Parameters.AddWithValue("@minishop_id", id);
+                    SqlDataReader reader = query_minishop_Command.ExecuteReader();
+                    while (reader.Read())
                     {
-                        Minishop_name = reader[0].ToString();
-                        Console.WriteLine(Minishop_name);
 
-                        Minishop_price = Convert.ToDouble(reader[1]);
-                        Console.WriteLine(Minishop_price);
-                 
+                        if (reader[0].ToString() != null && reader[1].ToString() != null)
+                        {
+                            Minishop_name = reader[0].ToString();
+                            Console.WriteLine(Minishop_name);
+
+                            Minishop_price = Convert.ToDouble(reader[1]);
+                            Console.WriteLine(Minishop_price);
+
+                        }
+
                     }
 
                 }
+                else if (Minishop_identifier == "MiniShop")
+                {
+                    SqlCommand query_minishop_Command = new SqlCommand(query_minishop, con);
+                    query_minishop_Command.Parameters.AddWithValue("@minishop_id", id);
+                    SqlDataReader reader = query_minishop_Command.ExecuteReader();
+                    while (reader.Read())
+                    {
+
+                        if (reader[0].ToString() != null && reader[1].ToString() != null)
+                        {
+                            Minishop_name = reader[0].ToString();
+                            Console.WriteLine(Minishop_name);
+
+                            Minishop_price = Convert.ToDouble(reader[1]);
+                            Console.WriteLine(Minishop_price);
+
+                        }
+
+                    }
+                }
+                
 
             }
             catch (SqlException ex)

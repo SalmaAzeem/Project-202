@@ -13,6 +13,7 @@ namespace Project_DB.Pages
         public string Meal_name { get; set; }
         public double price { get; set; }
         public string Ingredient { get; set; }
+        public string identifier { get; set; }
         public List<string> ids_Main_Courses { get; set; } = new List<string>();
         public List<string> ids_Breakfast { get; set; } = new List<string>();
         public List<string> ids_Desserts { get; set; } = new List<string>();
@@ -58,6 +59,7 @@ namespace Project_DB.Pages
 
         public void OnGet()
         {
+            identifier = "Menu";
             string connectionString = "Data Source=Doha-PC;Initial Catalog=\"Project 2.0\";Integrated Security=True";
             SqlConnection con = new SqlConnection(connectionString);
             con.Open();

@@ -18,7 +18,7 @@ namespace Project_DB.Pages
         {
             Cooker.UserName = name;
             Cooker.Email = email;
-            Cooker.Phone_Number = Convert.ToInt32(phone);
+            Cooker.Phone_Number = phone;
             Cooker.Id = Convert.ToInt32(id);
             
             string connection = "Data Source=Doha-PC;Initial Catalog=\"Project 2.0\";Integrated Security=True;";
@@ -58,7 +58,7 @@ namespace Project_DB.Pages
 
                         while (reader2.Read())
                         {
-                            Cooker.city = reader2["city"].ToString();
+                            //Cooker.city = reader2["city"].ToString();
                         }
 
                     }
