@@ -13,6 +13,7 @@ namespace Project_DB.Pages
         public string Meal_name { get; set; }
         public double price { get; set; }
         public string Ingredient { get; set; }
+        public string identifier { get; set; }
         public List<string> ids_Main_Courses { get; set; } = new List<string>();
         public List<string> ids_Breakfast { get; set; } = new List<string>();
         public List<string> ids_Desserts { get; set; } = new List<string>();
@@ -58,7 +59,8 @@ namespace Project_DB.Pages
 
         public void OnGet()
         {
-            string connectionString = "Data Source =LAPTOP-8L98OTBR; Initial Catalog = Project 2.0; Integrated Security = True";
+            identifier = "Menu";
+            string connectionString = "Data Source=Salma_Sherif;Initial Catalog=\"Project 2.0\";Integrated Security=True";
             SqlConnection con = new SqlConnection(connectionString);
             con.Open();
    
@@ -71,6 +73,7 @@ namespace Project_DB.Pages
 
                 SqlCommand Main_Courses_Command = new SqlCommand(query_Main_Courses, con);
                 SqlDataReader reader = Main_Courses_Command.ExecuteReader();
+
                 while (reader.Read())
                 {
 
@@ -251,7 +254,7 @@ namespace Project_DB.Pages
 
         public async Task<IActionResult> OnGetImagesAsync(string name_of_section)
         {
-            string connection = "Data Source =LAPTOP-8L98OTBR; Initial Catalog = Project 2.0; Integrated Security = True";
+            string connection = "Data Source=Salma_Sherif;Initial Catalog=\"Project 2.0\";Integrated Security=True";
            
    
             using (SqlConnection con = new SqlConnection(connection))

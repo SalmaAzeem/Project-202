@@ -74,9 +74,11 @@
                                 @if (Model.Images_Main[i] != null)
                                 {
                                     string base64Image = Convert.ToBase64String(Model.Images_Main[i]);
-                                    <a asp-page="/MealInfo">
+                                    <a asp-page="/MealInfo" asp-route-id="@Model.ids_Main_Courses[i]" asp-route-identifier="@Model.identifier">
+                                    
                                     <img class="menu-img img-fluid circular-image" src="data:image/jpeg;base64,@base64Image" alt="Meal Image" width="500" />
-                                     </a>
+                                    </a>
+                                   
                                     <h4>@Model.Main_Courses_Meal_names[i]</h4>
                                     <p class="ingredients">
                                         @Model.Main_Courses_Meal_ingredients[i]
@@ -117,8 +119,10 @@
                                 @if (Model.Images_Breakfast[i] != null)
                                 {
                                     string base64Image = Convert.ToBase64String(Model.Images_Breakfast[i]);
-                                    <img class="menu-img img-fluid circular-image" src="data:image/jpeg;base64,@base64Image" alt="Meal Image" width="500" />
-                                    <a asp-page="/MealInfo"> </a>
+                                    
+                                    <a asp-page="/MealInfo" asp-route-id="@Model.ids_Breakfast[i]" asp-route-identifier="@Model.identifier">
+                                        <img class="menu-img img-fluid circular-image" src="data:image/jpeg;base64,@base64Image" alt="Meal Image" width="500" />
+                                    </a>
                                     <h4>@Model.Breakfast_Meal_names[i]</h4>
                                     <p class="ingredients">
                                         @Model.Breakfast_Meal_ingredients[i]
@@ -162,8 +166,10 @@
                                 @if (Model.Images_Appetizers[i] != null)
                                 {
                                     string base64Image = Convert.ToBase64String(Model.Images_Appetizers[i]);
-                                    <img class="menu-img img-fluid circular-image" src="data:image/jpeg;base64,@base64Image" alt="Meal Image" width="500" />
-                                    <a asp-page="/MealInfo"> </a>
+                                    
+                                    <a asp-page="/MealInfo" asp-route-id="@Model.ids_Appetizers[i]" asp-route-identifier="@Model.identifier">
+                                        <img class="menu-img img-fluid circular-image" src="data:image/jpeg;base64,@base64Image" alt="Meal Image" width="500" />
+                                    </a>
                                     <h4>@Model.Appetizers_Meal_names[i]</h4>
                                     <p class="ingredients">
                                         @Model.Appetizers_Meal_ingredients[i]
@@ -204,8 +210,10 @@
                                 @if (Model.Images_Desserts[i] != null)
                                 {
                                     string base64Image = Convert.ToBase64String(Model.Images_Desserts[i]);
-                                    <img class="menu-img img-fluid circular-image" src="data:image/jpeg;base64,@base64Image" alt="Meal Image" width="500" />
-                                    <a asp-page="/MealInfo"> </a>
+                                   
+                                    <a asp-page="/MealInfo" asp-route-id="@Model.ids_Desserts[i]" asp-route-identifier="@Model.identifier">
+                                        <img class="menu-img img-fluid circular-image" src="data:image/jpeg;base64,@base64Image" alt="Meal Image" width="500" />
+                                    </a>
                                     <h4>@Model.Desserts_Meal_names[i]</h4>
                                     <p class="ingredients">
                                         @Model.Desserts_Meal_ingredients[i]
@@ -245,8 +253,10 @@
                                 @if (Model.Images_Others[i] != null)
                                 {
                                     string base64Image = Convert.ToBase64String(Model.Images_Others[i]);
-                                    <img class="menu-img img-fluid circular-image1` vc circular-image" src="data:image/jpeg;base64,@base64Image" alt="Meal Image" width="500" />
-                                    <a asp-page="/MealInfo"> </a>
+                                    
+                                    <a asp-page="/MealInfo" asp-route-id="@Model.ids_Others[i]" asp-route-identifier="@Model.identifier">
+                                        <img class="menu-img img-fluid circular-image1` vc" src="data:image/jpeg;base64,@base64Image" alt="Meal Image" width="500" />
+                                    </a>
                                     <h4>@Model.Others_Meal_names[i]</h4>
                                     <p class="ingredients">
                                         @Model.Others_Meal_ingredients[i]

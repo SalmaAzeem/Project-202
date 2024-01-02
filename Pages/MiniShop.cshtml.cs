@@ -22,7 +22,7 @@ namespace Project_DB.Pages
         public void OnGet()
         {
             identifier= "MiniShop";
-            string connectionString = "Data Source=Doha-PC;Initial Catalog=\"Project 2.0\";Integrated Security=True";
+            string connectionString = "Data Source=Salma_Sherif;Initial Catalog=\"Project 2.0\";Integrated Security=True";
             SqlConnection con = new SqlConnection(connectionString);
             con.Open();
             string query = "SELECT COUNT(*) FROM MiniShop";
@@ -84,7 +84,11 @@ namespace Project_DB.Pages
         }
         public async Task<IActionResult> OnGetImagesAsync()
         {
-            string connection = "Data Source =LAPTOP-8L98OTBR; Initial Catalog = Project 2.0; Integrated Security = True";
+<<<<<<< HEAD
+            string connection = "Data Source=Salma_Sherif;Initial Catalog=\"Project 2.0\";Integrated Security=True";
+=======
+            string connection = "Data Source=Doha-PC;Initial Catalog=\"Project 2.0\";Integrated Security=True";
+>>>>>>> 4a9bcd1db4099c98685b6c6ded32e48f453358af
             using (SqlConnection con = new SqlConnection(connection))
             {
                 await con.OpenAsync();
@@ -112,7 +116,7 @@ namespace Project_DB.Pages
                                         field_offset += bytesRead;
                                     }
                                     Images_Minishop.Add(ms.ToArray());
-                                    Console.WriteLine(Images_Minishop.Count());
+                                    //Console.WriteLine(Images_Minishop.Count());
                                     //Cooker_image = ms.ToArray();
                                 }
                             }
