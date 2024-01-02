@@ -18,10 +18,10 @@ namespace Project_DB.Pages
         public void OnGet(string id, string identifier)
         {
             Minishop_identifier = identifier;
-            Console.WriteLine(Minishop_identifier);
+            //Console.WriteLine(Minishop_identifier);
             id_minishop = id;
          
-            string connectionString = "Data Source=Doha-PC;Initial Catalog=\"Project 2.0\";Integrated Security=True";
+            string connectionString = "Data Source=Salma_Sherif;Initial Catalog=\"Project 2.0\";Integrated Security=True";
             SqlConnection con = new SqlConnection(connectionString);
             con.Open();
 
@@ -46,10 +46,10 @@ namespace Project_DB.Pages
                         if (reader[0].ToString() != null && reader[1].ToString() != null)
                         {
                             Minishop_name = reader[0].ToString();
-                            Console.WriteLine(Minishop_name);
+                            //Console.WriteLine(Minishop_name);
 
                             Minishop_price = Convert.ToDouble(reader[1]);
-                            Console.WriteLine(Minishop_price);
+                            //Console.WriteLine(Minishop_price);
 
                         }
 
@@ -67,10 +67,10 @@ namespace Project_DB.Pages
                         if (reader[0].ToString() != null && reader[1].ToString() != null)
                         {
                             Minishop_name = reader[0].ToString();
-                            Console.WriteLine(Minishop_name);
+                            //Console.WriteLine(Minishop_name);
 
                             Minishop_price = Convert.ToDouble(reader[1]);
-                            Console.WriteLine(Minishop_price);
+                            //Console.WriteLine(Minishop_price);
 
                         }
 
