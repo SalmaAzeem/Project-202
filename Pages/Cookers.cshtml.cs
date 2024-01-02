@@ -15,7 +15,7 @@ namespace Project_DB.Pages
         public List<string> names { get; set; } = new List<string>();
         public void OnGet()
         {
-            string connection = "Data Source=Tamer;Initial Catalog=\"Project 2.0\";Integrated Security=True";
+            string connection = "Data Source =LAPTOP-8L98OTBR; Initial Catalog = Project 2.0; Integrated Security = True";
             using (SqlConnection conn = new SqlConnection(connection))
             {
                 try

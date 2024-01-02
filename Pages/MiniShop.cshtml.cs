@@ -16,7 +16,7 @@ namespace Project_DB.Pages
         public List<double> prices = new List<double>();
         public void OnGet()
         {
-            string connectionString = "Data Source=Doha-PC;Initial Catalog=\"Project 2.0\";Integrated Security=True";
+            string connectionString = "Data Source =LAPTOP-8L98OTBR; Initial Catalog = Project 2.0; Integrated Security = True";
             SqlConnection con = new SqlConnection(connectionString);
             con.Open();
             string query = "SELECT COUNT(*) FROM MiniShop";
