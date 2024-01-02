@@ -31,11 +31,6 @@ namespace Project_DB.Models
         public string? User_Type { get; set; }
 
 
-        [Range(5, 10)]
-
-        public int? Vehicle_number { get; set; }
-
-
     }
 }
 

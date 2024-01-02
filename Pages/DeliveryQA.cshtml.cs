@@ -8,7 +8,7 @@ namespace Project_DB.Pages
     public class DeliveryQAModel : PageModel
     {
         [BindProperty (SupportsGet = true)]
-        public Person deliveryinfo { get; set; }
+        public Driver deliveryinfo { get; set; }
 
         [BindProperty(SupportsGet = true)]
         public int ID { get; set; }

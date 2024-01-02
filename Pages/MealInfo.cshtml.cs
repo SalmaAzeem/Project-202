@@ -22,12 +22,11 @@ namespace Project_DB.Pages
             Minishop_identifier = identifier;
             //Console.WriteLine(Minishop_identifier);
             id_minishop = id;
-<<<<<<< HEAD
+
          
             string connectionString = "Data Source=Salma_Sherif;Initial Catalog=\"Project 2.0\";Integrated Security=True";
-=======
-            string connectionString = "Data Source=Doha-PC;Initial Catalog=\"Project 2.0\";Integrated Security=True";
->>>>>>> 4a9bcd1db4099c98685b6c6ded32e48f453358af
+
+
             SqlConnection con = new SqlConnection(connectionString);
 
             con.Open();

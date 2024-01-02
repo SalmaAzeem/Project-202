@@ -69,7 +69,18 @@ namespace Project_DB.Pages
                         int counter = Convert.ToInt32(cmd.ExecuteScalar());
                         if (counter > 0)
                         {
-                            TempData["ErrorMessage"] = "This Email already exists, Choose another one";
+                            TempData["ErrorMessage"] = "This Email already in use, Please choose another one";
+                            return Page();
+                        }
+                    }
+                    string validation2 = "select count(*) from Userr where User_Password = @User_Password";
+                    using (SqlCommand cmd = new SqlCommand(validation2, con))
+                    {
+                        cmd.Parameters.AddWithValue("@User_Password", personinfo.User_Password);
+                        int counter = Convert.ToInt32(cmd.ExecuteScalar());
+                        if (counter > 0)
+                        {
+                            TempData["ErrorMessage"] = "The current password may be in use or is considered weak for security reasons.";
                             return Page();
                         }
                     }
