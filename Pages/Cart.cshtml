@@ -7,13 +7,6 @@
 
 <br />
 <br />
-<br />
-<br />
-<br />
-<br />
-<br />
-<br />
-<br />
 <!DOCTYPE html>
 <html>
 <head>
@@ -224,6 +217,8 @@
         @{for (int i = 0; i < @Model.Mealcount; i++)
         {
             <div class="row d-flex justify-content-center border-top">
+
+
                 <div class="col-5">
                     <div class="row d-flex">
                         <div class="book">
@@ -234,10 +229,12 @@
                         </div>
                     </div>
                 </div>
+
+
                 <div class="my-auto col-7">
                     <div class="row text-right">
                         <div class="col-4">
-                                    <h6 class="mob-text">@Model.prices[i]</h6>
+                               <h6 class="mob-text">@Model.prices[i]</h6>
                         </div>
                     </div>
                 </div>
@@ -251,19 +248,20 @@
                         <div class="col-lg-4 mt-2">
                             <div class="row d-flex justify-content-between px-4">
                                 <p class="mb-1 text-left">Subtotal</p>
-                                <h6 class="mb-1 text-right">23.49 EGP</h6>
+                                <h6 class="mb-1 text-right">@Model.total_price EGP</h6>
                             </div>
                             <div class="row d-flex justify-content-between px-4">
                                 <p class="mb-1 text-left">Shipping</p>
-                                <h6 class="mb-1 text-right">2.99 EGP</h6>
-                            </div>
+                                    <h6 class="mb-1 text-right">@Model.shiping EGP</h6>
+                                </div>
                             <div class="row d-flex justify-content-between px-4" id="tax">
                                 <p class="mb-1 text-left">Total (tax included)</p>
-                                <h6 class="mb-1 text-right">26.48 EGP</h6>
+                                    <h6 class="mb-1 text-right">@Model.total EGP</h6>  
                             </div>
                             <button class="btn-block btn-blue ">
-
+                            <form method =  "post"> 
                                 <a id="checkout" asp-area="" asp-page="/Payment">Check Out</a>
+                             </form>
 
                             </button>
                         </div>

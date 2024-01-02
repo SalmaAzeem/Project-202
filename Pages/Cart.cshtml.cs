@@ -13,10 +13,21 @@ namespace Project_DB.Pages
 
         public List<string> Meal_name = new List<string>();
         public List<double> prices = new List<double>();
-        
+
+
 
         [BindProperty(SupportsGet = true)]
-        public int Mealcount { get; set; }
+        public int Mealcount { get; set; } 
+        [BindProperty(SupportsGet = true)]
+        
+        public double total_price { get; set; }
+        [BindProperty(SupportsGet = true)]
+        
+        public double total { get; set; }
+        [BindProperty(SupportsGet = true)]
+        public double shiping { get; set; }
+
+
 
         public void OnGet(string id, string identifier)
         {
@@ -32,22 +43,29 @@ namespace Project_DB.Pages
 
             try
             {
-                Mealcount = ids_Cart.Count; ;
-                Console.WriteLine("Mealcount is ", Mealcount);
-                Console.WriteLine("blaaa ", ids_Cart[0]);
 
-                //for (int i = 0; i < Mealcount; i++) {
-                    string query_Menu = "select Meal_Name, price from Meals where meal_id = " + ids_Cart[0];
-                    SqlCommand cmd_Menu = new SqlCommand(query_Menu, con);
-                    SqlDataReader reader = cmd_Menu.ExecuteReader();
+                string query_count = "select sum(item_price) from Cart group by item_price";
+                string query_Menu = "select * from Cart";
+                string queryc = "SELECT COUNT(*) FROM Cart";
+                
 
-                    while (reader.Read())
-                    {
-                        Meal_name.Add(reader[0].ToString());
-                        prices.Add(Convert.ToDouble(reader[1]));
-                    }
+                SqlCommand cmd_Menu = new SqlCommand(query_Menu, con);
+                SqlCommand cmd_Count = new SqlCommand(query_count, con);
+                SqlCommand cmdcnum = new SqlCommand(queryc, con);
 
-                //}
+                shiping = 2.99;
+                SqlDataReader reader = cmd_Menu.ExecuteReader();
+                while (reader.Read())
+                {
+                    Meal_name.Add(reader[1].ToString());
+                    prices.Add(Convert.ToDouble(reader[3]));
+                    total_price += Convert.ToDouble(reader[3]);
+                }
+                reader.Close();
+
+                Mealcount = (int)cmdcnum.ExecuteScalar();
+                total = shiping + total_price;
+
             }
             catch (SqlException ex)
             {
@@ -59,6 +77,14 @@ namespace Project_DB.Pages
 
             }
         }
-      
+
+
+
+        public IActionResult OnPost(string id, string identifier)
+        {
+            return RedirectToPage("/Payment");
+        }
+
+
     }
 }

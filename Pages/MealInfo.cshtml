@@ -3,7 +3,10 @@
 @{
 }
 
-<br /><br /><br /><br />
+<br />
+<br />
+<br />
+<br />
 
 <style>
 
@@ -19,18 +22,36 @@
     }
 </style>
 
-<form method="post">
-<div class="col-lg-4 minishop-item">
-   <img src="~/img/menu/menu-item-6.png" class="menu-img img-fluid" alt=""></a>
-    <h4>@Model.Minishop_name</h4>
+<form method="post" asp-page-handler="Update">
+    @Html.AntiForgeryToken()
+    <div class="col-lg-4 minishop-item">
+        <img src="~/img/menu/menu-item-6.png" class="menu-img img-fluid" alt=""></a>
+        <h4>@Model.Minishop_name</h4>
+        <h4>@Model.id_minishop</h4>
+        <h4>@Model.flag</h4>
 
 
-    <p class="price">
-        @Model.Minishop_price
-    </p>
-</div><!-- Menu Item -->
+        <p class="price">
+            @Model.Minishop_price
+        </p>
+    </div><!-- Menu Item -->
+    <input type="hidden" name="Minishop_name" value="@Model.Minishop_name" />
+    <input type="hidden" name="id_minishop" value="@Model.id_minishop" />
+    <input type="hidden" name="flag" value="@Model.flag" />
+    <input type="hidden" name="Minishop_price" value="@Model.Minishop_price" />
+    <input type="hidden" name="Minishop_identifier" value="@Model.Minishop_identifier" />
 
-    <a class="btn btn_add_to_cart btn-danger">Add To Cart</a>
+    <button type="submit" class="btn btn_add_to_cart btn-danger">Add To Cart</button>
 
+    @* <a class="btn btn_add_to_cart btn-danger"  asp-route-name ="@Model.Minishop_name" asp-route-id="@Model.id_minishop" asp-route-price="@Model.Minishop_price" asp-route="@Model.flag">Add To Cart</a>
+    *@
 </form>
-<br /><br /><br />
+<script>
+    function submitForm() {
+        console.log("Form submitted!"); // Add this line for debugging
+        document.querySelector('form').submit(); // This line submits the form
+    }
+</script>
+<br />
+<br />
+<br />
