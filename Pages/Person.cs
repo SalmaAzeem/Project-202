@@ -26,5 +26,6 @@ namespace Project_DB.Pages
         public string Description { get; set; }
         public byte[] Image { get; set; }
         public string Image_string { get; set; }
+        public string city { get; set; }
     }
 }

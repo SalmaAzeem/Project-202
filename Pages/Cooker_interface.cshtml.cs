@@ -47,6 +47,27 @@ namespace Project_DB.Pages
                     Console.WriteLine(ex.ToString());
                 }
                 finally { con.Close(); }
+                try
+                {
+                    con.Open();
+                    string query2 = "select city from Cooker where Cooker_id = @Id";
+                    using (SqlCommand cmd2 = new SqlCommand(query2, con))
+                    {
+                        cmd2.Parameters.AddWithValue("@Id", Cooker.Id);
+                        SqlDataReader reader2 = cmd2.ExecuteReader();
+
+                        while (reader2.Read())
+                        {
+                            Cooker.city = reader2["city"].ToString();
+                        }
+
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.ToString());
+                }
+                finally { con.Close(); }
             }
         }
 
