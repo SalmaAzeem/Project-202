@@ -13,11 +13,14 @@ namespace Project_DB.Pages
     
         public string Minishop_name { get; set; }
         public double Minishop_price { get; set; }
+        public string Minishop_identifier { get; set; }
 
-        public void OnGet(string id)
+        public void OnGet(string id, string identifier)
         {
-
+            Minishop_identifier = identifier;
+            Console.WriteLine(Minishop_identifier);
             id_minishop = id;
+         
             string connectionString = "Data Source=Doha-PC;Initial Catalog=\"Project 2.0\";Integrated Security=True";
             SqlConnection con = new SqlConnection(connectionString);
             con.Open();
