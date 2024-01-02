@@ -283,7 +283,7 @@ namespace Project_DB.Pages
                                             field_offset += bytesRead;
                                         }
                                         Images_Breakfast.Add(ms.ToArray());
-                                        Console.WriteLine(Images_Breakfast.Count());
+                                        //Console.WriteLine(Images_Breakfast.Count());
                                         //Cooker_image = ms.ToArray();
                                     }
                                 }
@@ -313,7 +313,7 @@ namespace Project_DB.Pages
                                                 field_offset += bytesRead;
                                             }
                                             Images_Main.Add(ms.ToArray());
-                                            Console.WriteLine(Images_Main.Count());
+                                            //Console.WriteLine(Images_Main.Count());
                                             //Cooker_image = ms.ToArray();
                                         }
                                     }
@@ -343,7 +343,7 @@ namespace Project_DB.Pages
                                             field_offset += bytesRead;
                                         }
                                         Images_Desserts.Add(ms.ToArray());
-                                        Console.WriteLine(Images_Desserts.Count());
+                                        //Console.WriteLine(Images_Desserts.Count());
                                         //Cooker_image = ms.ToArray();
                                     }
                                 }
@@ -373,7 +373,7 @@ namespace Project_DB.Pages
                                             field_offset += bytesRead;
                                         }
                                         Images_Appetizers.Add(ms.ToArray());
-                                        Console.WriteLine(Images_Appetizers.Count());
+                                        //Console.WriteLine(Images_Appetizers.Count());
                                         //Cooker_image = ms.ToArray();
                                     }
                                 }

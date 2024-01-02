@@ -9,14 +9,15 @@ namespace Project_DB.Pages
 {
     public class MealInfoModel : PageModel
     {
-        public string id { get; set; }
+        public string id_minishop { get; set; }
     
         public string Minishop_name { get; set; }
         public double Minishop_price { get; set; }
 
         public void OnGet(string id)
         {
-           
+
+            id_minishop = id;
             string connectionString = "Data Source=Doha-PC;Initial Catalog=\"Project 2.0\";Integrated Security=True";
             SqlConnection con = new SqlConnection(connectionString);
             con.Open();
