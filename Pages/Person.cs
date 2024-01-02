@@ -27,7 +27,6 @@ namespace Project_DB.Pages
         public string User_Password { get; set; }
 
         [Required(ErrorMessage = "Your Birth Date should be of format DD/MM/YYYY")]
-        //[RegularExpression(@"^(0[1-9]|1[012])/([12][0-9]|0[1-9]|3[01])/((19|20)\d\d)$", ErrorMessage = "Birth Date must be in MM/DD/YYYY format")]
         public DateOnly Birthdate { get; set; }
 
         [Required(ErrorMessage = "Please choose one")]
