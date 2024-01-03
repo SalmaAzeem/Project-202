@@ -18,7 +18,7 @@ namespace Project_DB.Pages
         public int Cookersnum { get; set; }
         public void OnGet()
         {
-            string connectionString = "Data Source=Salma_Sherif;Initial Catalog=\"Project 2.0\";Integrated Security=True";
+            string connectionString = "Data Source =LAPTOP-8L98OTBR; Initial Catalog = Project 2.0; Integrated Security = True"; ;
             SqlConnection con = new SqlConnection(connectionString);
             con.Open();
 
