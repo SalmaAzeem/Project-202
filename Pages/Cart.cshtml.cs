@@ -6,8 +6,6 @@ namespace Project_DB.Pages
 {
     public class CartModel : PageModel
     {
-        public string id_cart { get; set; }
-        public string my_identifier { get; set; }
         public List<string> identifiers { get; set; } = new List<string>();
         public List<string> ids_Cart { get; set; } = new List<string>();
 
@@ -17,29 +15,25 @@ namespace Project_DB.Pages
 
 
         [BindProperty(SupportsGet = true)]
-        public int Mealcount { get; set; } 
+        public int Mealcount { get; set; }
         [BindProperty(SupportsGet = true)]
-        
+
         public double total_price { get; set; }
         [BindProperty(SupportsGet = true)]
-        
+
         public double total { get; set; }
         [BindProperty(SupportsGet = true)]
         public double shiping { get; set; }
 
 
 
-        public void OnGet(string id, string identifier)
+        public void OnGet()
         {
-            id_cart = id;
-            ids_Cart.Add(id_cart);
-            my_identifier = identifier;
-            identifiers.Add(my_identifier);
 
-            string connectionString = "Data Source=Salma_Sherif;Initial Catalog=\"Project 2.0\";Integrated Security=True";
+            string connectionString = "Data Source=Doha-PC;Initial Catalog=\"Project 2.0\";Integrated Security=True";
             SqlConnection con = new SqlConnection(connectionString);
             con.Open();
-            
+
 
             try
             {
@@ -47,7 +41,7 @@ namespace Project_DB.Pages
                 string query_count = "select sum(item_price) from Cart group by item_price";
                 string query_Menu = "select * from Cart";
                 string queryc = "SELECT COUNT(*) FROM Cart";
-                
+
 
                 SqlCommand cmd_Menu = new SqlCommand(query_Menu, con);
                 SqlCommand cmd_Count = new SqlCommand(query_count, con);
@@ -80,10 +74,34 @@ namespace Project_DB.Pages
 
 
 
-        public IActionResult OnPost(string id, string identifier)
+        public IActionResult OnPost()
         {
+            //string connectionString = "Data Source=Salma_Sherif;Initial Catalog=Project 2.0;Integrated Security=True";
+            //using (SqlConnection con = new SqlConnection(connectionString))
+            //{
+            //    try
+            //    {
+            //        con.Open();
+            //        string deleteQuery = "DELETE FROM Cart WHERE flag = 0 OR flag = 1;";
+            //        using (SqlCommand command = new SqlCommand(deleteQuery, con))
+            //        {
+            //            int rowsAffected = command.ExecuteNonQuery();
+            //            // Optionally, you can check the value of rowsAffected to see how many rows were deleted
+            //        }
+            //    }
+            //    catch (Exception ex)
+            //    {
+            //        // Handle exceptions here, for example log the exception
+            //        Console.WriteLine(ex.Message);
+            //    }
+            //    finally
+            //    {
+            //        con.Close();
+            //    }
+            //}
             return RedirectToPage("/Payment");
         }
+
 
 
     }

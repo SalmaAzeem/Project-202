@@ -25,9 +25,11 @@ namespace Project_DB.Pages
         public void OnGet(string id, string identifier)
         {
             Minishop_identifier = identifier;
+            var userId = HttpContext.Session.GetInt32("UserId");
+            Console.WriteLine($"This is the user id {userId}");
 
             id_minishop = id;
-            string connectionString = "Data Source=Salma_Sherif;Initial Catalog=\"Project 2.0\";Integrated Security=True";
+            string connectionString = "Data Source=Doha-PC;Initial Catalog=\"Project 2.0\";Integrated Security=True";
             SqlConnection con = new SqlConnection(connectionString);
 
             con.Open();
@@ -117,7 +119,7 @@ namespace Project_DB.Pages
             Console.WriteLine(Minishop_price);
             Console.WriteLine(flag);
 
-            string connectionString = "Data Source=Salma_Sherif;Initial Catalog=\"Project 2.0\";Integrated Security=True";
+            string connectionString = "Data Source=Doha-PC;Initial Catalog=\"Project 2.0\";Integrated Security=True";
             SqlConnection con = new SqlConnection(connectionString);
             con.Open();
             string query_minishop = "select Food_cans, prices from MiniShop where minishop_id = @minishop_id";
@@ -206,7 +208,7 @@ namespace Project_DB.Pages
             {
                 con.Close();
             }
-            return RedirectToPage("/MealInfo", new { id_minishop = id_minishop, Minishop_identifier = Minishop_identifier });
+            return RedirectToPage("/MealInfo", new { id = id_minishop, identifier = Minishop_identifier });
 
 
         }
