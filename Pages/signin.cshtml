@@ -21,6 +21,7 @@
 
     </div>
 </header>
+
 <body id="book-a-table" class="book-a-table">
     <br>
     <br>
@@ -44,18 +45,18 @@
 
             <form method="post">
                 <div class="row gy-4">
-
+ 
                     <div class="col-lg-4 col-md-6">
-                        <input type="Email" class="form-control" id="Email" placeholder="Your Email" data-rule="Email" asp-for="@Model.personinfo.Email">
+                        <input type="Email" class="form-control" id="Email" placeholder="Email" data-rule="Email" asp-for="@Model.personinfo.Email">
 
 
                     </div>
-                        
-                        
+
                     <div class="col-lg-4 col-md-6">
                         <input type="text" asp-for="@Model.personinfo.User_Password" class="form-control" id="User_Password" placeholder="User_Password">
 
                     </div>
+
 
 
                     <style>
@@ -71,9 +72,11 @@
                             border-radius: 20px;
                         }
                     </style>
-                </div>
-                <br />
-                <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
 
                     <button class="btngreen btn-success" type="submit">Sign Up</button>
             </form>
