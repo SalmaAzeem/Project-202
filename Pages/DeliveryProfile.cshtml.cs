@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Project_DB.Models;
 using System.Data.SqlClient;
 using System.Runtime;
 
@@ -11,7 +12,7 @@ namespace Project_DB.Pages
         public int ID2 { get; set; }
 
         [BindProperty(SupportsGet = true)]
-        public Person deliveryinfo { get; set; }
+        public Driver deliveryinfo { get; set; }
         public void OnGet()
         {
             try
@@ -35,10 +36,8 @@ namespace Project_DB.Pages
                             deliveryinfo.UserName = reader["UserName"].ToString();
                             deliveryinfo.Email = reader["Email"].ToString();
                             deliveryinfo.Phone_Number = reader["Phone_Number"].ToString();
-                            deliveryinfo.Birthdate = DateOnly.Parse(reader["Birthdate"].ToString());
-                            deliveryinfo.Vehicle_number = Convert.ToInt32(reader["Vehicle_number"]);
+                            deliveryinfo.Vehicle_number = reader["Vehicle_number"].ToString();
                             deliveryinfo.User_Password = reader["User_Password"].ToString();
-
                         }
                     }
                 }
