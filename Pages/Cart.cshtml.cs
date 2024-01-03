@@ -15,12 +15,12 @@ namespace Project_DB.Pages
 
 
         [BindProperty(SupportsGet = true)]
-        public int Mealcount { get; set; } 
+        public int Mealcount { get; set; }
         [BindProperty(SupportsGet = true)]
-        
+
         public double total_price { get; set; }
         [BindProperty(SupportsGet = true)]
-        
+
         public double total { get; set; }
         [BindProperty(SupportsGet = true)]
         public double shiping { get; set; }
@@ -30,10 +30,10 @@ namespace Project_DB.Pages
         public void OnGet()
         {
 
-            string connectionString = "Data Source=Salma_Sherif;Initial Catalog=\"Project 2.0\";Integrated Security=True";
+            string connectionString = "Data Source=Doha-PC;Initial Catalog=\"Project 2.0\";Integrated Security=True";
             SqlConnection con = new SqlConnection(connectionString);
             con.Open();
-            
+
 
             try
             {
@@ -41,7 +41,7 @@ namespace Project_DB.Pages
                 string query_count = "select sum(item_price) from Cart group by item_price";
                 string query_Menu = "select * from Cart";
                 string queryc = "SELECT COUNT(*) FROM Cart";
-                
+
 
                 SqlCommand cmd_Menu = new SqlCommand(query_Menu, con);
                 SqlCommand cmd_Count = new SqlCommand(query_count, con);
