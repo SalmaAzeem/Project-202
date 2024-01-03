@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Project_DB.Models;
@@ -22,7 +23,7 @@ namespace Project_DB.Pages
             try
             {
                 
-                string connectionString = "Data Source =LAPTOP-8L98OTBR; Initial Catalog = Project 2.0; Integrated Security = True";
+                string connectionString = "Data Source=Doha-PC;Initial Catalog=\"Project 2.0\";Integrated Security=True";
 
 
 
@@ -63,6 +64,7 @@ namespace Project_DB.Pages
                         {
                             reader.Read();
                             personinfo.Id = Convert.ToInt32(reader["ID"]);
+                            HttpContext.Session.SetInt32("UserId", personinfo.Id.Value);
                             personinfo.User_Type = reader["User_Type"].ToString();
                             personinfo.Phone_Number = reader["Phone_Number"].ToString();
                             personinfo.User_Password = reader["User_Password"].ToString();

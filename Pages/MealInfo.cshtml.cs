@@ -25,6 +25,8 @@ namespace Project_DB.Pages
         public void OnGet(string id, string identifier)
         {
             Minishop_identifier = identifier;
+            var userId = HttpContext.Session.GetInt32("UserId");
+            Console.WriteLine($"This is the user id {userId}");
 
             id_minishop = id;
             string connectionString = "Data Source=Doha-PC;Initial Catalog=\"Project 2.0\";Integrated Security=True";

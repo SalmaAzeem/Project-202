@@ -61,7 +61,6 @@ namespace Project_DB.Pages
         public List<byte[]> Images_Others { get; set; } = new List<byte[]>();
 
 
-
         public void OnGet()
         {
             identifier = "Menu";
