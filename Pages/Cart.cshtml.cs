@@ -6,8 +6,6 @@ namespace Project_DB.Pages
 {
     public class CartModel : PageModel
     {
-        public string id_cart { get; set; }
-        public string my_identifier { get; set; }
         public List<string> identifiers { get; set; } = new List<string>();
         public List<string> ids_Cart { get; set; } = new List<string>();
 
@@ -29,12 +27,8 @@ namespace Project_DB.Pages
 
 
 
-        public void OnGet(string id, string identifier)
+        public void OnGet()
         {
-            id_cart = id;
-            ids_Cart.Add(id_cart);
-            my_identifier = identifier;
-            identifiers.Add(my_identifier);
 
             string connectionString = "Data Source=Salma_Sherif;Initial Catalog=\"Project 2.0\";Integrated Security=True";
             SqlConnection con = new SqlConnection(connectionString);
@@ -80,10 +74,34 @@ namespace Project_DB.Pages
 
 
 
-        public IActionResult OnPost(string id, string identifier)
+        public IActionResult OnPost()
         {
+            //string connectionString = "Data Source=Salma_Sherif;Initial Catalog=Project 2.0;Integrated Security=True";
+            //using (SqlConnection con = new SqlConnection(connectionString))
+            //{
+            //    try
+            //    {
+            //        con.Open();
+            //        string deleteQuery = "DELETE FROM Cart WHERE flag = 0 OR flag = 1;";
+            //        using (SqlCommand command = new SqlCommand(deleteQuery, con))
+            //        {
+            //            int rowsAffected = command.ExecuteNonQuery();
+            //            // Optionally, you can check the value of rowsAffected to see how many rows were deleted
+            //        }
+            //    }
+            //    catch (Exception ex)
+            //    {
+            //        // Handle exceptions here, for example log the exception
+            //        Console.WriteLine(ex.Message);
+            //    }
+            //    finally
+            //    {
+            //        con.Close();
+            //    }
+            //}
             return RedirectToPage("/Payment");
         }
+
 
 
     }
