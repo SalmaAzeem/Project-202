@@ -10,14 +10,8 @@ namespace Project_DB.Pages
 {
     public class MiniShopModel : PageModel
     {
-        public int Minishop_Count { get; set; }
-        public string food_cans_name { get; set; }
-        public double price { get; set; }
-        public List<string> food_cans_names = new List<string>();
+        public MiniShop two = new MiniShop();
 
-        public List<double> prices = new List<double>();
-        public List<string> ids_Minishop { get; set; } = new List<string>();
-        public List<byte[]> Images_Minishop { get; set; } = new List<byte[]>();
         public string identifier  { get; set; }
         public void OnGet()
         {
@@ -30,7 +24,7 @@ namespace Project_DB.Pages
 
             try
             {
-                Minishop_Count = (int)countCommand.ExecuteScalar();
+                two.Minishop_Count = (int)countCommand.ExecuteScalar();
             }
             catch (Exception ex)
             {
@@ -57,11 +51,11 @@ namespace Project_DB.Pages
                     {
                         if (reader[1].ToString() != null)
                         {
-                            food_cans_name = reader[0].ToString();
-                            price = Convert.ToDouble(reader[1]);
-                            food_cans_names.Add(food_cans_name);
-                            prices.Add(price);
-                            ids_Minishop.Add(reader[2].ToString());
+                            two.food_cans_name = reader[0].ToString();
+                            two.price = Convert.ToDouble(reader[1]);
+                            two.food_cans_names.Add(two.food_cans_name);
+                            two.prices.Add(two.price);
+                            two.ids_Minishop.Add(reader[2].ToString());
 
                         }
                     }
@@ -95,7 +89,7 @@ namespace Project_DB.Pages
                 using (SqlCommand cmd_4 = new SqlCommand(query4, con))
                 {
                     cmd_4.Parameters.Add(new SqlParameter("@Id", SqlDbType.VarChar));
-                    foreach (string id in ids_Minishop)
+                    foreach (string id in two.ids_Minishop)
                     {
                         cmd_4.Parameters["@Id"].Value = id;
                         using (SqlDataReader reader_4 = await cmd_4.ExecuteReaderAsync())
@@ -114,7 +108,7 @@ namespace Project_DB.Pages
                                         await ms.WriteAsync(buffer, 0, (int)bytesRead);
                                         field_offset += bytesRead;
                                     }
-                                    Images_Minishop.Add(ms.ToArray());
+                                    two.Images_Minishop.Add(ms.ToArray());
                                     //Console.WriteLine(Images_Minishop.Count());
                                     //Cooker_image = ms.ToArray();
                                 }

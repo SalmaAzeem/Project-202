@@ -9,51 +9,10 @@ namespace Project_DB.Pages
 {
     public class MenuModel : PageModel
     {
-        public int Main_Count { get; set; }
-        public string Meal_name { get; set; }
-        public double price { get; set; }
-        public string Ingredient { get; set; }
+        public Meal one = new Meal();
+  
         public string identifier { get; set; }
-        public List<string> ids_Main_Courses { get; set; } = new List<string>();
-        public List<string> ids_Breakfast { get; set; } = new List<string>();
-        public List<string> ids_Desserts { get; set; } = new List<string>();
-        public List<string> ids_Appetizers { get; set; } = new List<string>();
-        public List<string> ids_Others { get; set; } = new List<string>();
-
-        public List<string> Main_Courses_Meal_names = new List<string>();
-
-        public List<string> Breakfast_Meal_names = new List<string>();
-
-        public List<string> Desserts_Meal_names = new List<string>();
-
-        public List<string> Appetizers_Meal_names = new List<string>();
-
-        public List<string> Others_Meal_names = new List<string>();
-
-        public List<string> Main_Courses_Meal_ingredients = new List<string>();
-
-        public List<string> Breakfast_Meal_ingredients = new List<string>();
-
-        public List<string> Desserts_Meal_ingredients = new List<string>();
-
-        public List<string> Appetizers_Meal_ingredients = new List<string>();
-
-        public List<string> Others_Meal_ingredients = new List<string>();
-
-        public List<double> prices_Breakfast = new List<double>();
-
-        public List<double> prices_Desserts = new List<double>();
-
-        public List<double> prices_Main_Courses = new List<double>();
-
-        public List<double> prices_Appetizers = new List<double>();
-
-        public List<double> prices_Others = new List<double>();
-        public List<byte[]> Images_Main { get; set; } = new List<byte[]>();
-        public List<byte[]> Images_Breakfast { get; set; } = new List<byte[]>();
-        public List<byte[]> Images_Desserts { get; set; } = new List<byte[]>();
-        public List<byte[]> Images_Appetizers { get; set; } = new List<byte[]>();
-        public List<byte[]> Images_Others { get; set; } = new List<byte[]>();
+ 
 
 
 
@@ -79,13 +38,13 @@ namespace Project_DB.Pages
 
                     if (reader[0].ToString() != null && reader[1].ToString() != null && reader[2].ToString() != null)
                     {
-                        Meal_name = reader[0].ToString();
-                        Ingredient = reader[1].ToString();
-                        price = Convert.ToDouble(reader[2]);
-                        Main_Courses_Meal_names.Add(Meal_name);
-                        prices_Main_Courses.Add(price);
-                        Main_Courses_Meal_ingredients.Add(Ingredient);
-                        ids_Main_Courses.Add(reader[3].ToString());
+                        one.Meal_name = reader[0].ToString();
+                        one.Ingredient = reader[1].ToString();
+                        one.price = Convert.ToDouble(reader[2]);
+                        one.Main_Courses_Meal_names.Add(one.Meal_name);
+                        one.prices_Main_Courses.Add(one.price);
+                        one.Main_Courses_Meal_ingredients.Add(one.Ingredient);
+                        one.ids_Main_Courses.Add(reader[3].ToString());
                     }
 
                 }
@@ -117,13 +76,13 @@ namespace Project_DB.Pages
 
                     if (reader_Breakfast[0].ToString() != null && reader_Breakfast[1].ToString() != null && reader_Breakfast[2].ToString() != null)
                     {
-                        Meal_name = reader_Breakfast[0].ToString();
-                        Ingredient = reader_Breakfast[1].ToString();
-                        price = Convert.ToDouble(reader_Breakfast[2]);
-                        Breakfast_Meal_names.Add(Meal_name);
-                        prices_Breakfast.Add(price);
-                        Breakfast_Meal_ingredients.Add(Ingredient);
-                        ids_Breakfast.Add(reader_Breakfast[3].ToString());
+                        one.Meal_name = reader_Breakfast[0].ToString();
+                        one.Ingredient = reader_Breakfast[1].ToString();
+                        one.price = Convert.ToDouble(reader_Breakfast[2]);
+                        one.Breakfast_Meal_names.Add(one.Meal_name);
+                        one.prices_Breakfast.Add(one.price);
+                        one.Breakfast_Meal_ingredients.Add(one.Ingredient);
+                        one.ids_Breakfast.Add(reader_Breakfast[3].ToString());
                     }
 
                 }
@@ -153,13 +112,13 @@ namespace Project_DB.Pages
 
                     if (reader_Appetizers[0].ToString() != null && reader_Appetizers[1].ToString() != null && reader_Appetizers[2].ToString() != null)
                     {
-                        Meal_name = reader_Appetizers[0].ToString();
-                        Ingredient = reader_Appetizers[1].ToString();
-                        price = Convert.ToDouble(reader_Appetizers[2]);
-                        Appetizers_Meal_names.Add(Meal_name);
-                        prices_Appetizers.Add(price);
-                        Appetizers_Meal_ingredients.Add(Ingredient);
-                        ids_Appetizers.Add(reader_Appetizers[3].ToString());
+                        one.Meal_name = reader_Appetizers[0].ToString();
+                        one.Ingredient = reader_Appetizers[1].ToString();
+                        one.price = Convert.ToDouble(reader_Appetizers[2]);
+                        one.Appetizers_Meal_names.Add(one.Meal_name);
+                        one.prices_Appetizers.Add(one.price);
+                        one.Appetizers_Meal_ingredients.Add(one.Ingredient);
+                        one.ids_Appetizers.Add(reader_Appetizers[3].ToString());
                     }
 
                 }
@@ -188,13 +147,13 @@ namespace Project_DB.Pages
 
                     if (reader_Desserts[0].ToString() != null && reader_Desserts[1].ToString() != null && reader_Desserts[2].ToString() != null)
                     {
-                        Meal_name = reader_Desserts[0].ToString();
-                        Ingredient = reader_Desserts[1].ToString();
-                        price = Convert.ToDouble(reader_Desserts[2]);
-                        Desserts_Meal_names.Add(Meal_name);
-                        prices_Desserts.Add(price);
-                        Desserts_Meal_ingredients.Add(Ingredient);
-                        ids_Desserts.Add(reader_Desserts[3].ToString());
+                        one.Meal_name = reader_Desserts[0].ToString();
+                        one.Ingredient = reader_Desserts[1].ToString();
+                        one.price = Convert.ToDouble(reader_Desserts[2]);
+                        one.Desserts_Meal_names.Add(one.Meal_name);
+                        one.prices_Desserts.Add(one.price);
+                        one.Desserts_Meal_ingredients.Add(one.Ingredient);
+                        one.ids_Desserts.Add(reader_Desserts[3].ToString());
                     }
 
                 }
@@ -224,13 +183,13 @@ namespace Project_DB.Pages
 
                     if (reader_Others[0].ToString() != null && reader_Others[1].ToString() != null && reader_Others[2].ToString() != null)
                     {
-                        Meal_name = reader_Others[0].ToString();
-                        Ingredient = reader_Others[1].ToString();
-                        price = Convert.ToDouble(reader_Others[2]);
-                        Others_Meal_names.Add(Meal_name);
-                        prices_Others.Add(price);
-                        Others_Meal_ingredients.Add(Ingredient);
-                        ids_Others.Add(reader_Others[3].ToString());
+                        one.Meal_name = reader_Others[0].ToString();
+                        one.Ingredient = reader_Others[1].ToString();
+                        one.price = Convert.ToDouble(reader_Others[2]);
+                        one.Others_Meal_names.Add(one.Meal_name);
+                        one.prices_Others.Add(one.price);
+                        one.Others_Meal_ingredients.Add(one.Ingredient);
+                        one.ids_Others.Add(reader_Others[3].ToString());
                     }
 
                 }
@@ -266,7 +225,7 @@ namespace Project_DB.Pages
                     cmd_4.Parameters.Add(new SqlParameter("@Id", SqlDbType.VarChar));
                     if (name_of_section == "Breakfast")
                     {
-                        foreach (string id in ids_Breakfast)
+                        foreach (string id in one.ids_Breakfast)
                         {
                             cmd_4.Parameters["@Id"].Value = id;
                             using (SqlDataReader reader_4 = await cmd_4.ExecuteReaderAsync())
@@ -285,7 +244,7 @@ namespace Project_DB.Pages
                                             await ms.WriteAsync(buffer, 0, (int)bytesRead);
                                             field_offset += bytesRead;
                                         }
-                                        Images_Breakfast.Add(ms.ToArray());
+                                        one.Images_Breakfast.Add(ms.ToArray());
                                         //Console.WriteLine(Images_Breakfast.Count());
                                         //Cooker_image = ms.ToArray();
                                     }
@@ -296,7 +255,7 @@ namespace Project_DB.Pages
                     else if (name_of_section == "Main")
                     {
                        
-                            foreach (string id in ids_Main_Courses)
+                            foreach (string id in one.ids_Main_Courses)
                             {
                                 cmd_4.Parameters["@Id"].Value = id;
                                 using (SqlDataReader reader_4 = await cmd_4.ExecuteReaderAsync())
@@ -315,7 +274,7 @@ namespace Project_DB.Pages
                                                 await ms.WriteAsync(buffer, 0, (int)bytesRead);
                                                 field_offset += bytesRead;
                                             }
-                                            Images_Main.Add(ms.ToArray());
+                                            one.Images_Main.Add(ms.ToArray());
                                             //Console.WriteLine(Images_Main.Count());
                                             //Cooker_image = ms.ToArray();
                                         }
@@ -326,7 +285,7 @@ namespace Project_DB.Pages
                     else if (name_of_section == "Dessert")
                     {
 
-                        foreach (string id in ids_Desserts)
+                        foreach (string id in one.ids_Desserts)
                         {
                             cmd_4.Parameters["@Id"].Value = id;
                             using (SqlDataReader reader_4 = await cmd_4.ExecuteReaderAsync())
@@ -345,7 +304,7 @@ namespace Project_DB.Pages
                                             await ms.WriteAsync(buffer, 0, (int)bytesRead);
                                             field_offset += bytesRead;
                                         }
-                                        Images_Desserts.Add(ms.ToArray());
+                                        one.Images_Desserts.Add(ms.ToArray());
                                         //Console.WriteLine(Images_Desserts.Count());
                                         //Cooker_image = ms.ToArray();
                                     }
@@ -356,7 +315,7 @@ namespace Project_DB.Pages
                     else if (name_of_section == "Appetizers")
                     {
 
-                        foreach (string id in ids_Appetizers)
+                        foreach (string id in one.ids_Appetizers)
                         {
                             cmd_4.Parameters["@Id"].Value = id;
                             using (SqlDataReader reader_4 = await cmd_4.ExecuteReaderAsync())
@@ -375,7 +334,7 @@ namespace Project_DB.Pages
                                             await ms.WriteAsync(buffer, 0, (int)bytesRead);
                                             field_offset += bytesRead;
                                         }
-                                        Images_Appetizers.Add(ms.ToArray());
+                                        one.Images_Appetizers.Add(ms.ToArray());
                                         //Console.WriteLine(Images_Appetizers.Count());
                                         //Cooker_image = ms.ToArray();
                                     }
@@ -386,7 +345,7 @@ namespace Project_DB.Pages
                     else if (name_of_section == "Others")
                     {
 
-                        foreach (string id in ids_Others)
+                        foreach (string id in one.ids_Others)
                         {
                             cmd_4.Parameters["@Id"].Value = id;
                             using (SqlDataReader reader_4 = await cmd_4.ExecuteReaderAsync())
@@ -405,7 +364,7 @@ namespace Project_DB.Pages
                                             await ms.WriteAsync(buffer, 0, (int)bytesRead);
                                             field_offset += bytesRead;
                                         }
-                                        Images_Others.Add(ms.ToArray());
+                                        one.Images_Others.Add(ms.ToArray());
                                         //Console.WriteLine(Images_Others.Count());
                                         //Cooker_image = ms.ToArray();
                                     }
