@@ -30,7 +30,7 @@ namespace Project_DB.Pages
         public void OnGet()
         {
 
-            string connectionString = "Data Source=Doha-PC;Initial Catalog=\"Project 2.0\";Integrated Security=True";
+            string connectionString = "Data Source=Salma_Sherif;Initial Catalog=\"Project 2.0\";Integrated Security=True";
             SqlConnection con = new SqlConnection(connectionString);
             con.Open();
 
@@ -46,8 +46,6 @@ namespace Project_DB.Pages
                 SqlCommand cmd_Menu = new SqlCommand(query_Menu, con);
                 SqlCommand cmd_Count = new SqlCommand(query_count, con);
                 SqlCommand cmdcnum = new SqlCommand(queryc, con);
-
-                shiping = 2.99;
                 SqlDataReader reader = cmd_Menu.ExecuteReader();
                 while (reader.Read())
                 {
@@ -58,7 +56,7 @@ namespace Project_DB.Pages
                 reader.Close();
 
                 Mealcount = (int)cmdcnum.ExecuteScalar();
-                total = shiping + total_price;
+                
 
             }
             catch (SqlException ex)
@@ -67,8 +65,16 @@ namespace Project_DB.Pages
             }
             finally
             {
+                if (total_price == 0)
+                {
+                    shiping = 0;
+                }
+                else
+                {
+                    shiping = 2.99;
+                }
+                total = shiping + total_price;
                 con.Close();
-
             }
         }
 

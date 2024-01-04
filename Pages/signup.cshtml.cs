@@ -54,7 +54,7 @@ namespace Project_DB.Pages
                     }
                     return Page();
                 }
-                string connectionString = "Data Source=Doha-PC;Initial Catalog=\"Project 2.0\";Integrated Security=True";
+                string connectionString = "Data Source=Salma_Sherif;Initial Catalog=\"Project 2.0\";Integrated Security=True";
 
                 
 

@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Project_DB.Models;
@@ -71,6 +72,7 @@ namespace Project_DB.Pages
 
 
                         }
+                        HttpContext.Session.SetString("UserId", personinfo.Id.ToString());
                     }
 
                     //if (!ModelState.IsValid)
