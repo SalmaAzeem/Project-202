@@ -1,6 +1,8 @@
 ﻿@page
 @model Project_DB.Pages.PaymentModel
+@using System // Import the System namespace for DateTime
 @{
+    DateTime currentTime = DateTime.Now;
 }
 
 <br>
@@ -23,7 +25,7 @@
                 <div class="card-body p-0">
 
                     <p class="font-weight-bold mb-1">&nbsp;&nbsp;&nbsp;&nbsp;Invoice #550</p>
-                    <p class="text-muted">&nbsp;&nbsp;&nbsp;&nbsp;Due to: 4 Dec, 2019</p>
+                    <p class="text-muted">&nbsp;&nbsp;&nbsp;&nbsp;Due to: @DateTime.Now</p>
 
                     <hr class="my-5">
 
@@ -48,29 +50,26 @@
                                 <thead>
                                     <tr>
                                         <th class="border-0 text-uppercase small font-weight-bold">Item</th>
-                                        <th class="border-0 text-uppercase small font-weight-bold">Quantity</th>
-                                        <th class="border-0 text-uppercase small font-weight-bold">Unit Cost</th>
+                                        @*<th class="border-0 text-uppercase small font-weight-bold">Quantity</th>*@
+                                        @*<th class="border-0 text-uppercase small font-weight-bold">Unit Cost</th>*@
                                         <th class="border-0 text-uppercase small font-weight-bold">Total</th>
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    @{for (int i = 0; i < @Model.Mealcount; i++)
+        {
                                     <tr>
-                                        <td>Software</td>
-                                        <td>21</td>
-                                        <td>$321</td>
-                                        <td>$3452</td>
+                                         <td>@Model.Meal_name[i]</td>
+
+                                                <td>@Model.prices[i] EGP</td>
                                     </tr>
+                                        }
+                                    }
+                                    <hr />
                                     <tr>
-                                        <td>Software</td>
-                                        <td>234</td>
-                                        <td>$6356</td>
-                                        <td>$23423</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Software</td>
-                                        <td>4534</td>
-                                        <td>$354</td>
-                                        <td>$23434</td>
+                                        <td>Shiping</td>
+
+                                        <td>@Model.shiping EGP</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -80,17 +79,17 @@
                     <div class="d-flex flex-row-reverse bg-dark text-white p-4">
                         <div class="py-3 px-5 text-right">
                             <div class="mb-2">Grand Total</div>
-                            <div class="h2 font-weight-light">$234,234</div>
+                            <div class="h2 font-weight-light">@Model.total EGP</div>
                         </div>
 
                         <div class="py-3 px-5 text-right">
                             <div class="mb-2">Discount</div>
-                            <div class="h2 font-weight-light">10%</div>
+                            <div class="h2 font-weight-light">0%</div>
                         </div>
 
                         <div class="py-3 px-5 text-right">
                             <div class="mb-2">Sub - Total amount</div>
-                            <div class="h2 font-weight-light">$32,432</div>
+                            <div class="h2 font-weight-light">@Model.total EGP</div>
                         </div>
                     </div>
                 </div>

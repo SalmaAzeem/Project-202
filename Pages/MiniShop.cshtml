@@ -17,7 +17,7 @@
     }
 
 </style>
-<class id="minishop" class="minishop">
+<body class="chefs section-bg" id="chefs section-bg">
     <div class="container" data-aos="fade-up">
 
         <div class="section-header">
@@ -37,7 +37,7 @@
                 </div>
 
                 <div class="row gy-5">
-                    @for (int i = 0; i < Model.food_cans_names.Count; i++)
+                    @for (int i = 0; i < Model.two.food_cans_names.Count; i++)
                     {
 
                         <div class="col-lg-4 minishop-item">
@@ -46,16 +46,16 @@
                             }
                             <form method="get" asp-page-handler="ImagesAsync">
 
-                                @if (Model.Images_Minishop[i] != null)
+                                @if (Model.two.Images_Minishop[i] != null)
                                 {
-                                    string base64Image = Convert.ToBase64String(Model.Images_Minishop[i]);
-                                    <a asp-page="/MealInfo" asp-route-id="@Model.ids_Minishop[i]" asp-route-identifier="@Model.identifier">
+                                    string base64Image = Convert.ToBase64String(Model.two.Images_Minishop[i]);
+                                    <a asp-page="/MealInfo" asp-route-id="@Model.two.ids_Minishop[i]" asp-route-identifier="@Model.identifier">
                                         <img class="menu-img img-fluid circular-image" src="data:image/jpeg;base64,@base64Image" alt="Meal Image" width="500" />
                                     </a>
-                                    <h4>@Model.food_cans_names[i]</h4>
+                                    <h4>@Model.two.food_cans_names[i]</h4>
                                   
                                     <p class="price">
-                                        @Model.prices[i] EGP
+                                        @Model.two.prices[i] EGP
                                     </p>
                                 }
                                 else
@@ -74,12 +74,13 @@
                  
 
                 </div>
+                </div>
             </div><!-- End Starter Menu Content -->
 
 
 
-
+</div>
             <br />
             <br />
             <br />
-</class><!-- End Menu Section -->
+</body><!-- End Menu Section -->

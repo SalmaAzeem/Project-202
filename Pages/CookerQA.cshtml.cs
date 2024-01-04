@@ -5,10 +5,10 @@ using System.Data.SqlClient;
 
 namespace Project_DB.Pages
 {
-    public class DeliveryQAModel : PageModel
+    public class CookerQAcshtmlModel : PageModel
     {
-        [BindProperty (SupportsGet = true)]
-        public Driver deliveryinfo { get; set; }
+        [BindProperty(SupportsGet = true)]
+        public Cooker cookerinfo { get; set; }
 
         [BindProperty(SupportsGet = true)]
         public int ID { get; set; }
@@ -18,7 +18,6 @@ namespace Project_DB.Pages
         }
         public IActionResult OnPost()
         {
-            
 
             try
             {
@@ -34,18 +33,25 @@ namespace Project_DB.Pages
                     }
                     return Page();
                 }
-                string connectionString = "Data Source =Doha-PC; Initial Catalog = Project 2.0; Integrated Security = True";
+
+                string connectionString = "Data Source=Doha-PC;Initial Catalog=\"Project 2.0\";Integrated Security=True";
                 using (SqlConnection con = new SqlConnection(connectionString))
                 {
                     con.Open();
-                    string q = "INSERT INTO Delivery" +
-                        "(Vehicle_number, delivery_id) VALUES" +
-                        "(@Vehicle_number,@delivery_id)";
+                    string q = "INSERT INTO Cooker" +
+                        "(Cooker_id, city,street,Apartment_Number,Description_Cooker,Cooker_Image) VALUES" +
+                        "(@Cooker_id, @city,@street,@Apartment_Number,@Description_Cooker,@Cooker_Image)";
 
                     using (SqlCommand cmd = new SqlCommand(q, con))
                     {
-                        cmd.Parameters.AddWithValue("@Vehicle_number", deliveryinfo.Vehicle_number);
-                        cmd.Parameters.AddWithValue("@delivery_id", ID);
+                        cmd.Parameters.AddWithValue("@Cooker_id", ID);
+                        cmd.Parameters.AddWithValue("@city", cookerinfo.city);
+                        cmd.Parameters.AddWithValue("@street", cookerinfo.street);
+                        cmd.Parameters.AddWithValue("@Apartment_Number", cookerinfo.Apartment_Number);
+                        cmd.Parameters.AddWithValue("@Description_Cooker", cookerinfo.Description);
+                        cmd.Parameters.AddWithValue("@Cooker_Image", 00100);
+
+
                         cmd.ExecuteNonQuery();
                     }
                 }
@@ -56,9 +62,9 @@ namespace Project_DB.Pages
                 Console.WriteLine(ex.ToString());
             }
 
-            
-            return RedirectToPage("/DeliveryProfile", new {ID2 = ID});
-            
+
+            return RedirectToPage("/CookerProfile", new { ID2 = ID });
+
         }
 
     }

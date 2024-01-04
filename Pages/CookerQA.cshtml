@@ -1,5 +1,5 @@
 ﻿@page
-@model Project_DB.Pages.DeliveryQAModel
+@model Project_DB.Pages.CookerQAcshtmlModel
 @{
 }
 <header id="header" class="header fixed-top d-flex align-items-center">
@@ -12,8 +12,6 @@
         <nav id="navbar" class="navbar">
 
         </nav><!-- .navbar -->
-
-
     </div>
 </header>
 <body id="book-a-table" class="book-a-table">
@@ -41,14 +39,31 @@
             <br>
             <br>
 
-            <form method="post" role="form" data-aos="fade-up" data-aos-delay="100">
+            <form method="post" role="form" >
                 <div class="row gy-4">
                     <div class="col-lg-4 col-md-6">
                         <div class="input-group flex-nowrap">
-                            <span class="input-group-text" id="addon-wrapping">#</span>
-                            <input type="text" class="form-control" placeholder="Vehicle_number" aria-label="Vehicle_number" aria-describedby="addon-wrapping" asp-for="@Model.deliveryinfo.Vehicle_number">
+                            <input type="text" class="form-control" placeholder="City" aria-label="City" aria-describedby="addon-wrapping" asp-for="@Model.cookerinfo.city">
                         </div>
                     </div>
+                    <div class="col-lg-4 col-md-6">
+                        <div class="input-group flex-nowrap">
+                            <input type="text" class="form-control" placeholder="Street" aria-label="street" aria-describedby="addon-wrapping" asp-for="@Model.cookerinfo.street">
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6">
+                        <div class="input-group flex-nowrap">
+                            <span class="input-group-text" id="addon-wrapping">#</span>
+                            <input type="text" class="form-control" placeholder="Apartment Number" aria-label="Apartment Number" aria-describedby="addon-wrapping" asp-for="@Model.cookerinfo.Apartment_Number">
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6">
+                        <div class="form-floating">
+                            <textarea class="form-control" placeholder="Description" id="floatingTextarea" aria-describedby="addon-wrapping" asp-for="@Model.cookerinfo.Description"></textarea>
+                            <label for="floatingTextarea">Description</label>
+                        </div>
+                    </div>
+                    
                 </div>
                 <br />
                 <br />
