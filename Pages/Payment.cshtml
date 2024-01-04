@@ -23,24 +23,26 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-body p-0">
-
-                    <p class="font-weight-bold mb-1">&nbsp;&nbsp;&nbsp;&nbsp;Invoice #550</p>
+                    <br />
+                    <p class="font-weight-bold mb-1">&nbsp;&nbsp;&nbsp;&nbsp;Invoice @Model.result2</p>
                     <p class="text-muted">&nbsp;&nbsp;&nbsp;&nbsp;Due to: @DateTime.Now</p>
 
                     <hr class="my-5">
 
                     <div class="row pb-5 p-5">
+
                         <div class="col-md-6">
                             <p class="font-weight-bold mb-4">Client Information</p>
-                            <p class="mb-1">John Doe, Mrs Emma Downson</p>
-                            <p class="mb-1">Berlin, Germany</p>
-                            <p class="mb-1">6781 45P</p>
+                            <span class="text-muted">Name: </span> @Model.name</p>
+                            <span class="text-muted">Address: </span> @Model.address</p>
+                            <span class="text-muted">Appartement num: </span> @Model.appartement</p>
+                            <span class="text-muted">Phone num: </span> @Model.phone</p>
                         </div>
 
                         <div class="col-md-6 text-right">
                             <p class="font-weight-bold mb-4">Payment Details</p>
-                            <p class="mb-1"><span class="text-muted">Payment Type: </span> Root</p>
-                            <p class="mb-1"><span class="text-muted">Name: </span> John Doe</p>
+                            <p class="mb-1"><span class="text-muted">Payment Type: </span> Cash</p>
+                            <p class="mb-1"><span class="text-muted">Name: </span> @Model.name</p>
                         </div>
                     </div>
 
