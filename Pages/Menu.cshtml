@@ -66,26 +66,26 @@
                 </div>
 
                 <div class="row gy-5">
-                    @for (int i = 0; i < Model.Main_Courses_Meal_names.Count; i++)
+                    @for (int i = 0; i < Model.one.Main_Courses_Meal_names.Count; i++)
                     {
                         <div class="col-lg-4 menu-item">
                             @{await Model.OnGetImagesAsync("Main");}
                             <form method="get" asp-page-handler="ImagesAsync">
                                
-                                @if (Model.Images_Main[i] != null)
+                                @if (Model.one.Images_Main[i] != null)
                                 {
-                                    string base64Image = Convert.ToBase64String(Model.Images_Main[i]);
-                                    <a asp-page="/MealInfo" asp-route-id="@Model.ids_Main_Courses[i]" asp-route-identifier="@Model.identifier">
+                                    string base64Image = Convert.ToBase64String(Model.one.Images_Main[i]);
+                                    <a asp-page="/MealInfo" asp-route-id="@Model.one.ids_Main_Courses[i]" asp-route-identifier="@Model.identifier">
                                     
                                     <img class="menu-img img-fluid circular-image" src="data:image/jpeg;base64,@base64Image" alt="Meal Image" width="500" />
                                     </a>
                                    
-                                    <h4>@Model.Main_Courses_Meal_names[i]</h4>
+                                    <h4>@Model.one.Main_Courses_Meal_names[i]</h4>
                                     <p class="ingredients">
-                                        @Model.Main_Courses_Meal_ingredients[i]
+                                        @Model.one.Main_Courses_Meal_ingredients[i]
                                     </p>
                                     <p class="price">
-                                        @Model.prices_Main_Courses[i] EGP
+                                        @Model.one.prices_Main_Courses[i] EGP
                                     </p>
                                 }
                                 else
@@ -110,26 +110,26 @@
                 </div>
 
                 <div class="row gy-5">
-                    @for (int i = 0; i < Model.Breakfast_Meal_names.Count; i++)
+                    @for (int i = 0; i < Model.one.Breakfast_Meal_names.Count; i++)
                     {
 
                         <div class="col-lg-4 menu-item">
                             @{await Model.OnGetImagesAsync("Breakfast");}
                             <form method="get" asp-page-handler="ImagesAsync">
                                 
-                                @if (Model.Images_Breakfast[i] != null)
+                                @if (Model.one.Images_Breakfast[i] != null)
                                 {
-                                    string base64Image = Convert.ToBase64String(Model.Images_Breakfast[i]);
+                                    string base64Image = Convert.ToBase64String(Model.one.Images_Breakfast[i]);
                                     
-                                    <a asp-page="/MealInfo" asp-route-id="@Model.ids_Breakfast[i]" asp-route-identifier="@Model.identifier">
+                                    <a asp-page="/MealInfo" asp-route-id="@Model.one.ids_Breakfast[i]" asp-route-identifier="@Model.identifier">
                                         <img class="menu-img img-fluid circular-image" src="data:image/jpeg;base64,@base64Image" alt="Meal Image" width="500" />
                                     </a>
-                                    <h4>@Model.Breakfast_Meal_names[i]</h4>
+                                    <h4>@Model.one.Breakfast_Meal_names[i]</h4>
                                     <p class="ingredients">
-                                        @Model.Breakfast_Meal_ingredients[i]
+                                        @Model.one.Breakfast_Meal_ingredients[i]
                                     </p>
                                     <p class="price">
-                                        @Model.prices_Breakfast[i] EGP
+                                        @Model.one.prices_Breakfast[i] EGP
                                     </p>
                                 }
                                 else
@@ -157,26 +157,26 @@
                 </div>
 
                 <div class="row gy-5">
-                    @for (int i = 0; i < Model.Appetizers_Meal_names.Count; i++)
+                    @for (int i = 0; i < Model.one.Appetizers_Meal_names.Count; i++)
                     {
 
                         <div class="col-lg-4 menu-item">
                             @{await Model.OnGetImagesAsync("Appetizers");}
                             <form method="get" asp-page-handler="ImagesAsync">
                                 
-                                @if (Model.Images_Appetizers[i] != null)
+                                @if (Model.one.Images_Appetizers[i] != null)
                                 {
-                                    string base64Image = Convert.ToBase64String(Model.Images_Appetizers[i]);
+                                    string base64Image = Convert.ToBase64String(Model.one.Images_Appetizers[i]);
                                     
-                                    <a asp-page="/MealInfo" asp-route-id="@Model.ids_Appetizers[i]" asp-route-identifier="@Model.identifier">
+                                    <a asp-page="/MealInfo" asp-route-id="@Model.one.ids_Appetizers[i]" asp-route-identifier="@Model.identifier">
                                         <img class="menu-img img-fluid circular-image" src="data:image/jpeg;base64,@base64Image" alt="Meal Image" width="500" />
                                     </a>
-                                    <h4>@Model.Appetizers_Meal_names[i]</h4>
+                                    <h4>@Model.one.Appetizers_Meal_names[i]</h4>
                                     <p class="ingredients">
-                                        @Model.Appetizers_Meal_ingredients[i]
+                                        @Model.one.Appetizers_Meal_ingredients[i]
                                     </p>
                                     <p class="price">
-                                        @Model.prices_Appetizers[i] EGP
+                                        @Model.one.prices_Appetizers[i] EGP
                                     </p>
                                 }
                                 else
@@ -202,25 +202,25 @@
                 </div>
 
                 <div class="row gy-5">
-                    @for (int i = 0; i < Model.Desserts_Meal_names.Count; i++)
+                    @for (int i = 0; i < Model.one.Desserts_Meal_names.Count; i++)
                     {
                         <div class="col-lg-4 menu-item">
                             @{await Model.OnGetImagesAsync("Dessert");}
                             <form method="get" asp-page-handler="ImagesAsync">
                                
-                                @if (Model.Images_Desserts[i] != null)
+                                @if (Model.one.Images_Desserts[i] != null)
                                 {
-                                    string base64Image = Convert.ToBase64String(Model.Images_Desserts[i]);
+                                    string base64Image = Convert.ToBase64String(Model.one.Images_Desserts[i]);
                                    
-                                    <a asp-page="/MealInfo" asp-route-id="@Model.ids_Desserts[i]" asp-route-identifier="@Model.identifier">
+                                    <a asp-page="/MealInfo" asp-route-id="@Model.one.ids_Desserts[i]" asp-route-identifier="@Model.identifier">
                                         <img class="menu-img img-fluid circular-image" src="data:image/jpeg;base64,@base64Image" alt="Meal Image" width="500" />
                                     </a>
-                                    <h4>@Model.Desserts_Meal_names[i]</h4>
+                                    <h4>@Model.one.Desserts_Meal_names[i]</h4>
                                     <p class="ingredients">
-                                        @Model.Desserts_Meal_ingredients[i]
+                                        @Model.one.Desserts_Meal_ingredients[i]
                                     </p>
                                     <p class="price">
-                                        @Model.prices_Desserts[i] EGP
+                                        @Model.one.prices_Desserts[i] EGP
                                     </p>
                                 }
                                 else
@@ -246,24 +246,24 @@
 
                 <div class="row gy-5">
                     @{await Model.OnGetImagesAsync("Others");}
-                    @for (int i = 0; i < Model.Others_Meal_names.Count; i++)
+                    @for (int i = 0; i < Model.one.Others_Meal_names.Count; i++)
                     {
                         <div class="col-lg-4 menu-item">
                             <form method="get" asp-page-handler="ImagesAsync">
                                 
-                                @if (Model.Images_Others[i] != null)
+                                @if (Model.one.Images_Others[i] != null)
                                 {
-                                    string base64Image = Convert.ToBase64String(Model.Images_Others[i]);
+                                    string base64Image = Convert.ToBase64String(Model.one.Images_Others[i]);
                                     
-                                    <a asp-page="/MealInfo" asp-route-id="@Model.ids_Others[i]" asp-route-identifier="@Model.identifier">
+                                    <a asp-page="/MealInfo" asp-route-id="@Model.one.ids_Others[i]" asp-route-identifier="@Model.identifier">
                                         <img class="menu-img img-fluid circular-image1` vc" src="data:image/jpeg;base64,@base64Image" alt="Meal Image" width="500" />
                                     </a>
-                                    <h4>@Model.Others_Meal_names[i]</h4>
+                                    <h4>@Model.one.Others_Meal_names[i]</h4>
                                     <p class="ingredients">
-                                        @Model.Others_Meal_ingredients[i]
+                                        @Model.one.Others_Meal_ingredients[i]
                                     </p>
                                     <p class="price">
-                                        @Model.prices_Others[i] EGP
+                                        @Model.one.prices_Others[i] EGP
                                     </p>
                                 }
                                 else

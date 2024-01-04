@@ -2,6 +2,31 @@
 @model Project_DB.Pages.signupModel
 @{
 }
+<@* style>
+    /* Optional: You can define the font globally in the stylesheet */
+    h1 {
+        font-family: 'Brush Script MT', cursive;
+        font-size: 4em;
+    }
+</style> *@
+<header id="header" class="header fixed-top d-flex align-items-center">
+    <div class="container d-flex align-items-center justify-content-between">
+
+        <a class="nav-link text-dark" asp-area="" asp-page="/Index">
+            <h1>Set Elkol</h1>
+        </a>
+
+        <nav id="navbar" class="navbar">
+ 
+        </nav><!-- .navbar -->
+
+        <div class="btn-group" role="group" aria-label="Basic outlined example">
+            <a class="btn btn-danger" asp-area="" asp-page="/signin">Sign In</a>
+            <a class="btn btn-warning">Sign Up</a>
+        </div>
+
+    </div>
+</header>
 <body id="book-a-table" class="book-a-table">
     <br>
     <br>
@@ -16,7 +41,7 @@
     <div class="container">
 
         <div class="section-header">
-            <h2>Sign In</h2>
+            <h2>Sign Up</h2>
             <p>Order<span> Your Food</span> With Us</p>
         </div>
 
@@ -43,7 +68,6 @@
                             <input type="text" asp-for="@Model.personinfo.Phone_Number" class="form-control" placeholder="Phone Number" aria-label="Username" aria-describedby="addon-wrapping" >
 
                         </div>
-                        <div class="validate"></div>
                     </div>
                     <div class="col-lg-4 col-md-6">
                         <input type="text" asp-for="@Model.personinfo.User_Password" class="form-control" id="User_Password" placeholder="User_Password" >

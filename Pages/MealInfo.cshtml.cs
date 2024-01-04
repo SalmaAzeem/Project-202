@@ -21,90 +21,117 @@ namespace Project_DB.Pages
         public string Minishop_identifier { get; set; }
         [BindProperty(SupportsGet = true)]
         public int flag { get; set; }
+        public byte[] data { get; set; }
 
-        public void OnGet(string id, string identifier)
+
+        public async Task OnGet(string id, string identifier)
         {
             Minishop_identifier = identifier;
             var userId = HttpContext.Session.GetInt32("UserId");
             Console.WriteLine($"This is the user id {userId}");
 
             id_minishop = id;
-            string connectionString = "Data Source=Salma_Sherif;Initial Catalog=\"Project 2.0\";Integrated Security=True";
-            SqlConnection con = new SqlConnection(connectionString);
 
-            con.Open();
-
-            string query_minishop = "select Food_cans, prices from MiniShop where minishop_id = @minishop_id";
-            string query_menu = "select Meal_Name, price from Meals where meal_id = @minishop_id";
-
-
-
-
-
-            try
-            {
-
-                if (Minishop_identifier == "Menu")
-                {
-                    flag = 0;
-                    SqlCommand query_minishop_Command = new SqlCommand(query_menu, con);
-                    query_minishop_Command.Parameters.AddWithValue("@minishop_id", id);
-                    SqlDataReader reader = query_minishop_Command.ExecuteReader();
-                    while (reader.Read())
-                    {
-
-                        if (reader[0].ToString() != null && reader[1].ToString() != null)
-                        {
-                            Minishop_name = reader[0].ToString();
-
-
-                            Minishop_price = Convert.ToDouble(reader[1]);
-
-
-                        }
-
-                    }
-
-                }
-                else if (Minishop_identifier == "MiniShop")
-                {
-                    flag = 1;
-                    SqlCommand query_minishop_Command = new SqlCommand(query_minishop, con);
-                    query_minishop_Command.Parameters.AddWithValue("@minishop_id", id);
-                    SqlDataReader reader = query_minishop_Command.ExecuteReader();
-                    while (reader.Read())
-                    {
-
-                        if (reader[0].ToString() != null && reader[1].ToString() != null)
-                        {
-                            Minishop_name = reader[0].ToString();
-
-
-                            Minishop_price = Convert.ToDouble(reader[1]);
-
-
-                        }
-
-                    }
-                }
-
-
-            }
-            catch (SqlException ex)
-            {
-                Console.WriteLine(ex.ToString());
-            }
-            finally
-            {
-                con.Close();
-
-            }
-
-
-
-
-
+            await PerformDatabaseOperationsAsync(id);
         }
+
+        private async Task PerformDatabaseOperationsAsync(string id)
+        {
+            string connectionString = "Data Source=Tamer;Initial Catalog=\"Project 2.0\";Integrated Security=True";
+            using (SqlConnection con = new SqlConnection(connectionString))
+            {
+                await con.OpenAsync();
+
+                string query_minishop = "select Food_cans, prices from MiniShop where minishop_id = @minishop_id";
+                string query_menu = "select Meal_Name, price from Meals where meal_id = @minishop_id";
+                string query4 = "select MinisShop_Image from MiniShop where minishop_id = @Id";
+                string query5 = "select Meal_Image from Meals where meal_id = @Id";
+
+                try
+                {
+                    if (Minishop_identifier == "Menu")
+                    {
+                        flag = 0;
+                        SqlCommand query_minishop_Command = new SqlCommand(query_menu, con);
+                        query_minishop_Command.Parameters.AddWithValue("@minishop_id", id);
+                        SqlDataReader reader = query_minishop_Command.ExecuteReader();
+                        while (await reader.ReadAsync())
+                        {
+                            if (reader[0].ToString() != null && reader[1].ToString() != null)
+                            {
+                                Minishop_name = reader[0].ToString();
+                                Minishop_price = Convert.ToDouble(reader[1]);
+                            }
+                        }
+                        reader.Close();
+
+                        // Fetch image asynchronously
+                        await FetchImageFromDatabaseAsync(id, con, query5);
+                    }
+                    else if (Minishop_identifier == "MiniShop")
+                    {
+                        flag = 1;
+                        SqlCommand query_minishop_Command = new SqlCommand(query_minishop, con);
+                        query_minishop_Command.Parameters.AddWithValue("@minishop_id", id);
+                        SqlDataReader reader = query_minishop_Command.ExecuteReader();
+                        while (await reader.ReadAsync())
+                        {
+                            if (reader[0].ToString() != null && reader[1].ToString() != null)
+                            {
+                                Minishop_name = reader[0].ToString();
+                                Minishop_price = Convert.ToDouble(reader[1]);
+                            }
+                        }
+                        reader.Close();
+
+                        // Fetch image asynchronously
+                        await FetchImageFromDatabaseAsync(id, con, query4);
+                    }
+                }
+                catch (SqlException ex)
+                {
+                    Console.WriteLine(ex.ToString());
+                }
+                finally
+                {
+                    con.Close();
+                }
+            }
+        }
+        private async Task FetchImageFromDatabaseAsync(string id, SqlConnection con, string query)
+        {
+            using (SqlCommand cmd_4 = new SqlCommand(query, con))
+            {
+                cmd_4.Parameters.Add(new SqlParameter("@Id", SqlDbType.VarChar));
+                cmd_4.Parameters["@Id"].Value = id;
+
+                Console.WriteLine(id);
+
+                using (SqlDataReader reader_4 = await cmd_4.ExecuteReaderAsync())
+                {
+                    if (await reader_4.ReadAsync())
+                    {
+                        if (!reader_4.IsDBNull(0))
+                        {
+                            Console.WriteLine("Ana Null");
+                            const int buffersize = 4096;
+                            long bytesRead;
+                            long field_offset = 0;
+
+                            using (Stream stream = reader_4.GetStream(0))
+                            using (MemoryStream ms = new MemoryStream())
+                            {
+                                await stream.CopyToAsync(ms);
+                                data = ms.ToArray();
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+
+
         [ValidateAntiForgeryToken]
         public IActionResult OnPostUpdate()
         {
@@ -119,7 +146,7 @@ namespace Project_DB.Pages
             Console.WriteLine(Minishop_price);
             Console.WriteLine(flag);
 
-            string connectionString = "Data Source=Salma_Sherif;Initial Catalog=\"Project 2.0\";Integrated Security=True";
+            string connectionString = "Data Source=Tamer;Initial Catalog=\"Project 2.0\";Integrated Security=True";
             SqlConnection con = new SqlConnection(connectionString);
             con.Open();
             string query_minishop = "select Food_cans, prices from MiniShop where minishop_id = @minishop_id";
@@ -170,6 +197,9 @@ namespace Project_DB.Pages
 
                     }
                 }
+
+
+                
 
 
             }
