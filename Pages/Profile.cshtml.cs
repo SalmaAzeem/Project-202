@@ -17,10 +17,10 @@ namespace Project_DB.Pages
         {
             try
             {
-                string connectionString = "Data Source =Doha-PC; Initial Catalog = Project 2.0; Integrated Security = True";
+                string connectionString = "Data Source =Tamer; Initial Catalog = Project 2.0; Integrated Security = True";
 
                 using (SqlConnection con = new SqlConnection(connectionString))
-                {
+                {   
                     con.Open();
                     string q2 = "SELECT * FROM Userr " +
                                 "INNER JOIN Customer ON Userr.ID = Customer.customer_id " +

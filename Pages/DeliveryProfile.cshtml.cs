@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Project_DB.Models;
 using System.Data.SqlClient;
+using System.Reflection.Metadata;
 using System.Runtime;
 
 namespace Project_DB.Pages
@@ -9,9 +10,9 @@ namespace Project_DB.Pages
     [BindProperties(SupportsGet = true)]
     public class DeliveryProfileModel : PageModel
     {
-        
         public int ID2 { get; set; }
         public Driver deliveryinfo { get; set; }
+        public List<Orders> orders { get; set; } = new List<Orders>();
         public void OnGet()
         {
             try
@@ -48,6 +49,33 @@ namespace Project_DB.Pages
             try
             {
                 string connection = "Data Source =Tamer; Initial Catalog = Project 2.0; Integrated Security = True";
+                using (SqlConnection conn = new SqlConnection(connection))
+                {
+                    conn.Open();
+                    string query_all_orders = "select * from Orders where delivery_id = @Id";
+                    using (SqlCommand cmd = new SqlCommand(query_all_orders, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@Id", ID2);
+                        using (SqlDataReader reader = cmd.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                Orders new_order = new Orders();
+                                new_order.order_id = Convert.ToInt32(reader["order_id"]);
+                                new_order.payment_type = reader["payment_type"].ToString();
+                                new_order.destination = reader["Destination"].ToString();
+                                new_order.order_status = reader["order_status"].ToString();
+                                new_order.customer_id = Convert.ToInt32(reader["customer_id"]);
+                                orders.Add(new_order);
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex) { Console.WriteLine(ex.ToString()); }
+            try
+            {
+                string connection = "Data Source =Tamer; Initial Catalog = Project 2.0; Integrated Security = True";
                 using (SqlConnection con = new SqlConnection(connection))
                 {
                     con.Open();
@@ -59,17 +87,14 @@ namespace Project_DB.Pages
                         {
                             if (reader.Read())
                             {
-                                deliveryinfo.destination = reader["Destination"].ToString();
+                                
                                 deliveryinfo.city = reader["city"].ToString();
                             }
                         }
                     }
-
                 }
             }
             catch (Exception ex) { Console.WriteLine(ex.ToString()); }
         }
-
-
     }
 }

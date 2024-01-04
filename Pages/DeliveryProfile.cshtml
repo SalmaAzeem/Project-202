@@ -181,9 +181,11 @@
                                     <h6 class="mb-0">Current Orders</h6>
                                 </div>
                                 <div class="col-sm-9 text-success font-weight-bold">
-                                    1- From Dokki to 6 October Zewail City dorms <br />
-                                    2- From Benha 6 October Zewail City dorms             
-                                </div>
+                                        @foreach (var order in Model.orders)
+                                        {
+                                            <p>@Model.deliveryinfo.city To @order.destination</p>
+                                        }           
+                                    </div>
                             </div>
                             <hr>
                             <div class="row">
@@ -192,7 +194,7 @@
                                     <h6 class="mb-0">Requested Orders</h6>
                                 </div>
                                 <div class="col-sm-9 font-weight-bold align-self-center">
-                                    <p>From Madenet Nasr to Madenty</p>
+                                        <@* p> @Model.deliveryinfo.city To @Model.deliveryinfo.destination </p>*@
                                     <div>
                                         <button type="button" class="btngreen btn-success">Accept</button>
                                         <button type="button" class="btnred btn-danger">Reject</button>

@@ -21,7 +21,6 @@ namespace Project_DB.Pages
         [StringLength(7,MinimumLength =3, ErrorMessage = "Should be a 4 or more charater")]
         public string Vehicle_number { get; set; }
         public string city { get; set; }
-        public string destination { get; set; }
 
     }
 }
