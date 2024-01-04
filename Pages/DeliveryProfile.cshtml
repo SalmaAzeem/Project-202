@@ -183,25 +183,25 @@
                             <hr>
                             <div class="row">
                                 <!-- Individual Detail -->
-                                <div class="col-sm-3">
-                                    <h6 class="mb-0">Requested Orders</h6>
-                                    <div class="col-sm-9 text-success font-weight-bold">
-                                        @foreach (var order in Model.orders)
-                                        {
-                                            <div class="row justify-content-end">
-                                                <div>
-                                                    <p style="margin-bottom: 0;">@Model.deliveryinfo.city To @order.destination</p>
-                                                </div>
-                                                    <div class="col font-weight-bold align-self-center">
+                                    <div class="col-sm-3">
+                                        <h6 class="mb-0">Requested Orders</h6>
+                                        <div class="col-sm-9 text-success font-weight-bold">
+                                            @foreach (var order in Model.orders)
+                                            {
+                                                <div class="row justify-content-end">
+                                                    <div class="col-8">
+                                                        <p style="margin-bottom: 0;">@Model.deliveryinfo.city To @order.destination</p>
+                                                    </div>
+                                                    <div class="col-4 text-right">
                                                         <div class="btn-group">
                                                             <button type="button" class="btngreen btn-success">Accept</button>
                                                             <button type="button" class="btnred btn-danger">Reject</button>
                                                         </div>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                        }
+                                            }
+                                        </div>
                                     </div>
-                                </div>
                             </div>
                         </div>
                     </div>
