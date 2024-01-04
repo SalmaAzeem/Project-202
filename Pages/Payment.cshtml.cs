@@ -128,15 +128,11 @@ namespace Project_DB.Pages
                 SqlCommand insertCommand = new SqlCommand(query_order_add, con2);
                 SqlCommand insertCommandinvoice = new SqlCommand(query_invoice_add, con2);
 
-
                 insertCommand.Parameters.AddWithValue("@order_id", result +1);
                 //insertCommand.Parameters.AddWithValue("@payment_type", "Cash");
                 insertCommand.Parameters.AddWithValue("@customer_id", 2);  //userId
                 insertCommand.ExecuteNonQuery();
 
-                Console.WriteLine(result2 + 1);
-                Console.WriteLine(result + 1);
-                Console.WriteLine(total);
                 insertCommandinvoice.Parameters.AddWithValue("@invoiceid", result2);
                 insertCommandinvoice.Parameters.AddWithValue("@order_id2", result + 1);
                 insertCommandinvoice.Parameters.AddWithValue("@total_price2", total);
