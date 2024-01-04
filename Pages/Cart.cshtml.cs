@@ -30,7 +30,8 @@ namespace Project_DB.Pages
         public void OnGet()
         {
 
-            string connectionString = "Data Source=Tamer;Initial Catalog=\"Project 2.0\";Integrated Security=True";
+            //string connectionString = "Data Source=Tamer;Initial Catalog=\"Project 2.0\";Integrated Security=True";
+            string connectionString = "Data Source= Salma_Sherif;Initial Catalog=\"Project 2.0\";Integrated Security=True";
             SqlConnection con = new SqlConnection(connectionString);
             con.Open();
 
@@ -82,29 +83,6 @@ namespace Project_DB.Pages
 
         public IActionResult OnPost()
         {
-            //string connectionString = "Data Source=Salma_Sherif;Initial Catalog=Project 2.0;Integrated Security=True";
-            //using (SqlConnection con = new SqlConnection(connectionString))
-            //{
-            //    try
-            //    {
-            //        con.Open();
-            //        string deleteQuery = "DELETE FROM Cart WHERE flag = 0 OR flag = 1;";
-            //        using (SqlCommand command = new SqlCommand(deleteQuery, con))
-            //        {
-            //            int rowsAffected = command.ExecuteNonQuery();
-            //            // Optionally, you can check the value of rowsAffected to see how many rows were deleted
-            //        }
-            //    }
-            //    catch (Exception ex)
-            //    {
-            //        // Handle exceptions here, for example log the exception
-            //        Console.WriteLine(ex.Message);
-            //    }
-            //    finally
-            //    {
-            //        con.Close();
-            //    }
-            //}
             return RedirectToPage("/Payment");
         }
 

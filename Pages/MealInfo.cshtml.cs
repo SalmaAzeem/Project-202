@@ -42,7 +42,8 @@ namespace Project_DB.Pages
 
         private async Task PerformDatabaseOperationsAsync(string id)
         {
-            string connectionString = "Data Source=Doha-PC;Initial Catalog=\"Project 2.0\";Integrated Security=True";
+            //string connectionString = "Data Source=Doha-PC;Initial Catalog=\"Project 2.0\";Integrated Security=True";
+            string connectionString = "Data Source= Salma_Sherif;Initial Catalog=\"Project 2.0\";Integrated Security=True";
             using (SqlConnection con = new SqlConnection(connectionString))
             {
                 await con.OpenAsync();
@@ -150,7 +151,8 @@ namespace Project_DB.Pages
             Console.WriteLine(Minishop_price);
             Console.WriteLine(flag);
 
-            string connectionString = "Data Source=Doha-PC;Initial Catalog=\"Project 2.0\";Integrated Security=True";
+            //string connectionString = "Data Source=Doha-PC;Initial Catalog=\"Project 2.0\";Integrated Security=True";
+            string connectionString = "Data Source= Salma_Sherif;Initial Catalog=\"Project 2.0\";Integrated Security=True";
 
             using (SqlConnection con = new SqlConnection(connectionString))
             {

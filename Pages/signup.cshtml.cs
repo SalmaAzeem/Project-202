@@ -54,9 +54,10 @@ namespace Project_DB.Pages
                     }
                     return Page();
                 }
-                string connectionString = "Data Source =Tamer; Initial Catalog = Project 2.0; Integrated Security = True";
+                //string connectionString = "Data Source =Tamer; Initial Catalog = Project 2.0; Integrated Security = True";
+                string connectionString = "Data Source= Salma_Sherif;Initial Catalog=\"Project 2.0\";Integrated Security=True";
 
-                
+
 
                 using (SqlConnection con = new SqlConnection(connectionString))
                 {
@@ -99,6 +100,8 @@ namespace Project_DB.Pages
                         cmd.Parameters.AddWithValue("@Email", personinfo.Email);
                         cmd.Parameters.AddWithValue("@Phone_Number", personinfo.Phone_Number);
                         cmd.Parameters.AddWithValue("@User_Type", personinfo.User_Type);
+                        HttpContext.Session.SetInt32("UserId", personinfo.Id.Value);
+
                         cmd.ExecuteNonQuery();
 
                     }
