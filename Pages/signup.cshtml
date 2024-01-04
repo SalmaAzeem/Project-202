@@ -9,6 +9,45 @@
         font-size: 4em;
     }
 </style> *@
+<script>
+    function togglePasswordVisibility() {
+        var passwordInput = document.getElementById("User_Password");
+        var toggleButton = document.getElementById("togglePassword");
+
+        if (passwordInput.type === "password") {
+            passwordInput.type = "text";
+            toggleButton.textContent = "Hide";
+        } else {
+            passwordInput.type = "password";
+            toggleButton.textContent = "Show";
+        }
+    }
+</script>
+<style>
+.toggle-password-button {
+    background-color: #E34234;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    cursor: pointer;
+}
+
+.input-group {
+    position: relative;
+}
+
+.toggle-password-button {
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+}
+</style>
+
 <header id="header" class="header fixed-top d-flex align-items-center">
     <div class="container d-flex align-items-center justify-content-between">
 
@@ -69,9 +108,11 @@
 
                         </div>
                     </div>
-                    <div class="col-lg-4 col-md-6">
-                        <input type="text" asp-for="@Model.personinfo.User_Password" class="form-control" id="User_Password" placeholder="User_Password" >
-
+                   <div class="col-lg-4 col-md-6">
+                        <div class="input-group">
+                             <input type="password" asp-for="@Model.personinfo.User_Password" class="form-control" id="User_Password" placeholder="Password">
+                             <button type="button" class="toggle-password-button" onclick="togglePasswordVisibility()">Show</button>
+                        </div>
                     </div>
 
 
@@ -99,8 +140,10 @@
                             border-radius: 20px;
                         }
                     </style>
-
-                    <button class="btngreen btn-success" type="submit">Sign Up</button>
+                </div>
+                <br />
+                <br />
+                <button class="btngreen btn-success" type="submit">Sign Up</button>
             </form>
         </div><!-- End Reservation Form -->
 
