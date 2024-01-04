@@ -194,11 +194,40 @@
                                     <h6 class="mb-0">Requested Orders</h6>
                                 </div>
                                 <div class="col-sm-9 font-weight-bold align-self-center">
-                                    <p>Lobia to Madenty</p>
-                                    <div>
-                                        <button type="button" class="btn btn-success">Accept</button>
-                                        <button type="button" class="btn btn-danger">Reject</button>
-                                    </div>
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th>Meal Name</th>
+                                                <th>Actions</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @if (Model.there)
+                                            {
+                                                @foreach (var client in Model.orderlist)
+                                                {
+                                                    <tr>
+                                                        <td>@client.meal_Name</td>
+                                                        <td>
+                                                            <form method= "Post">
+                                                                <button type="submit" class="btn btn_add_to_cart btn-danger"><a class="btn btn-danger btn-sm" href="/Shared/Pending?cooker_id=@client.cooker_Id&&order_id=@client.order_Id">Accept</a></button>
+                                                                <button type="submit" class="btn btn_add_to_cart btn-danger"><a class="btn btn-danger btn-sm" href="/Shared/Delete?order_id=@client.order_Id&ID=@client.cooker_Id">Reject</a></button>
+                                                            </form>
+                                                        </td>
+                                                    </tr>
+                                                }
+                                            }
+                                            
+                                                    <tr>
+                                                        <td>No More Requests😊😊</td>
+                                                        <td>None</td>
+                                                    </tr>
+
+                                                
+
+                                            
+                                        </tbody>
+                                    </table>
                                 </div>
                             </div>
                         </div>

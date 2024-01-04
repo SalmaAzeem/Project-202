@@ -62,7 +62,9 @@ namespace Project_DB.Pages
                         cmd.Parameters.AddWithValue("@User_Password", personinfo.User_Password);
                         using (SqlDataReader reader = cmd.ExecuteReader())
                         {
+
                             reader.Read();
+
                             personinfo.Id = Convert.ToInt32(reader["ID"]);
                             personinfo.User_Type = reader["User_Type"].ToString();
                             personinfo.Phone_Number = reader["Phone_Number"].ToString();

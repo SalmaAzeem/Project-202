@@ -2,6 +2,30 @@
 @model Project_DB.Pages.CookerQAcshtmlModel
 @{
 }
+<style>
+    .custom-file-input.btngreen.btn-success {
+        background-color: #E34234; /* Change to your desired color */
+        color: white;
+        border-color: #E34234; /* Change to your desired color */
+    }
+
+        .custom-file-input.btngreen.btn-success:focus,
+        .custom-file-input.btngreen.btn-success:hover {
+            background-color: #E34234; /* Change to your desired color */
+            border-color: #E34234; /* Change to your desired color */
+        }
+
+    .custom-file-label {
+        background-color: #E34234; /* Change to your desired color */
+        color: white;
+        border-color: #E34234; /* Change to your desired color */
+    }
+
+        .custom-file-label::after {
+            background-color: #E34234; /* Change to your desired color */
+            color: white;
+        }
+</style>
 <header id="header" class="header fixed-top d-flex align-items-center">
     <div class="container d-flex align-items-center justify-content-between">
 
@@ -39,7 +63,7 @@
             <br>
             <br>
 
-            <form method="post" role="form" >
+            <form method="post" role="form" enctype="multipart/form-data">
                 <div class="row gy-4">
                     <div class="col-lg-4 col-md-6">
                         <div class="input-group flex-nowrap">
@@ -63,6 +87,16 @@
                             <label for="floatingTextarea">Description</label>
                         </div>
                     </div>
+                    <div class="col-lg-4 col-md-6">
+                        <div class="form-floating">
+                            <div class="form-group">
+                                <label for="image">Upload Image:</label>
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input btngreen btn-success" id="image" name="image" asp-for="@Model.image" accept="image/*">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     
                 </div>
                 <br />
@@ -70,6 +104,13 @@
                 <br />
                 <style>
                     .btngreen {
+
+
+
+
+
+
+
                         background-color: #E34234; /* change to your desired color */
                         border: none;
                         color: white;
@@ -82,7 +123,10 @@
                     }
                 </style>
 
-                <button class="btngreen btn-success" type="submit">Sign Up</button>
+                <a asp-page="/CookerQA" asp-route-id="@Model.ID">
+                    <button class="btngreen btn-success" type="submit">Sign Up</button>>
+                </a>
+                
             </form>
         </div><!-- End Reservation Form -->
 
