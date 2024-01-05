@@ -1,18 +1,10 @@
-using DinkToPdf.Contracts;
-using DinkToPdf;
 using Project_DB.Models;
-using Project_DB.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
 builder.Services.AddSingleton<DB>();
-builder.Services.AddSingleton(typeof(IConverter), new SynchronizedConverter(new PdfTools()));
-
-
-// Register PdfService
-builder.Services.AddTransient<PdfService>();
 builder.Services.AddSession();
 var app = builder.Build();
 
