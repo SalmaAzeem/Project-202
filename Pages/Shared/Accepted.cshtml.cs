@@ -20,7 +20,7 @@ namespace Project_DB.Pages.Shared
                 using (SqlConnection con = new SqlConnection(connection))
                 {
                     con.Open();
-                    string query = "update Orders set cooking_status = 'Done' where order_id = @orderID";
+                    string query = "update Orders set order_status = 'Delivered', cooking_status = 'Done' where order_id = @orderID";
                     string query_all_orders = "select * from Orders where delivery_id = @Id and cooking_status = 'Pending'";
                     using (SqlCommand cmd = new SqlCommand(query_all_orders, con))
                     {
