@@ -7,6 +7,7 @@ using Project_DB.Models;
 using SixLabors.ImageSharp;
 using SixLabors.ImageSharp.Formats.Jpeg;
 using SixLabors.ImageSharp.Processing;
+using System.Diagnostics.Eventing.Reader;
 
 
 
@@ -27,6 +28,7 @@ namespace Project_DB.Pages
         [BindProperty(SupportsGet = true)]
         public int flag { get; set; }
         public int flag2 { get; set; }
+        public int flag3 { get; set; }
         public byte[] data { get; set; }
         string query4 = "select MinisShop_Image from MiniShop where minishop_id = @Id";
         string query5 = "select Meal_Image from Meals where meal_id = @Id";
@@ -210,46 +212,161 @@ namespace Project_DB.Pages
                         int quantity;
                         cmd.Parameters.AddWithValue("@item_id", id_minishop);
                         int counter = Convert.ToInt32(cmd.ExecuteScalar());
-                        string read_flag = "Select flag from cart where item_id = @item_id";
-                        using (SqlCommand read_cmd = new SqlCommand(read_flag, con))
+
+                        if (counter == 1)
                         {
-                            read_cmd.Parameters.AddWithValue("@item_id", id_minishop);
-                            flag2  = Convert.ToInt32(read_cmd.ExecuteScalar());
-                            Console.WriteLine($"Flag equals{flag}");
-                            Console.WriteLine($"Flag2 equals{flag2}");
-                        }
-                        if (counter > 0 && flag == flag2)
-                        {
-                            string read_quantity = "Select quantity from cart where item_id = @item_id";
-                            using (SqlCommand read_cmd = new SqlCommand(read_quantity, con))
+                            string read_flag = "Select flag from cart where item_id = @item_id";
+                            using (SqlCommand read_cmd = new SqlCommand(read_flag, con))
                             {
                                 read_cmd.Parameters.AddWithValue("@item_id", id_minishop);
-                                quantity = Convert.ToInt32(read_cmd.ExecuteScalar());
+                                SqlDataReader reader = read_cmd.ExecuteReader();
+                                
+                                while (reader.Read())
+                                {
+
+                                    if (reader[0]!= null)
+                                    {
+                                        flag2 = Convert.ToInt32(reader[0]);
+                                        
+                                    }
+                                   
+                                }
+                                reader.Close() ;
+                                Console.WriteLine($"Flag equals{flag}");
+                                Console.WriteLine($"Flag2 equals{flag2}");
+                            }
+                            if (flag == flag2)
+                            {
+
+
+                                string read_quantity = "Select quantity from cart where item_id = @item_id and flag = @flag";
+                                using (SqlCommand read_cmd = new SqlCommand(read_quantity, con))
+                                {
+                                    read_cmd.Parameters.AddWithValue("@item_id", id_minishop);
+                                    read_cmd.Parameters.AddWithValue("@flag", flag2);
+
+                                    quantity = Convert.ToInt32(read_cmd.ExecuteScalar());
+
+                                }
+                                string Quantity = "UPDATE Cart SET quantity = @quantity WHERE item_id = @item_id and @flag = flag";
+                                using (SqlCommand cmd_quantity = new SqlCommand(Quantity, con))
+                                {
+                                    Console.WriteLine($"Quantity is {quantity++}");
+                                    cmd_quantity.Parameters.AddWithValue("@quantity", quantity++);
+                                    cmd_quantity.Parameters.AddWithValue("@item_id", id_minishop);
+                                    cmd_quantity.Parameters.AddWithValue("@flag", flag2);
+
+                                    cmd_quantity.ExecuteNonQuery();
+                                }
+                            }
+                            else
+                            {
+                                Console.WriteLine("New Item is added");
+                                insertCommand.Parameters.AddWithValue("@id_minishop", id_minishop);
+                                insertCommand.Parameters.AddWithValue("@Minishop_name", Minishop_name);
+                                insertCommand.Parameters.AddWithValue("@flag", flag);
+                                insertCommand.Parameters.AddWithValue("@Minishop_price", Minishop_price);
+                                if (data != null)
+                                {
+
+
+                                    insertCommand.Parameters.Add("@ImageData", SqlDbType.VarBinary).Value = data;
+                                }
+                                insertCommand.ExecuteNonQuery();
 
                             }
-                            string Quantity = "UPDATE Cart SET quantity = @quantity WHERE item_id = @item_id";
-                            using (SqlCommand cmd_quantity = new SqlCommand(Quantity, con))
-                            {
-                                Console.WriteLine($"Quantity is {quantity++}");
-                                cmd_quantity.Parameters.AddWithValue("@quantity", quantity++);
-                                cmd_quantity.Parameters.AddWithValue("@item_id", id_minishop);
-                                cmd_quantity.ExecuteNonQuery();
-                            }
+                       
+                           
                         }
-                        else if ((counter > 0 && flag != flag2))
+                        else if (counter == 2)
                         {
-                            Console.WriteLine("New Item is added");
-                            insertCommand.Parameters.AddWithValue("@id_minishop", id_minishop);
-                            insertCommand.Parameters.AddWithValue("@Minishop_name", Minishop_name);
-                            insertCommand.Parameters.AddWithValue("@flag", flag);
-                            insertCommand.Parameters.AddWithValue("@Minishop_price", Minishop_price);
-                            if (data != null)
+                            string read_flag = "Select flag from cart where item_id = @item_id";
+                            using (SqlCommand read_cmd = new SqlCommand(read_flag, con))
+                            {
+                                read_cmd.Parameters.AddWithValue("@item_id", id_minishop);
+                                SqlDataReader reader = read_cmd.ExecuteReader();
+                                while (reader.Read())
+                                {
+
+                                    if (reader[0]!= null)
+                                    {
+                                        flag2 = Convert.ToInt32(reader[0]);
+                                        if (flag2 == 0)
+                                        {
+                                            flag3 = 1;
+                                        }
+                                        else { flag3 = 0; }
+
+                                    }
+
+                                }
+                                
+                                reader.Close();
+                            }
+                            if (flag == flag2)
                             {
 
 
-                                insertCommand.Parameters.Add("@ImageData", SqlDbType.VarBinary).Value = data;
+                                string read_quantity = "Select quantity from cart where item_id = @item_id and flag = @flag";
+                                using (SqlCommand read_cmd = new SqlCommand(read_quantity, con))
+                                {
+                                    read_cmd.Parameters.AddWithValue("@item_id", id_minishop);
+                                    read_cmd.Parameters.AddWithValue("@flag", flag2);
+
+                                    quantity = Convert.ToInt32(read_cmd.ExecuteScalar());
+
+                                }
+                                string Quantity = "UPDATE Cart SET quantity = @quantity WHERE item_id = @item_id and @flag = flag ";
+                                using (SqlCommand cmd_quantity = new SqlCommand(Quantity, con))
+                                {
+                                    Console.WriteLine($"Quantity is {quantity++}");
+                                    cmd_quantity.Parameters.AddWithValue("@quantity", quantity++);
+                                    cmd_quantity.Parameters.AddWithValue("@item_id", id_minishop);
+                                    cmd_quantity.Parameters.AddWithValue("@flag", flag2);
+
+                                    cmd_quantity.ExecuteNonQuery();
+                                }
                             }
-                            insertCommand.ExecuteNonQuery();
+                            else if (flag == flag3)
+                            {
+                                string read_quantity = "Select quantity from cart where item_id = @item_id and flag = @flag";
+                                using (SqlCommand read_cmd = new SqlCommand(read_quantity, con))
+                                {
+                                    read_cmd.Parameters.AddWithValue("@item_id", id_minishop);
+                                    read_cmd.Parameters.AddWithValue("@flag", flag3);
+
+                                    quantity = Convert.ToInt32(read_cmd.ExecuteScalar());
+
+                                }
+                                string Quantity = "UPDATE Cart SET quantity = @quantity WHERE item_id = @item_id and @flag = flag ";
+                                using (SqlCommand cmd_quantity = new SqlCommand(Quantity, con))
+                                {
+                                    Console.WriteLine($"Quantity is {quantity++}");
+                                    cmd_quantity.Parameters.AddWithValue("@quantity", quantity++);
+                                    cmd_quantity.Parameters.AddWithValue("@item_id", id_minishop);
+                                    cmd_quantity.Parameters.AddWithValue("@flag", flag3);
+
+                                    cmd_quantity.ExecuteNonQuery();
+                                }
+
+                            }
+                            else
+                            {
+                                Console.WriteLine("New Item is added");
+                                insertCommand.Parameters.AddWithValue("@id_minishop", id_minishop);
+                                insertCommand.Parameters.AddWithValue("@Minishop_name", Minishop_name);
+                                insertCommand.Parameters.AddWithValue("@flag", flag);
+                                insertCommand.Parameters.AddWithValue("@Minishop_price", Minishop_price);
+                                if (data != null)
+                                {
+
+
+                                    insertCommand.Parameters.Add("@ImageData", SqlDbType.VarBinary).Value = data;
+                                }
+                                insertCommand.ExecuteNonQuery();
+
+                            }
+
                         }
                         else
                         {
@@ -267,6 +384,7 @@ namespace Project_DB.Pages
                             insertCommand.ExecuteNonQuery();
 
                         }
+                        
                     }
 
 
