@@ -45,100 +45,12 @@ namespace Project_DB.Pages
         public List<byte[]> Images_cart_MiniShop { get; set; } = new List<byte[]>();
         public List<byte[]> Images_cart_Menu { get; set; } = new List<byte[]>();
 
-
-
-
-
-        //public void OnGet(string identifier)
-        //{
-        //    var userId = HttpContext.Session.GetInt32("UserId");
-
-
-
-
-        //    //string connectionString = "Data Source=Tamer;Initial Catalog=\"Project 2.0\";Integrated Security=True";
-        //    string connectionString = "Data Source=Doha-PC;Initial Catalog=\"Project 2.0\";Integrated Security=True";
-        //    SqlConnection con = new SqlConnection(connectionString);
-        //    con.Open();
-
-
-        //    try
-        //    {
-
-        //        string query_count = "select sum(item_price) from Cart group by item_price";
-        //        string query_Menu = "select * from Cart";
-        //        string queryc = "SELECT COUNT(*) FROM Cart";
-        //        string validationcity = "select count(*) from Shipping where city = @city";
-        //        string cityprice = "select * from Shipping where city = @cityy";
-        //        string queryselect_city = $"select * from Customer where customer_id = {userId.Value}";
-
-
-        //        SqlCommand cmd_Menu = new SqlCommand(query_Menu, con);
-        //        SqlCommand cmd_Count = new SqlCommand(query_count, con);
-        //        SqlCommand cmdcnum = new SqlCommand(queryc, con);
-        //        SqlDataReader reader = cmd_Menu.ExecuteReader();
-        //        SqlCommand cmdcselect_city = new SqlCommand(queryselect_city, con);
-        //        while (reader.Read())
-        //        {
-        //            ids_Cart.Add(reader[0].ToString());
-        //            Meal_name.Add(reader[1].ToString());
-        //            prices.Add(Convert.ToDouble(reader[3]) *Convert.ToDouble(reader[5]));
-        //            flags.Add(Convert.ToInt32(reader[2]));
-        //            quantities.Add(Convert.ToDouble(reader[5]));
-        //            total_price += Convert.ToDouble(reader[3])*Convert.ToDouble(reader[5]);
-        //        }
-
-        //        reader.Close();
-
-        //        SqlDataReader reader2 = cmdcselect_city.ExecuteReader();
-        //        while (reader2.Read())
-        //        {
-        //            city = reader2[1].ToString();
-        //        }
-        //        reader2.Close();
-
-        //        using (SqlCommand cmd = new SqlCommand(validationcity, con))
-        //        {
-        //            cmd.Parameters.AddWithValue("@city", city);
-        //            int counter = Convert.ToInt32(cmd.ExecuteScalar());
-        //            if (counter == 0)
-        //            {
-        //                shiping = 2.99;  //cost
-        //            }
-        //            else if (counter == 1)
-        //            {
-        //                SqlCommand cmdprice = new SqlCommand(cityprice, con);
-        //                cmdprice.Parameters.AddWithValue("@cityy", city);
-        //                SqlDataReader reader3 = cmdprice.ExecuteReader();
-        //                while (reader3.Read())
-        //                {
-        //                    price = Convert.ToDouble(reader3[1]);
-        //                }
-        //                reader3.Close();
-        //                shiping = price;
-        //            }
-        //            else if (total_price == 0)
-        //            {
-        //                shiping = 0;
-        //            }
-        //        }
-        //    }
-        //    catch (SqlException ex)
-        //    {
-        //        Console.WriteLine(ex.ToString());
-        //    }
-        //    finally
-        //    {
-        //        total = shiping + total_price;
-        //        con.Close();
-        //    }
-        //}
-
         public void OnGet(string identifier)
         {
             var userId = HttpContext.Session.GetInt32("UserId");
 
-            string connectionString = "Data Source=Doha-PC;Initial Catalog=\"Project 2.0\";Integrated Security=True";
+            string connectionString = "Data Source=Salma_Sherif;Initial Catalog=\"Project 2.0\";Integrated Security=True";
+            //string connectionString = "Data Source=Doha-PC;Initial Catalog=\"Project 2.0\";Integrated Security=True";
             using (SqlConnection con = new SqlConnection(connectionString))
             {
                 con.Open();
@@ -222,8 +134,8 @@ namespace Project_DB.Pages
 
         public IActionResult OnPost()
         {
-            //string connectionString = "Data Source= Salma_Sherif;Initial Catalog=\"Project 2.0\";Integrated Security=True";
-            string connectionString = "Data Source=Doha-PC;Initial Catalog=\"Project 2.0\";Integrated Security=True";
+            string connectionString = "Data Source= Salma_Sherif;Initial Catalog=\"Project 2.0\";Integrated Security=True";
+            //string connectionString = "Data Source=Doha-PC;Initial Catalog=\"Project 2.0\";Integrated Security=True";
             SqlConnection con = new SqlConnection(connectionString);
             con.Open();
             try
@@ -292,7 +204,8 @@ namespace Project_DB.Pages
         {
 
             //string connection = "Data Source=Tamer;Initial Catalog=\"Project 2.0\";Integrated Security=True";
-            string connection = "Data Source=Doha-PC;Initial Catalog=\"Project 2.0\";Integrated Security=True";
+            string connection = "Data Source=Salma_Sherif;Initial Catalog=\"Project 2.0\";Integrated Security=True";
+            //string connection = "Data Source=Doha-PC;Initial Catalog=\"Project 2.0\";Integrated Security=True";
 
 
             using (SqlConnection con = new SqlConnection(connection))

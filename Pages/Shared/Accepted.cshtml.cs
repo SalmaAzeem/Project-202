@@ -13,7 +13,7 @@ namespace Project_DB.Pages.Shared
 
         public void OnGet()
         {
-            string connection = "Data Source =Tamer; Initial Catalog = Project 2.0; Integrated Security = True";
+            string connection = "Data Source =Salma_Sherif; Initial Catalog = Project 2.0; Integrated Security = True";
 
             try
             {

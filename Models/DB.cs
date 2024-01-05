@@ -12,9 +12,7 @@ namespace Project_DB.Models
         public string connectionString { get; set; }
         public DB()
         {
-            //string connectionString = "Data Source =Tamer; Initial Catalog = Project 2.0; Integrated Security = True";
-            string connectionString = "Data Source =LAPTOP-8L98OTBR; Initial Catalog = Project 2.0; Integrated Security = True";
-
+            string connectionString = "Data Source =Salma_Sherif; Initial Catalog = Project 2.0; Integrated Security = True";
         }
         public void SignUp(Person personinfo)
         {

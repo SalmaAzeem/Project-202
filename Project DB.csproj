@@ -8,8 +8,10 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="DinkToPdf" Version="1.0.8" />
+    <PackageReference Include="IronPdf" Version="2023.12.6" />
+    <PackageReference Include="IronPdf.Extensions.Razor" Version="2023.9.1" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+    <PackageReference Include="PDF.Core" Version="2020.12.2" />
     <PackageReference Include="SixLabors.ImageSharp" Version="3.1.2" />
     <PackageReference Include="System.ComponentModel.Annotations" Version="5.0.0" />
     <PackageReference Include="System.Data.SqlClient" Version="4.8.5" />
