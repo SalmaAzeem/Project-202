@@ -17,8 +17,7 @@ namespace Project_DB.Pages
         {
             identifier= "MiniShop";
             //string connectionString = "Data Source=Tamer;Initial Catalog=\"Project 2.0\";Integrated Security=True";
-            string connectionString = "Data Source =LAPTOP-8L98OTBR; Initial Catalog = Project 2.0; Integrated Security = True";
-
+            string connectionString = "Data Source=Doha-PC;Initial Catalog=\"Project 2.0\";Integrated Security=True";
             SqlConnection con = new SqlConnection(connectionString);
             con.Open();
             string query = "SELECT COUNT(*) FROM MiniShop";
@@ -82,7 +81,7 @@ namespace Project_DB.Pages
         {
 
             //string connection = "Data Source=Tamer;Initial Catalog=\"Project 2.0\";Integrated Security=True";
-            string connection = "Data Source =LAPTOP-8L98OTBR; Initial Catalog = Project 2.0; Integrated Security = True";
+            string connection = "Data Source=Doha-PC;Initial Catalog=\"Project 2.0\";Integrated Security=True";
 
 
             using (SqlConnection con = new SqlConnection(connection))

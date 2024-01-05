@@ -118,7 +118,7 @@
     <br />
     <br />
     <br />
-<form method="POST">
+<form method="post">
     <div class="container">
         <div class="main-body">
 
@@ -202,28 +202,38 @@
                                
                             </div>
                             <hr>
-                            <div class="row">
-                                <!-- Individual Detail -->
+                                <div class="row">
+                                    <!-- Individual Detail -->
                                     <div class="col-sm-3">
                                         <h6 class="mb-0">Requested Orders</h6>
-                                        <div class="col-sm-9 text-success font-weight-bold">
-                                            @foreach (var order in Model.orders)
-                                            {
-                                                <div class="row justify-content-end">
-                                                    <div class="col-8">
-                                                        <p style="margin-bottom: 0;">@Model.deliveryinfo.city To @order.destination</p>
-                                                    </div>
-                                                    <div class="col-4 text-right">
-                                                        <div class="btn-group">
-                                                            <button type="button" class="btngreen btn-success">Accept</button>
-                                                            <button type="button" class="btnred btn-danger">Reject</button>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            }
-                                        </div>
                                     </div>
-                            </div>
+                                    <div class="col-sm-9 font-weight-bold align-self-center">
+                                        <table class="table">
+                                            <thead>
+                                                <tr>
+                                                    <th>Meal Name</th>
+                                                    <th>Actions</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+
+                                                
+                                                @foreach (var order in Model.orders)
+                                                {
+                                                    <tr>
+                                                        <td>@Model.deliveryinfo.city To @order.destination</td>
+                                                        <td>
+
+                                                            <button type="submit" class="btn btn_add_to_cart btn-danger btn-sm"><a class="btn btn-danger btn-sm" href="/Shared/Accepted?delivery_id=@Model.ID2&&order_id=@order.order_id">Accept</a></button>
+                                                            <button type="submit" class="btn btn_add_to_cart btn-danger btn-sm"><a class="btn btn-danger btn-sm" href="/Shared/Rejected?delivery_id=@Model.ID2&&order_id=@order.order_id">Reject</a></button>
+                                                            
+                                                        </td>
+                                                    </tr>
+                                                }
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
                         </div>
                     </div>
                 </div>

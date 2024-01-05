@@ -1,0 +1,86 @@
+﻿@page
+@model Project_DB.Pages.Shared.AcceptedModel
+@{
+}
+
+<style>
+    body {
+        background-color: #f8f9fa;
+    }
+
+    table {
+        width: 100%;
+        margin-bottom: 1rem;
+        color: #343a40;
+        border-collapse: collapse;
+        border-spacing: 0;
+    }
+
+    th,
+    td {
+        padding: 0.75rem;
+        vertical-align: top;
+        border-top: 1px solid #dee2e6;
+    }
+
+    thead {
+        background-color: #dc3545;
+        color: white;
+    }
+
+    tbody tr:nth-child(even) {
+        background-color: #f8d7da;
+    }
+
+    .btn-add-to-cart {
+        background-color: #dc3545;
+        color: black; /* Set text color to black */
+        border: 1px solid #dc3545;
+    }
+
+        .btn-add-to-cart:hover {
+            background-color: #bd2130;
+            border: 1px solid #bd2130;
+        }
+        
+</style>
+<header id="header" class="header fixed-top d-flex align-items-center">
+    <div class="container d-flex align-items-center justify-content-between">
+
+        <a class="nav-link text-dark" asp-area="" asp-page="/CookerProfile">
+            <h1>Set Elkol</h1>
+        </a>
+
+        <nav id="navbar" class="navbar">
+
+        </nav><!-- .navbar -->
+    </div>
+</header>
+<body>
+
+<br />
+<br />
+<br />
+<br />
+<br />
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Pending Meals</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var order in Model.orders)
+        {
+            <tr>
+                <td>@order.destination</td>
+                <td>
+                    <button type="submit" class="btn"><a href="/DeliveryProfile?ID2=@Model.delivery_id">Done</a></button>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+</body>
