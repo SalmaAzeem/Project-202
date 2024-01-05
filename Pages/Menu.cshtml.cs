@@ -20,7 +20,7 @@ namespace Project_DB.Pages
         {
             identifier = "Menu";
             //string connectionString = "Data Source=Tamer;Initial Catalog=\"Project 2.0\";Integrated Security=True";
-            string connectionString = "Data Source=Doha-PC;Initial Catalog=\"Project 2.0\";Integrated Security=True";
+            string connectionString = "Data Source=Salma_Sherif;Initial Catalog=\"Project 2.0\";Integrated Security=True";
             SqlConnection con = new SqlConnection(connectionString);
             con.Open();
    

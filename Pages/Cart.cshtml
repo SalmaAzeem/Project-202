@@ -12,31 +12,6 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <style>
-        /* Style the radio container */
-        .radio-container {
-            display: flex;
-            align-items: center;
-            margin-bottom: 10px;
-        }
-
-            /* Style the radio input */
-            .radio-container input[type="radio"] {
-                margin-right: 5px;
-            }
-
-            /* Style the radio label */
-            .radio-container label {
-                font-weight: normal;
-                margin-bottom: 0;
-                cursor: pointer;
-            }
-
-                /* Style the radio label on hover */
-                .radio-container label:hover {
-                    color: #FF5252; /* Change color on hover */
-                }
-
-
         body {
             color: #000;
             overflow-x: hidden;
@@ -268,15 +243,7 @@
     </div>
 </header>
 <body>
-    <br />
-    <br />
-    <br />
-    @if (TempData.ContainsKey("ErrorMessage"))
-    {
-        <div class="alert alert-danger" role="alert">
-            @TempData["ErrorMessage"]
-        </div>
-    }
+
     <h4>@Model.ids_Cart.Count</h4>
     <div class="container px-4 py-5 mx-auto">
         <div class="row d-flex justify-content-center">
@@ -302,67 +269,108 @@
                 </div>
             </div>
 
-        @{for (int i = 0; i < @Model.Mealcount; i++)
-        {
-            <div class="row d-flex justify-content-center border-top">
+            @for (int i = 0; i < @Model.Mealcount; i++)
+            {
+                await Model.OnGetImagesAsync();
 
-                    @if (Model.Images_cart[i] != null)
+                <form method="get" asp-page-handler="ImagesAsync">
+
+                    @if (Model.flags[i] == 0)
                     {
-                        string base64Image = Convert.ToBase64String(Model.Images_cart[i]);
+                        string base64Image = Convert.ToBase64String(Model.Images_cart_Menu[i]);
 
-                <div class="col-5">
-                    <div class="row d-flex">
-                        <div class="book">
-                            <img src="/img/menu/menu-item-5.png" class="menu-img img-fluid" alt="">
-                        </div>
-                        <div class="my-auto flex-column d-flex pad-left">
-                            <h6 class="mob-text">@Model.Meal_name[i]</h6>
-                        </div>
-                    </div>
-                </div>
-
-
-                <div class="my-auto col-7">
-                    <div class="row text-right">
-                        <div class="col-4">
-                               <h6 class="mob-text">@Model.prices[i]</h6>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        }}
-    
-        <div class="row justify-content-center">
-            <div class="col-lg-12">
-                <div class="card">
-                    <div class="row">
-                            <form method="post">
-                            <div class="col-lg-5">
-                                <div class="row px-2">
-                                    
-                                    <div class="form-group col-md-6">
-                                        <label class="form-control-label">Promo Code</label>
-                                            <input type="password" class="form-control" id="Email" placeholder="*****" data-rule="Email" asp-for="@Model.promocodestring">
+                        <div class="row d-flex justify-content-center border-top">
+                            <div class="col-5">
+                                <div class="row d-flex">
+                                    <div class="book">
+                                        <img class="menu-img img-fluid circular-image" src="data:image/jpeg;base64,@base64Image" alt="Meal Image" width="500" />
+                                    </div>
+                                    <div class="my-auto flex-column d-flex pad-left">
+                                        <h6 class="mob-text">@Model.Meal_name[i]</h6>
                                     </div>
                                 </div>
                             </div>
-                        <div class="col-lg-4 mt-2">
-                            <div class="row d-flex justify-content-between px-4">
-                                <p class="mb-1 text-left">Subtotal</p>
-                                <h6 class="mb-1 text-right">@Model.total_price EGP</h6>
-                            </div>
-                            <div class="row d-flex justify-content-between px-4">
-                                <p class="mb-1 text-left">Shipping</p>
-                                    <h6 class="mb-1 text-right">@Model.shiping EGP</h6>
+                            <div class="my-auto col-7">
+                                <div class="row text-right">
+                                    <div class="col-4">
+                                        <h6 class="mob-text">@Model.prices[i]</h6>
+                                    </div>
                                 </div>
-                            <div class="row d-flex justify-content-between px-4" id="tax">
-                                <p class="mb-1 text-left">Total (tax included)</p>
-                                    <h6 class="mb-1 text-right">@Model.total EGP</h6>  
                             </div>
-                            <button class="btn-block btn-blue ">
-                            <form method =  "post"> 
-                                <a id="checkout" asp-area="" asp-page="/Payment">Check Out</a>
-                             </form>
+                            <div class="my-auto col-7">
+                                <div class="row text-right">
+                                    <div class="col-4">
+                                        <h6 class="mob-text">@Model.quantities[i]</h6>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                    else if (Model.flags[i] == 1)
+                    {
+                        string base64Image = Convert.ToBase64String(Model.Images_cart_MiniShop[i]);
+
+                        <div class="row d-flex justify-content-center border-top">
+                            <div class="col-5">
+                                <div class="row d-flex">
+                                    <div class="book">
+                                        <img class="menu-img img-fluid circular-image" src="data:image/jpeg;base64,@base64Image" alt="Meal Image" width="500" />
+                                    </div>
+                                    <div class="my-auto flex-column d-flex pad-left">
+                                        <h6 class="mob-text">@Model.Meal_name[i]</h6>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="my-auto col-7">
+                                <div class="row text-right">
+                                    <div class="col-4">
+                                        <h6 class="mob-text">@Model.prices[i]</h6>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="my-auto col-7">
+                                <div class="row text-right">
+                                    <div class="col-4">
+                                        <h6 class="mob-text">@Model.quantities[i]</h6>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                    else
+                    {
+                        <p>No image available.</p>
+                    }
+                </form>
+            }
+
+            <div class="row justify-content-center">
+                <div class="col-lg-12">
+                    <div class="card">
+
+                        <div class="row">
+                            <form method="post">
+                                <div class="form-group col-md-6">
+                                    <label class="form-control-label">Promo Code</label>
+                                    <input type="password" class="form-control" id="Email" placeholder="*" data-rule="Email" asp-for="@Model.promocodestring">
+                                </div>
+                                <div class="col-lg-4 mt-2">
+                                    <div class="row d-flex justify-content-between px-4">
+                                        <p class="mb-1 text-left">Subtotal</p>
+                                        <h6 class="mb-1 text-right">@Model.total_price EGP</h6>
+                                    </div>
+                                    <div class="row d-flex justify-content-between px-4">
+                                        <p class="mb-1 text-left">Shipping</p>
+                                        <h6 class="mb-1 text-right">@Model.shiping EGP</h6>
+                                    </div>
+                                    <div class="row d-flex justify-content-between px-4" id="tax">
+                                        <p class="mb-1 text-left">Total (tax included)</p>
+                                        <h6 class="mb-1 text-right">@Model.total EGP</h6>
+                                    </div>
+                                    <button class="btn-block btn-blue">
+
+                                        <a id="checkout" asp-area="" asp-page="/Payment">Check Out</a>
+                            </form>
 
                             </button>
                         </div>
@@ -373,14 +381,3 @@
     </div>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-    

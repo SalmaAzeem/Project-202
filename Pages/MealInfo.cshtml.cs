@@ -7,6 +7,15 @@ using Project_DB.Models;
 using SixLabors.ImageSharp;
 using SixLabors.ImageSharp.Formats.Jpeg;
 using SixLabors.ImageSharp.Processing;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.AspNetCore.Routing;
+using System.Data;
+using System.Data.SqlClient;
+using Project_DB.Models;
+using SixLabors.ImageSharp;
+using SixLabors.ImageSharp.Formats.Jpeg;
+using SixLabors.ImageSharp.Processing;
 
 
 
@@ -44,7 +53,7 @@ namespace Project_DB.Pages
 
         private async Task PerformDatabaseOperationsAsync(string id)
         {
-            string connectionString = "Data Source=Doha-PC;Initial Catalog=\"Project 2.0\";Integrated Security=True";
+            string connectionString = "Data Source=Salma_Sherif;Initial Catalog=\"Project 2.0\";Integrated Security=True";
             //string connectionString = "Data Source =LAPTOP-8L98OTBR; Initial Catalog = Project 2.0; Integrated Security = True";
 
             using (SqlConnection con = new SqlConnection(connectionString))
@@ -154,7 +163,7 @@ namespace Project_DB.Pages
             Console.WriteLine(Minishop_price);
             Console.WriteLine(flag);
 
-            string connectionString = "Data Source=Doha-PC;Initial Catalog=\"Project 2.0\";Integrated Security=True";
+            string connectionString = "Data Source=Salma_Sherif;Initial Catalog=\"Project 2.0\";Integrated Security=True";
 
             using (SqlConnection con = new SqlConnection(connectionString))
             {
@@ -214,7 +223,7 @@ namespace Project_DB.Pages
                         using (SqlCommand read_cmd = new SqlCommand(read_flag, con))
                         {
                             read_cmd.Parameters.AddWithValue("@item_id", id_minishop);
-                            flag2  = Convert.ToInt32(read_cmd.ExecuteScalar());
+                            flag2 = Convert.ToInt32(read_cmd.ExecuteScalar());
                             Console.WriteLine($"Flag equals{flag}");
                             Console.WriteLine($"Flag2 equals{flag2}");
                         }
