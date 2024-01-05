@@ -57,7 +57,7 @@ namespace Project_DB.Pages
             try
             {
                 //string connection = "Data Source =Tamer; Initial Catalog = Project 2.0; Integrated Security = True";
-                string connection= "Data Source =LAPTOP-8L98OTBR; Initial Catalog = Project 2.0; Integrated Security = True";
+                string connection = "Data Source =LAPTOP-8L98OTBR; Initial Catalog = Project 2.0; Integrated Security = True";
 
                 using (SqlConnection conn = new SqlConnection(connection))
                 {
@@ -92,14 +92,14 @@ namespace Project_DB.Pages
                 {
                     con.Open();
                     string query_get_orders = "select Destination, city from Orders as o inner join Delivery as d on o.delivery_id = d.delivery_id where d.delivery_id = @Id and Destination is not null ";
-                    using (SqlCommand cmd = new SqlCommand (query_get_orders, con))
+                    using (SqlCommand cmd = new SqlCommand(query_get_orders, con))
                     {
                         cmd.Parameters.AddWithValue("@Id", ID2);
-                        using (SqlDataReader reader = cmd.ExecuteReader ())
+                        using (SqlDataReader reader = cmd.ExecuteReader())
                         {
                             if (reader.Read())
                             {
-                                
+
                                 deliveryinfo.city = reader["city"].ToString();
                             }
                         }

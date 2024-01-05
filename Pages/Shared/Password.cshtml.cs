@@ -79,11 +79,11 @@ namespace Project_DB.Pages
             {
                 Console.WriteLine(ex.ToString());
             }
-            if(type == "\'Cooker\'\'")
+            if(type == "\'Cooker\'")
             {
                 return RedirectToPage("/CookerProfile", new { ID2 = ID3 } );
             }
-            else if(type == "\'Driver\'\'")
+            else if(type == "\'Driver\'")
             {
                 return RedirectToPage("/DeliveryProfile", new { ID2 = ID3 });
             }
