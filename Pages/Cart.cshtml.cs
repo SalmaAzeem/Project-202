@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.Data;
 using System.Data.SqlClient;
+using System.Drawing;
 
 namespace Project_DB.Pages
 {
@@ -13,6 +14,7 @@ namespace Project_DB.Pages
         public List<string> Meal_name = new List<string>();
         public List<double> prices = new List<double>();
         public List<double> quantities = new List<double>();
+        public List<int> flags = new List<int>();
 
 
 
@@ -26,12 +28,18 @@ namespace Project_DB.Pages
         public double total { get; set; }
         [BindProperty(SupportsGet = true)]
         public double shiping { get; set; }
-        public List<byte[]> Images_cart { get; set; } = new List<byte[]>();
+        public List<byte[]> Images_cart_MiniShop { get; set; } = new List<byte[]>();
+        public List<byte[]> Images_cart_Menu { get; set; } = new List<byte[]>();
+        
+       
+        
 
 
-
-        public void OnGet()
+        public void OnGet(string identifier)
         {
+            
+
+
 
             //string connectionString = "Data Source=Tamer;Initial Catalog=\"Project 2.0\";Integrated Security=True";
             string connectionString = "Data Source=Doha-PC;Initial Catalog=\"Project 2.0\";Integrated Security=True";
@@ -56,6 +64,7 @@ namespace Project_DB.Pages
                     ids_Cart.Add(reader[0].ToString());
                     Meal_name.Add(reader[1].ToString());
                     prices.Add(Convert.ToDouble(reader[3]) *Convert.ToDouble(reader[5]));
+                    flags.Add(Convert.ToInt32(reader[2]));
                     quantities.Add(Convert.ToDouble(reader[5]));
                     total_price += Convert.ToDouble(reader[3])*Convert.ToDouble(reader[5]);
                 }
@@ -126,7 +135,7 @@ namespace Project_DB.Pages
             using (SqlConnection con = new SqlConnection(connection))
             {
                 await con.OpenAsync();
-                string query4 = "select item_image from Cart where item_id = @Id";
+                string query4 = "select item_image from Cart where item_id = @Id and flag = 0";
                 using (SqlCommand cmd_4 = new SqlCommand(query4, con))
                 {
                     cmd_4.Parameters.Add(new SqlParameter("@Id", SqlDbType.VarChar));
@@ -149,7 +158,45 @@ namespace Project_DB.Pages
                                         await ms.WriteAsync(buffer, 0, (int)bytesRead);
                                         field_offset += bytesRead;
                                     }
-                                    Images_cart.Add(ms.ToArray());
+                                    Images_cart_Menu.Add(ms.ToArray());
+                                    Console.WriteLine($"Data Size: {ms.ToArray()?.Length} bytes");
+                                    //Console.WriteLine(Images_Minishop.Count());
+                                    //Cooker_image = ms.ToArray();
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            using (SqlConnection con = new SqlConnection(connection))
+            {
+                await con.OpenAsync();
+                string query5 = "select item_image from Cart where item_id = @Id and flag = 1";
+                using (SqlCommand cmd_4 = new SqlCommand(query5, con))
+                {
+                    cmd_4.Parameters.Add(new SqlParameter("@Id", SqlDbType.VarChar));
+                    foreach (string id in ids_Cart)
+                    {
+                        cmd_4.Parameters["@Id"].Value = id;
+                        using (SqlDataReader reader_4 = await cmd_4.ExecuteReaderAsync())
+                        {
+                            if (await reader_4.ReadAsync())
+                            {
+                                const int buffersize = 4096;
+                                long bytesRead;
+                                long field_offset = 0; // Reset field_offset for each cooker
+                                long stream_length = reader_4.GetBytes(0, field_offset, null, 0, 0);
+                                using (MemoryStream ms = new MemoryStream())
+                                {
+                                    byte[] buffer = new byte[buffersize];
+                                    while ((bytesRead = reader_4.GetBytes(0, field_offset, buffer, 0, buffersize)) > 0)
+                                    {
+                                        await ms.WriteAsync(buffer, 0, (int)bytesRead);
+                                        field_offset += bytesRead;
+                                    }
+                                    Images_cart_MiniShop.Add(ms.ToArray());
+                                    Console.WriteLine($"Data Size: {ms.ToArray()?.Length} bytes");
                                     //Console.WriteLine(Images_Minishop.Count());
                                     //Cooker_image = ms.ToArray();
                                 }

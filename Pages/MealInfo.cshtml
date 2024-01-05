@@ -123,8 +123,10 @@
     <input type="hidden" name="flag" value="@Model.flag" />
     <input type="hidden" name="Minishop_price" value="@Model.Minishop_price" />
     <input type="hidden" name="Minishop_identifier" value="@Model.Minishop_identifier" />
-
-    <button type="submit" class="btn btn_add_to_cart btn-danger">Add To Cart</button>
+                <a asp-page="/Cart" asp-route-identifier="@Model.Minishop_identifier">
+                    <button type="submit" class="btn btn_add_to_cart btn-danger">Add To Cart</button>
+                </a>
+    
 
         </form>
        
