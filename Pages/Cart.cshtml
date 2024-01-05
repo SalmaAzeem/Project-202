@@ -12,6 +12,31 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <style>
+        /* Style the radio container */
+        .radio-container {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+            /* Style the radio input */
+            .radio-container input[type="radio"] {
+                margin-right: 5px;
+            }
+
+            /* Style the radio label */
+            .radio-container label {
+                font-weight: normal;
+                margin-bottom: 0;
+                cursor: pointer;
+            }
+
+                /* Style the radio label on hover */
+                .radio-container label:hover {
+                    color: #FF5252; /* Change color on hover */
+                }
+
+
         body {
             color: #000;
             overflow-x: hidden;
@@ -197,7 +222,15 @@
     </style>
 </head>
 <body>
-
+    <br />
+    <br />
+    <br />
+    @if (TempData.ContainsKey("ErrorMessage"))
+    {
+        <div class="alert alert-danger" role="alert">
+            @TempData["ErrorMessage"]
+        </div>
+    }
     <h4>@Model.ids_Cart.Count</h4>
     <div class="container px-4 py-5 mx-auto">
         <div class="row d-flex justify-content-center">
@@ -214,37 +247,54 @@
             </div>
         </div>
 
-        @{for (int i = 0; i < @Model.Mealcount; i++)
-        {
+        
             <div class="row d-flex justify-content-center border-top">
 
-
-                <div class="col-5">
-                    <div class="row d-flex">
-                        <div class="book">
-                            <img src="/img/menu/menu-item-5.png" class="menu-img img-fluid" alt="">
-                        </div>
-                        <div class="my-auto flex-column d-flex pad-left">
-                            <h6 class="mob-text">@Model.Meal_name[i]</h6>
-                        </div>
-                    </div>
-                </div>
+                @{
+                    for (int i = 0; i < @Model.Mealcount; i++)
+                    {
+                        <div class="row d-flex justify-content-center border-top">
 
 
-                <div class="my-auto col-7">
-                    <div class="row text-right">
-                        <div class="col-4">
-                               <h6 class="mob-text">@Model.prices[i]</h6>
+                            <div class="col-5">
+                                <div class="row d-flex">
+                                    <div class="book">
+                                        <img src="/img/menu/menu-item-5.png" class="menu-img img-fluid" alt="">
+                                    </div>
+                                    <div class="my-auto flex-column d-flex pad-left">
+                                        <h6 class="mob-text">@Model.Meal_name[i]</h6>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="my-auto col-7">
+                                <div class="row text-right">
+                                    <div class="col-4">
+                                        <h6 class="mob-text">@Model.prices[i]</h6>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
+                    }
+                }
             </div>
-        }}
+        
     
         <div class="row justify-content-center">
             <div class="col-lg-12">
                 <div class="card">
                     <div class="row">
+                            <form method="post">
+                            <div class="col-lg-5">
+                                <div class="row px-2">
+                                    
+                                    <div class="form-group col-md-6">
+                                        <label class="form-control-label">Promo Code</label>
+                                            <input type="password" class="form-control" id="Email" placeholder="*****" data-rule="Email" asp-for="@Model.promocodestring">
+                                    </div>
+                                </div>
+                            </div>
                         <div class="col-lg-4 mt-2">
                             <div class="row d-flex justify-content-between px-4">
                                 <p class="mb-1 text-left">Subtotal</p>
@@ -259,8 +309,8 @@
                                     <h6 class="mb-1 text-right">@Model.total EGP</h6>  
                             </div>
                             <button class="btn-block btn-blue ">
-                            <form method =  "post"> 
-                                <a id="checkout" asp-area="" asp-page="/Payment">Check Out</a>
+                            
+                                        <button id="checkout" type="submit">Check Out</button>
                              </form>
 
                             </button>
@@ -272,3 +322,14 @@
     </div>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+    

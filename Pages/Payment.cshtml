@@ -1,6 +1,6 @@
 ﻿@page
 @model Project_DB.Pages.PaymentModel
-@using System // Import the System namespace for DateTime
+@using System
 @{
     DateTime currentTime = DateTime.Now;
 }
@@ -86,13 +86,17 @@
 
                         <div class="py-3 px-5 text-right">
                             <div class="mb-2">Discount</div>
-                            <div class="h2 font-weight-light">0%</div>
+                            <div class="h2 font-weight-light">@Model.discount2%</div>
                         </div>
 
                         <div class="py-3 px-5 text-right">
                             <div class="mb-2">Sub - Total amount</div>
-                            <div class="h2 font-weight-light">@Model.total EGP</div>
+                            
+                            <div class="h2 font-weight-light">@Model.total_price EGP</div>
                         </div>
+                        <form method="post">
+                            <button type="submit">print</button>
+                        </form>
                     </div>
                 </div>
             </div>

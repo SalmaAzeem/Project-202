@@ -1,14 +1,17 @@
 using IronPdf.Razor.Pages;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using System.Data;
 using System.Data.SqlClient;
+using System.Data;
+using System.Diagnostics;
+using System.Net;
+using System.Xml.Linq;
 
 namespace Project_DB.Pages
 {
-    public class PaymentModel : PageModel
+    public class PrintModel : PageModel
     {
-        public List<string> Meal_name = new List<string>();
+                public List<string> Meal_name = new List<string>();
         public List<double> prices = new List<double>();
 
         [BindProperty(SupportsGet = true)]
@@ -42,11 +45,12 @@ namespace Project_DB.Pages
         public int result2 { get; set; }
 
         [BindProperty(SupportsGet = true)]
-        public int discount2 { get; set; }
+        public double total2 { get; set; }
 
-
-        public void OnGet()
+        public IActionResult OnGet()
         {
+
+
             var userId = HttpContext.Session.GetInt32("UserId");
             //Console.WriteLine(userId);
 
@@ -65,7 +69,8 @@ namespace Project_DB.Pages
                 string queryselect_address = $"select  city + '-' + street AS address from Userr , Customer where customer_id = ID and customer_id = {userId.Value}";
                 string queryselect_appartement = $"select  apartment_number from Userr , Customer where customer_id = ID and customer_id = {userId.Value}";
                 string queryselect_phone = $"select Phone_Number from Userr , Customer where customer_id = ID and customer_id = {userId.Value}";
-
+                string querycount_invoice = "SELECT COUNT(*) FROM Invoices";
+                
 
                 SqlCommand cmd_Menu = new SqlCommand(query_Menu, con);
                 SqlCommand cmd_Count = new SqlCommand(query_count, con);
@@ -74,10 +79,10 @@ namespace Project_DB.Pages
                 SqlCommand cmdcselect_address = new SqlCommand(queryselect_address, con);
                 SqlCommand cmdcselect_appartement = new SqlCommand(queryselect_appartement, con);
                 SqlCommand cmdcselect_phone = new SqlCommand(queryselect_phone, con);
+                SqlCommand cmdcount_invoice = new SqlCommand(querycount_invoice, con);
 
 
 
-                
                 SqlDataReader reader = cmd_Menu.ExecuteReader();
                 while (reader.Read())
                 {
@@ -92,6 +97,10 @@ namespace Project_DB.Pages
                 appartement = (int)cmdcselect_appartement.ExecuteScalar();
                 phone = (string)cmdcselect_phone.ExecuteScalar();
                 Mealcount = (int)cmdcnum.ExecuteScalar();
+                result2 = (int)cmdcount_invoice.ExecuteScalar() + 1;
+
+              
+
             }
             catch (SqlException ex)
             {
@@ -99,66 +108,9 @@ namespace Project_DB.Pages
             }
             finally
             {
-                if (total_price == 0)
-                {
-                    shiping = 0;
-                }
-                else
-                {
-                    shiping = 2.99;
-                    total_price = total_price + shiping;
-                }
-                total = total_price * (100-discount2) /100;
                 con.Close();
             }
 
-            SqlConnection con2 = new SqlConnection(connectionString);
-
-            string deleteQuery = "DELETE FROM Cart";
-            string querycount_order = "SELECT COUNT(*) FROM Orders";
-            string querycount_invoice = "SELECT COUNT(*) FROM Invoices";
-            string query_order_add = "INSERT INTO [dbo].[Orders] ([order_id], [payment_type], [order_status], [customer_id],[cooking_status]) VALUES (@order_id, 'Cash', 'Not Delivered', @customer_id,@cooking_status)";
-            string query_invoice_add = "INSERT INTO [dbo].[Invoices]([invoice_id],[order_id],[total_price])VALUES(@invoiceid,@order_id2,@total_price2)";
-
-            try
-            {
-                con2.Open();
-
-                SqlCommand deleteCmd = new SqlCommand(deleteQuery, con2);
-                SqlCommand cmdcount_order = new SqlCommand(querycount_order, con2);
-                int result = (int)cmdcount_order.ExecuteScalar();
-                SqlCommand cmdcount_invoice = new SqlCommand(querycount_invoice, con2);
-                result2 = (int)cmdcount_invoice.ExecuteScalar() + 1;
-                SqlCommand insertCommand = new SqlCommand(query_order_add, con2);
-                SqlCommand insertCommandinvoice = new SqlCommand(query_invoice_add, con2);
-
-                insertCommand.Parameters.AddWithValue("@order_id", result +1);
-                //insertCommand.Parameters.AddWithValue("@payment_type", "Cash");
-                insertCommand.Parameters.AddWithValue("@customer_id", userId.Value);  //userId
-                insertCommand.Parameters.AddWithValue("@cooking_status", "Waiting");
-                insertCommand.ExecuteNonQuery();
-
-                insertCommandinvoice.Parameters.AddWithValue("@invoiceid", result2);
-                insertCommandinvoice.Parameters.AddWithValue("@order_id2", result + 1);
-                insertCommandinvoice.Parameters.AddWithValue("@total_price2", total);
-                insertCommandinvoice.ExecuteNonQuery();
-                deleteCmd.ExecuteNonQuery();
-            }
-            catch (SqlException ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
-            finally
-            {
-                if (con2.State == ConnectionState.Open)
-                {
-                    con2.Close();
-                }
-            }
-        }
-        public IActionResult OnPost()
-        {
-            var userId = HttpContext.Session.GetInt32("UserId");
             ChromePdfRenderer renderer = new ChromePdfRenderer();
             // Render Razor Page to PDF document
             PdfDocument pdf = renderer.RenderRazorToPdf(this);
@@ -170,6 +122,4 @@ namespace Project_DB.Pages
         }
 
     }
-
-    
 }
