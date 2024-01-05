@@ -224,8 +224,8 @@
                                                         <td>@Model.deliveryinfo.city To @order.destination</td>
                                                         <td>
 
-                                                            <button type="submit" asp-page-handler="Accept" asp-page="/DeliveryProfile"  asp-route-id="@order.order_id" class="btn btn_add_to_cart btn-danger btn-sm">Accept</button>
-                                                            <button type="submit" asp-page-handler="Reject" class="btn btn_add_to_cart btn-danger btn-sm">Reject</button>
+                                                            <button type="submit" class="btn btn_add_to_cart btn-danger btn-sm"><a class="btn btn-danger btn-sm" href="/Shared/Accepted?delivery_id=@Model.ID2&&order_id=@order.order_id">Accept</a></button>
+                                                            <button type="submit" class="btn btn_add_to_cart btn-danger btn-sm"><a class="btn btn-danger btn-sm" href="/Shared/Rejected?delivery_id=@Model.ID2&&order_id=@order.order_id">Reject</a></button>
                                                             
                                                         </td>
                                                     </tr>

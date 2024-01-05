@@ -14,7 +14,7 @@ namespace Project_DB.Pages
         public Driver deliveryinfo { get; set; }
         public List<Orders> orders { get; set; } = new List<Orders>();
         public int order_id { get; set; }
-        public void OnGet()
+        public void OnGet(int ID2)
         {
             var userId = HttpContext.Session.GetInt32("UserId");
             if (userId != null)
@@ -24,8 +24,8 @@ namespace Project_DB.Pages
             }
             try
             {
-                //string connectionString = "Data Source =Tamer; Initial Catalog = Project 2.0; Integrated Security = True";
-                string connectionString = "Data Source =LAPTOP-8L98OTBR; Initial Catalog = Project 2.0; Integrated Security = True";
+                string connectionString = "Data Source =Tamer; Initial Catalog = Project 2.0; Integrated Security = True";
+                //string connectionString = "Data Source =LAPTOP-8L98OTBR; Initial Catalog = Project 2.0; Integrated Security = True";
 
                 //deliveryinfo.Id = ID2;
                 using (SqlConnection con = new SqlConnection(connectionString))
@@ -57,8 +57,8 @@ namespace Project_DB.Pages
             }
             try
             {
-                //string connection = "Data Source =Tamer; Initial Catalog = Project 2.0; Integrated Security = True";
-                string connection = "Data Source =LAPTOP-8L98OTBR; Initial Catalog = Project 2.0; Integrated Security = True";
+                string connection = "Data Source =Tamer; Initial Catalog = Project 2.0; Integrated Security = True";
+                //string connection = "Data Source =LAPTOP-8L98OTBR; Initial Catalog = Project 2.0; Integrated Security = True";
 
                 using (SqlConnection conn = new SqlConnection(connection))
                 {
@@ -86,8 +86,8 @@ namespace Project_DB.Pages
             catch (Exception ex) { Console.WriteLine(ex.ToString()); }
             try
             {
-                //string connection = "Data Source =Tamer; Initial Catalog = Project 2.0; Integrated Security = True";
-                string connection = "Data Source =LAPTOP-8L98OTBR; Initial Catalog = Project 2.0; Integrated Security = True";
+                string connection = "Data Source =Tamer; Initial Catalog = Project 2.0; Integrated Security = True";
+                //string connection = "Data Source =LAPTOP-8L98OTBR; Initial Catalog = Project 2.0; Integrated Security = True";
 
                 using (SqlConnection con = new SqlConnection(connection))
                 {
@@ -109,28 +109,7 @@ namespace Project_DB.Pages
             }
             catch (Exception ex) { Console.WriteLine(ex.ToString()); }
         }
-        public IActionResult OnPostAccept(string id)
-        {
-            string connection = "Data Source =Tamer; Initial Catalog = Project 2.0; Integrated Security = True";
-            order_id = Convert.ToInt32(id);
-            try
-            {
-                using (SqlConnection con = new SqlConnection(connection))
-                {
-                    con.Open();
-                    string query = "update Orders set cooking_status = 'Done' where order_id = @orderID";
-                    using (SqlCommand cmd = new SqlCommand(query, con))
-                    {
-                        cmd.Parameters.AddWithValue("@orderID", order_id);
-                        cmd.ExecuteNonQuery();
-                        Console.WriteLine("executed");
-                    }
-                }
-            }
-            catch (Exception e) { Console.WriteLine(e.ToString()); }
-            Console.WriteLine("done");
-            return RedirectToPage("/Accepted");
-        }
+       
         public void OnPostReject()
         {
             Console.WriteLine("Method reject worked");
