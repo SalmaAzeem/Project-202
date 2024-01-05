@@ -94,6 +94,24 @@
         }
     </style>
 </head>
+<header id="header" class="header fixed-top d-flex align-items-center">
+    <div class="container d-flex align-items-center justify-content-between">
+
+        <a class="nav-link text-dark" asp-area="" asp-page="/DeliveryProfile">
+            <h1>Set Elkol</h1>
+        </a>
+
+        <nav id="navbar" class="navbar">
+ 
+        </nav><!-- .navbar -->
+
+
+        <div class="btn-group" role="group" aria-label="Basic outlined example">
+            <a class="btn btn-danger" asp-area="" asp-page="/Index">Log Out</a>
+        </div>
+
+    </div>
+</header>
 <body>
     <br />
     <br />
@@ -121,8 +139,10 @@
                             <div class="d-flex flex-column align-items-center text-center">
                                 <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Admin" class="rounded-circle" width="150">
                                 <div class="mt-3">
-                                    @* <h4>@Model.deliveryinfo.UserName</h4> *@
+                                     <h4>@Model.deliveryinfo.UserName</h4> 
                                     <p class="text-secondary mb-1">Delivery</p>
+                                     <button type="submit" class="btn btn_add_to_cart btn-danger"><a class="btn btn-danger btn-sm" href="/Shared/Password?ID3=@Model.deliveryinfo.Id&&type='Driver'">Change Password</a></button>
+
                                 </div>
                             </div>
                         </div>

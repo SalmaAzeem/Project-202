@@ -11,6 +11,28 @@
         margin: auto;
     }
 </style>
+
+<header id="header" class="header fixed-top d-flex align-items-center">
+    <div class="container d-flex align-items-center justify-content-between">
+
+        <a class="nav-link text-dark" asp-area="" asp-page="/Index">
+            <h1>Set Elkol</h1>
+        </a>
+
+        <nav id="navbar" class="navbar">
+            <ul>
+
+            </ul>
+        </nav><!-- .navbar -->
+
+        <div class="btn-group" role="group" aria-label="Basic outlined example">
+            <a class="btn btn-danger" asp-area="" asp-page="/signin">Sign In</a>
+            <a class="btn btn-danger" asp-area="" asp-page="/signup">Sign Up</a>
+
+        </div>
+
+    </div>
+</header>
 <section id="hero" class="hero d-flex align-items-center section-bg">
     <div class="container">
         <div class="row justify-content-between gy-5">
@@ -18,7 +40,7 @@
                 <h2 data-aos="fade-up">Enjoy Our Healthy<br>Delicious<span> Set ELkol</span> Food</h2>
                 <p data-aos="fade-up" data-aos-delay="100">We provide a diverse range of homemade dishes crafted by skilled Egyptian chefs and deliver them to any location across Egypt.</p>
                 <div class="d-flex" data-aos="fade-up" data-aos-delay="200">
-                    <a href="#book-a-table" class="btn-book-a-table">Order Now</a>
+                    <a class="btn btn-danger" asp-area="" asp-page="/signin">Order now</a>
                 </div>
             </div>
             <div class="col-lg-5 order-1 order-lg-2 text-center text-lg-start">

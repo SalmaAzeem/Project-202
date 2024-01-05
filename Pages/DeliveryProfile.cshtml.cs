@@ -15,9 +15,17 @@ namespace Project_DB.Pages
         public List<Orders> orders { get; set; } = new List<Orders>();
         public void OnGet()
         {
+            var userId = HttpContext.Session.GetInt32("UserId");
+            if (userId != null)
+            {
+                ID2 = userId.Value;
+
+            }
             try
             {
-                string connectionString = "Data Source =Tamer; Initial Catalog = Project 2.0; Integrated Security = True";
+                //string connectionString = "Data Source =Tamer; Initial Catalog = Project 2.0; Integrated Security = True";
+                string connectionString = "Data Source =LAPTOP-8L98OTBR; Initial Catalog = Project 2.0; Integrated Security = True";
+
                 //deliveryinfo.Id = ID2;
                 using (SqlConnection con = new SqlConnection(connectionString))
                 {
@@ -48,7 +56,9 @@ namespace Project_DB.Pages
             }
             try
             {
-                string connection = "Data Source =Tamer; Initial Catalog = Project 2.0; Integrated Security = True";
+                //string connection = "Data Source =Tamer; Initial Catalog = Project 2.0; Integrated Security = True";
+                string connection= "Data Source =LAPTOP-8L98OTBR; Initial Catalog = Project 2.0; Integrated Security = True";
+
                 using (SqlConnection conn = new SqlConnection(connection))
                 {
                     conn.Open();
@@ -75,7 +85,9 @@ namespace Project_DB.Pages
             catch (Exception ex) { Console.WriteLine(ex.ToString()); }
             try
             {
-                string connection = "Data Source =Tamer; Initial Catalog = Project 2.0; Integrated Security = True";
+                //string connection = "Data Source =Tamer; Initial Catalog = Project 2.0; Integrated Security = True";
+                string connection = "Data Source =LAPTOP-8L98OTBR; Initial Catalog = Project 2.0; Integrated Security = True";
+
                 using (SqlConnection con = new SqlConnection(connection))
                 {
                     con.Open();

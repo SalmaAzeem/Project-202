@@ -29,8 +29,11 @@ namespace Project_DB.Pages
 
         public void OnGet()
         {
+            var userId = HttpContext.Session.GetString("UserId");
+            Console.WriteLine(userId);
 
-            string connectionString = "Data Source=Tamer;Initial Catalog=\"Project 2.0\";Integrated Security=True";
+            //string connectionString = "Data Source=Tamer;Initial Catalog=\"Project 2.0\";Integrated Security=True";
+            string connectionString = "Data Source =LAPTOP-8L98OTBR; Initial Catalog = Project 2.0; Integrated Security = True";
             SqlConnection con = new SqlConnection(connectionString);
             con.Open();
 

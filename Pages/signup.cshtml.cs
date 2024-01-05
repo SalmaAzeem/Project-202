@@ -100,6 +100,7 @@ namespace Project_DB.Pages
                         cmd.Parameters.AddWithValue("@Email", personinfo.Email);
                         cmd.Parameters.AddWithValue("@Phone_Number", personinfo.Phone_Number);
                         cmd.Parameters.AddWithValue("@User_Type", personinfo.User_Type);
+                        HttpContext.Session.SetInt32("UserId", personinfo.Id.Value);
                         cmd.ExecuteNonQuery();
 
                     }

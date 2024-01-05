@@ -22,8 +22,9 @@ namespace Project_DB.Pages
 
             try
             {
-                
-                string connectionString = "Data Source=Tamer;Initial Catalog=\"Project 2.0\";Integrated Security=True";
+
+                //string connectionString = "Data Source=Tamer;Initial Catalog=\"Project 2.0\";Integrated Security=True";
+                string connectionString = "Data Source =LAPTOP-8L98OTBR; Initial Catalog = Project 2.0; Integrated Security = True";
 
 
 
@@ -70,6 +71,7 @@ namespace Project_DB.Pages
                             personinfo.Phone_Number = reader["Phone_Number"].ToString();
                             personinfo.User_Password = reader["User_Password"].ToString();
                             personinfo.UserName = reader["UserName"].ToString();
+                            HttpContext.Session.SetInt32("UserId", personinfo.Id.Value);
 
 
 
