@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Project_DB.Models;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.Design.Serialization;
 using System.Data.SqlClient;
 using System.Runtime;
@@ -11,7 +12,10 @@ namespace Project_DB.Pages
     public class PasswordModel : PageModel
     {
         [BindProperty (SupportsGet =true)]
+        [StringLength(100, MinimumLength = 4, ErrorMessage = "the password should be minimum 4 charaters")]
         public string pass { get; set; }
+        [BindProperty(SupportsGet = true)]
+        public string passconfigeration { get; set; }
         [BindProperty(SupportsGet = true)]
         public int ID3 { get; set; }
 
@@ -53,44 +57,67 @@ namespace Project_DB.Pages
         {
             var userId = HttpContext.Session.GetInt32("UserId");
             if (userId != null) { ID3 = userId.Value; }
-            Console.WriteLine($"Type: {type}");
-            try
+            if (!ModelState.IsValid)
             {
-                string connectionString = "Data Source =LAPTOP-8L98OTBR; Initial Catalog = Project 2.0; Integrated Security = True";
-                using (SqlConnection con = new SqlConnection(connectionString))
+                foreach (var modelState in ModelState.Values)
                 {
-                    con.Open();
-                    String q = "UPDATE Userr" +
-                        " SET User_Password = @pass" +
-                        " WHERE ID=@ID";
-
-                    using (SqlCommand cmd = new SqlCommand(q, con))
+                    foreach (var error in modelState.Errors)
                     {
-                        cmd.Parameters.AddWithValue("@pass", pass);
-                        cmd.Parameters.AddWithValue("@ID", ID3);
-
-
-                        cmd.ExecuteNonQuery();
-
+                        TempData["ErrorMessage"] = error.ErrorMessage;
+                        Console.WriteLine($"Model error: {error.ErrorMessage}");
                     }
                 }
+                return Page();
             }
-            catch (Exception ex)
+            if (pass != passconfigeration)
             {
-                Console.WriteLine(ex.ToString());
-            }
-            if(type == "\'Cooker\'")
-            {
-                return RedirectToPage("/CookerProfile", new { ID2 = ID3 } );
-            }
-            else if(type == "\'Driver\'")
-            {
-                return RedirectToPage("/DeliveryProfile", new { ID2 = ID3 });
+                TempData["ErrorMessage"] = "The Passwords does not match.";
+                //Console.WriteLine($"Model error: {TempData["ErrorMessage"]}");
+                return Page();
             }
             else
             {
-                return RedirectToPage("/Profile", new { ID2 = ID3 });
+
+                //Console.WriteLine($"Type: {type}");
+                try
+                {
+                    string connectionString = "Data Source =LAPTOP-8L98OTBR; Initial Catalog = Project 2.0; Integrated Security = True";
+                    using (SqlConnection con = new SqlConnection(connectionString))
+                    {
+                        con.Open();
+                        String q = "UPDATE Userr" +
+                            " SET User_Password = @pass" +
+                            " WHERE ID=@ID";
+
+                        using (SqlCommand cmd = new SqlCommand(q, con))
+                        {
+                            cmd.Parameters.AddWithValue("@pass", pass);
+                            cmd.Parameters.AddWithValue("@ID", ID3);
+
+
+                            cmd.ExecuteNonQuery();
+
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.ToString());
+                }
+                if(type == "\'Cooker\'")
+                {
+                    return RedirectToPage("/CookerProfile", new { ID2 = ID3 } );
+                }
+                else if(type == "\'Driver\'")
+                {
+                    return RedirectToPage("/DeliveryProfile", new { ID2 = ID3 });
+                }
+                else
+                {
+                    return RedirectToPage("/Profile", new { ID2 = ID3 });
+                }
             }
+            
         }
     }
 }
