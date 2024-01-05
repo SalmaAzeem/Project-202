@@ -158,15 +158,7 @@ namespace Project_DB.Pages
         }
         public IActionResult OnPost()
         {
-            var userId = HttpContext.Session.GetInt32("UserId");
-            ChromePdfRenderer renderer = new ChromePdfRenderer();
-            // Render Razor Page to PDF document
-            PdfDocument pdf = renderer.RenderRazorToPdf(this);
-
-            return File(pdf.BinaryData, "application/pdf", $"{userId.Value} Invoice{result2}.pdf");
-
-            // View output PDF on broswer
-            return File(pdf.BinaryData, "application/pdf");
+            return RedirectToPage("/Print");
         }
 
     }
