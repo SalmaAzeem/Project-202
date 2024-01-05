@@ -16,9 +16,17 @@ namespace Project_DB.Pages
         public int order_id { get; set; }
         public void OnGet()
         {
+            var userId = HttpContext.Session.GetInt32("UserId");
+            if (userId != null)
+            {
+                ID2 = userId.Value;
+
+            }
             try
             {
-                string connectionString = "Data Source =Tamer; Initial Catalog = Project 2.0; Integrated Security = True";
+                //string connectionString = "Data Source =Tamer; Initial Catalog = Project 2.0; Integrated Security = True";
+                string connectionString = "Data Source =LAPTOP-8L98OTBR; Initial Catalog = Project 2.0; Integrated Security = True";
+
                 //deliveryinfo.Id = ID2;
                 using (SqlConnection con = new SqlConnection(connectionString))
                 {
@@ -49,7 +57,9 @@ namespace Project_DB.Pages
             }
             try
             {
-                string connection = "Data Source =Tamer; Initial Catalog = Project 2.0; Integrated Security = True";
+                //string connection = "Data Source =Tamer; Initial Catalog = Project 2.0; Integrated Security = True";
+                string connection = "Data Source =LAPTOP-8L98OTBR; Initial Catalog = Project 2.0; Integrated Security = True";
+
                 using (SqlConnection conn = new SqlConnection(connection))
                 {
                     conn.Open();
@@ -76,19 +86,21 @@ namespace Project_DB.Pages
             catch (Exception ex) { Console.WriteLine(ex.ToString()); }
             try
             {
-                string connection = "Data Source =Tamer; Initial Catalog = Project 2.0; Integrated Security = True";
+                //string connection = "Data Source =Tamer; Initial Catalog = Project 2.0; Integrated Security = True";
+                string connection = "Data Source =LAPTOP-8L98OTBR; Initial Catalog = Project 2.0; Integrated Security = True";
+
                 using (SqlConnection con = new SqlConnection(connection))
                 {
                     con.Open();
                     string query_get_orders = "select Destination, city from Orders as o inner join Delivery as d on o.delivery_id = d.delivery_id where d.delivery_id = @Id and Destination is not null ";
-                    using (SqlCommand cmd = new SqlCommand (query_get_orders, con))
+                    using (SqlCommand cmd = new SqlCommand(query_get_orders, con))
                     {
                         cmd.Parameters.AddWithValue("@Id", ID2);
-                        using (SqlDataReader reader = cmd.ExecuteReader ())
+                        using (SqlDataReader reader = cmd.ExecuteReader())
                         {
                             if (reader.Read())
                             {
-                                
+
                                 deliveryinfo.city = reader["city"].ToString();
                             }
                         }
