@@ -13,7 +13,8 @@ namespace Project_DB.Pages
         public int ID2 { get; set; }
         public Driver deliveryinfo { get; set; }
         public List<Orders> orders { get; set; } = new List<Orders>();
-        public void OnGet()
+        public int order_id { get; set; }
+        public void OnGet(int ID2)
         {
             var userId = HttpContext.Session.GetInt32("UserId");
             if (userId != null)
@@ -23,8 +24,8 @@ namespace Project_DB.Pages
             }
             try
             {
-                //string connectionString = "Data Source =Tamer; Initial Catalog = Project 2.0; Integrated Security = True";
-                string connectionString = "Data Source =LAPTOP-8L98OTBR; Initial Catalog = Project 2.0; Integrated Security = True";
+                string connectionString = "Data Source =Tamer; Initial Catalog = Project 2.0; Integrated Security = True";
+                //string connectionString = "Data Source =LAPTOP-8L98OTBR; Initial Catalog = Project 2.0; Integrated Security = True";
 
                 //deliveryinfo.Id = ID2;
                 using (SqlConnection con = new SqlConnection(connectionString))
@@ -56,13 +57,13 @@ namespace Project_DB.Pages
             }
             try
             {
-                //string connection = "Data Source =Tamer; Initial Catalog = Project 2.0; Integrated Security = True";
-                string connection = "Data Source =LAPTOP-8L98OTBR; Initial Catalog = Project 2.0; Integrated Security = True";
+                string connection = "Data Source =Tamer; Initial Catalog = Project 2.0; Integrated Security = True";
+                //string connection = "Data Source =LAPTOP-8L98OTBR; Initial Catalog = Project 2.0; Integrated Security = True";
 
                 using (SqlConnection conn = new SqlConnection(connection))
                 {
                     conn.Open();
-                    string query_all_orders = "select * from Orders where delivery_id = @Id";
+                    string query_all_orders = "select * from Orders where delivery_id = @Id and cooking_status = 'Pending'";
                     using (SqlCommand cmd = new SqlCommand(query_all_orders, conn))
                     {
                         cmd.Parameters.AddWithValue("@Id", ID2);
@@ -85,8 +86,8 @@ namespace Project_DB.Pages
             catch (Exception ex) { Console.WriteLine(ex.ToString()); }
             try
             {
-                //string connection = "Data Source =Tamer; Initial Catalog = Project 2.0; Integrated Security = True";
-                string connection = "Data Source =LAPTOP-8L98OTBR; Initial Catalog = Project 2.0; Integrated Security = True";
+                string connection = "Data Source =Tamer; Initial Catalog = Project 2.0; Integrated Security = True";
+                //string connection = "Data Source =LAPTOP-8L98OTBR; Initial Catalog = Project 2.0; Integrated Security = True";
 
                 using (SqlConnection con = new SqlConnection(connection))
                 {
@@ -107,6 +108,11 @@ namespace Project_DB.Pages
                 }
             }
             catch (Exception ex) { Console.WriteLine(ex.ToString()); }
+        }
+       
+        public void OnPostReject()
+        {
+            Console.WriteLine("Method reject worked");
         }
     }
 }
