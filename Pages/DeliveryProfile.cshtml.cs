@@ -100,7 +100,7 @@ namespace Project_DB.Pages
                         {
                             if (reader.Read())
                             {
-
+            
                                 deliveryinfo.city = reader["city"].ToString();
                             }
                         }
