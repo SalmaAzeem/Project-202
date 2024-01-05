@@ -18,7 +18,9 @@ namespace Project_DB.Pages
         public List<byte[]> Images { get; set; } = new List<byte[]>();
         public void OnGet()
         {
-            string connection = "Data Source=Tamer;Initial Catalog=\"Project 2.0\";Integrated Security=True";
+            //string connection = "Data Source=Tamer;Initial Catalog=\"Project 2.0\";Integrated Security=True";
+            string connection = "Data Source =LAPTOP-8L98OTBR; Initial Catalog = Project 2.0; Integrated Security = True";
+
             using (SqlConnection conn = new SqlConnection(connection))
             {
                 try
@@ -88,7 +90,9 @@ namespace Project_DB.Pages
         }
         public async Task<IActionResult> OnGetImagesAsync()
         {
-            string connection = "Data Source=Tamer;Initial Catalog=\"Project 2.0\";Integrated Security=True";
+            //string connection = "Data Source=Tamer;Initial Catalog=\"Project 2.0\";Integrated Security=True";
+            string connection = "Data Source =LAPTOP-8L98OTBR; Initial Catalog = Project 2.0; Integrated Security = True";
+
             using (SqlConnection con =  new SqlConnection(connection))
             {
                 await con.OpenAsync();

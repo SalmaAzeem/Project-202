@@ -19,19 +19,21 @@ namespace Project_DB.Pages
         {
             try
             {
-                string connectionString = "Data Source =LAPTOP-8L98OTBR; Initial Catalog = Project 2.0; Integrated Security = True";
+                string connectionString = "Data Source =Tamer; Initial Catalog = Project 2.0; Integrated Security = True";
 
                 using (SqlConnection con = new SqlConnection(connectionString))
                 {
                     con.Open();
+                    string q = "UPDATE Orders" +
+                        " SET cooking_status='Pending'" +
+                        " WHERE order_id=@ID";
+
                     string selection = "SELECT o.order_id, c.meal_id, m.Meal_Name " +
                                         "FROM Orders AS o, Participate_In_Meals AS p, Cooks_Meal AS c, Meals AS m " +
                                         "WHERE o.order_id = p.order_id AND c.meal_id = p.meal_id AND c.meal_id = m.meal_id " +
-                                        "AND o.order_status = 'Not Delivered' AND c.Cooker_id = @ID and ";
+                                        "AND o.order_status = 'Not Delivered' AND c.Cooker_id = @ID and cooking_status = 'Pending' ";
 
-                    String q = "UPDATE Orders" +
-                        " SET cooking_status='Pending'" +
-                        " WHERE order_id=@ID";
+                    
 
                     using (SqlCommand cmd = new SqlCommand(q, con))
                     {

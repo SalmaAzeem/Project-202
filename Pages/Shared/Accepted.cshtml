@@ -1,5 +1,5 @@
 ﻿@page
-@model Project_DB.Pages.BendingcshtmlModel
+@model Project_DB.Pages.Shared.AcceptedModel
 @{
 }
 
@@ -72,19 +72,15 @@
         </tr>
     </thead>
     <tbody>
-        @foreach (var client in Model.orderlist)
+        @foreach (var order in Model.orders)
         {
             <tr>
-                <td>@client.meal_Name</td>
+                <td>@order.destination</td>
                 <td>
-                    <button type="submit" class="btn btn-add-to-cart"><a href="/Shared/Done?cooker_id=@client.cooker_Id&&order_id=@client.order_Id">Done</a></button>
+                    <button type="submit" class="btn"><a href="/DeliveryProfile?ID2=@Model.delivery_id">Done</a></button>
                 </td>
             </tr>
         }
-
-        <tr>
-            <td colspan="2" style="text-align: center;">No More Requests😊😊</td>
-        </tr>
     </tbody>
 </table>
 </body>
