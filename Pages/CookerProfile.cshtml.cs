@@ -30,7 +30,8 @@ namespace Project_DB.Pages
             //Console.WriteLine($"22222222222222220{userId}");
             try
             {
-                string connectionString = "Data Source =LAPTOP-8L98OTBR; Initial Catalog = Project 2.0; Integrated Security = True";
+                //string connectionString = "Data Source =LAPTOP-8L98OTBR; Initial Catalog = Project 2.0; Integrated Security = True";
+                string connectionString = "Data Source =Tamer; Initial Catalog = Project 2.0; Integrated Security = True";
                 //ID2 = userId;
 
                 using (SqlConnection con = new SqlConnection(connectionString))

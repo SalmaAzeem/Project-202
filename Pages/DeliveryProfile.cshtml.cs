@@ -13,6 +13,7 @@ namespace Project_DB.Pages
         public int ID2 { get; set; }
         public Driver deliveryinfo { get; set; }
         public List<Orders> orders { get; set; } = new List<Orders>();
+        public int order_id { get; set; }
         public void OnGet()
         {
             try
@@ -52,7 +53,7 @@ namespace Project_DB.Pages
                 using (SqlConnection conn = new SqlConnection(connection))
                 {
                     conn.Open();
-                    string query_all_orders = "select * from Orders where delivery_id = @Id";
+                    string query_all_orders = "select * from Orders where delivery_id = @Id and cooking_status = 'Pending'";
                     using (SqlCommand cmd = new SqlCommand(query_all_orders, conn))
                     {
                         cmd.Parameters.AddWithValue("@Id", ID2);
@@ -95,6 +96,32 @@ namespace Project_DB.Pages
                 }
             }
             catch (Exception ex) { Console.WriteLine(ex.ToString()); }
+        }
+        public IActionResult OnPostAccept(string id)
+        {
+            string connection = "Data Source =Tamer; Initial Catalog = Project 2.0; Integrated Security = True";
+            order_id = Convert.ToInt32(id);
+            try
+            {
+                using (SqlConnection con = new SqlConnection(connection))
+                {
+                    con.Open();
+                    string query = "update Orders set cooking_status = 'Done' where order_id = @orderID";
+                    using (SqlCommand cmd = new SqlCommand(query, con))
+                    {
+                        cmd.Parameters.AddWithValue("@orderID", order_id);
+                        cmd.ExecuteNonQuery();
+                        Console.WriteLine("executed");
+                    }
+                }
+            }
+            catch (Exception e) { Console.WriteLine(e.ToString()); }
+            Console.WriteLine("done");
+            return RedirectToPage("/Accepted");
+        }
+        public void OnPostReject()
+        {
+            Console.WriteLine("Method reject worked");
         }
     }
 }
