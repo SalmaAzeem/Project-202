@@ -70,6 +70,7 @@ namespace Project_DB.Pages
                             personinfo.Phone_Number = reader["Phone_Number"].ToString();
                             personinfo.User_Password = reader["User_Password"].ToString();
                             personinfo.UserName = reader["UserName"].ToString();
+                            HttpContext.Session.SetInt32("UserId", personinfo.Id.Value);
 
 
 

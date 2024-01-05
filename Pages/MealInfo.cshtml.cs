@@ -16,7 +16,9 @@ namespace Project_DB.Pages
     {
         [BindProperty(SupportsGet = true)]
         public string id_minishop { get; set; }
+        public List<string> ids_cart = new List<string>();
         [BindProperty(SupportsGet = true)]
+
         public string Minishop_name { get; set; }
         [BindProperty(SupportsGet = true)]
         public double Minishop_price { get; set; }
@@ -136,6 +138,101 @@ namespace Project_DB.Pages
 
 
 
+        //[ValidateAntiForgeryToken]
+        //public IActionResult OnPostUpdate()
+        //{
+        //    id_minishop = Request.Form["id_minishop"];
+        //    Minishop_identifier = Request.Form["Minishop_identifier"];
+        //    Minishop_name = Request.Form["Minishop_name"];
+        //    flag = Convert.ToInt32(Request.Form["flag"]);
+        //    Minishop_price = Convert.ToDouble(Request.Form["Minishop_price"]);
+
+        //    Console.WriteLine(id_minishop);
+        //    Console.WriteLine(Minishop_name);
+        //    Console.WriteLine(Minishop_price);
+        //    Console.WriteLine(flag);
+
+        //    string connectionString = "Data Source=Doha-PC;Initial Catalog=\"Project 2.0\";Integrated Security=True";
+
+        //    using (SqlConnection con = new SqlConnection(connectionString))
+        //    {
+        //        con.Open();
+
+        //        string query_minishop = "select Food_cans, prices from MiniShop where minishop_id = @minishop_id";
+        //        string query_menu = "select Meal_Name, price from Meals where meal_id = @minishop_id";
+
+        //        try
+        //        {
+        //            if (Minishop_identifier == "Menu")
+        //            {
+        //                flag = 0;
+        //                SqlCommand query_minishop_Command = new SqlCommand(query_menu, con);
+        //                query_minishop_Command.Parameters.AddWithValue("@minishop_id", id_minishop);
+        //                SqlDataReader reader = query_minishop_Command.ExecuteReader();
+        //                while (reader.Read())
+        //                {
+        //                    if (reader[0].ToString() != null && reader[1].ToString() != null)
+        //                    {
+        //                        Minishop_name = reader[0].ToString();
+        //                        Minishop_price = Convert.ToDouble(reader[1]);
+        //                    }
+        //                }
+        //                reader.Close();
+        //            }
+        //            else if (Minishop_identifier == "MiniShop")
+        //            {
+        //                flag = 1;
+        //                SqlCommand query_minishop_Command = new SqlCommand(query_minishop, con);
+        //                query_minishop_Command.Parameters.AddWithValue("@minishop_id", id_minishop);
+        //                SqlDataReader reader = query_minishop_Command.ExecuteReader();
+        //                while (reader.Read())
+        //                {
+        //                    if (reader[0].ToString() != null && reader[1].ToString() != null)
+        //                    {
+        //                        Minishop_name = reader[0].ToString();
+        //                        Minishop_price = Convert.ToDouble(reader[1]);
+        //                    }
+        //                }
+        //                reader.Close();
+        //            }
+
+        //            // Fetch image asynchronously
+        //            FetchImageFromDatabaseAsync(id_minishop, con, Minishop_identifier == "Menu" ? query5 : query4).Wait(); // Wait for completion
+
+        //            string query_cart = "INSERT INTO [dbo].[Cart]([item_ID],[item_name],[flag],[item_price],[item_image]) VALUES(@id_minishop, @Minishop_name,@flag, @Minishop_price, @ImageData)";
+        //            SqlCommand insertCommand = new SqlCommand(query_cart, con);
+        //            if (ids_cart.Contains(id_minishop))
+        //            {
+
+        //            }
+        //            insertCommand.Parameters.AddWithValue("@id_minishop", id_minishop);
+        //            insertCommand.Parameters.AddWithValue("@Minishop_name", Minishop_name);
+        //            insertCommand.Parameters.AddWithValue("@flag", flag);
+        //            insertCommand.Parameters.AddWithValue("@Minishop_price", Minishop_price);
+
+
+        //            if (data != null)
+        //            {
+
+        //                Console.WriteLine("Not Null Image");
+        //                Console.WriteLine($"Data Size: {data.Length} bytes");
+        //                insertCommand.Parameters.Add("@ImageData", SqlDbType.VarBinary).Value = data;
+        //            }
+
+        //            insertCommand.ExecuteNonQuery();
+        //        }
+        //        catch (SqlException ex)
+        //        {
+        //            Console.WriteLine(ex.ToString());
+        //        }
+        //        finally
+        //        {
+        //            con.Close();
+        //        }
+        //    }
+
+        //    return RedirectToPage("/MealInfo", new { id = id_minishop, identifier = Minishop_identifier });
+        //}
         [ValidateAntiForgeryToken]
         public IActionResult OnPostUpdate()
         {
@@ -152,82 +249,64 @@ namespace Project_DB.Pages
 
             string connectionString = "Data Source=Doha-PC;Initial Catalog=\"Project 2.0\";Integrated Security=True";
 
-            using (SqlConnection con = new SqlConnection(connectionString))
+            try
             {
-                con.Open();
-
-                string query_minishop = "select Food_cans, prices from MiniShop where minishop_id = @minishop_id";
-                string query_menu = "select Meal_Name, price from Meals where meal_id = @minishop_id";
-
-                try
+                using (SqlConnection con = new SqlConnection(connectionString))
                 {
-                    if (Minishop_identifier == "Menu")
-                    {
-                        flag = 0;
-                        SqlCommand query_minishop_Command = new SqlCommand(query_menu, con);
-                        query_minishop_Command.Parameters.AddWithValue("@minishop_id", id_minishop);
-                        SqlDataReader reader = query_minishop_Command.ExecuteReader();
-                        while (reader.Read())
-                        {
-                            if (reader[0].ToString() != null && reader[1].ToString() != null)
-                            {
-                                Minishop_name = reader[0].ToString();
-                                Minishop_price = Convert.ToDouble(reader[1]);
-                            }
-                        }
-                        reader.Close();
-                    }
-                    else if (Minishop_identifier == "MiniShop")
-                    {
-                        flag = 1;
-                        SqlCommand query_minishop_Command = new SqlCommand(query_minishop, con);
-                        query_minishop_Command.Parameters.AddWithValue("@minishop_id", id_minishop);
-                        SqlDataReader reader = query_minishop_Command.ExecuteReader();
-                        while (reader.Read())
-                        {
-                            if (reader[0].ToString() != null && reader[1].ToString() != null)
-                            {
-                                Minishop_name = reader[0].ToString();
-                                Minishop_price = Convert.ToDouble(reader[1]);
-                            }
-                        }
-                        reader.Close();
-                    }
+                    con.Open();
 
                     // Fetch image asynchronously
                     FetchImageFromDatabaseAsync(id_minishop, con, Minishop_identifier == "Menu" ? query5 : query4).Wait(); // Wait for completion
 
-                    string query_cart = "INSERT INTO [dbo].[Cart]([item_ID],[item_name],[flag],[item_price],[item_image]) VALUES(@id_minishop, @Minishop_name,@flag, @Minishop_price, @ImageData)";
-                    SqlCommand insertCommand = new SqlCommand(query_cart, con);
-                    insertCommand.Parameters.AddWithValue("@id_minishop", id_minishop);
-                    insertCommand.Parameters.AddWithValue("@Minishop_name", Minishop_name);
-                    insertCommand.Parameters.AddWithValue("@flag", flag);
-                    insertCommand.Parameters.AddWithValue("@Minishop_price", Minishop_price);
+                    // Check if the item is already in the cart
+                    bool itemExistsInCart = ids_cart.Contains(id_minishop);
 
-                    if (data != null)
+                    if (itemExistsInCart)
                     {
-                        Console.WriteLine("Not Null Image");
-                        Console.WriteLine($"Data Size: {data.Length} bytes");
-                        insertCommand.Parameters.Add("@ImageData", SqlDbType.VarBinary).Value = data;
+                        Console.WriteLine("Old");
+                        // Update the quantity
+                        string quantity_set = "UPDATE Cart SET quantity = quantity + 1 WHERE item_id = @item_id";
+                        using (SqlCommand quantityCommand = new SqlCommand(quantity_set, con))
+                        {
+                            quantityCommand.Parameters.AddWithValue("@item_id", id_minishop);
+                            quantityCommand.ExecuteNonQuery();
+                        }
                     }
                     else
                     {
-                        Console.WriteLine("Null Image");
+                        Console.WriteLine("New");
+                        // Insert the item into the cart
+                        string query_cart = "INSERT INTO [dbo].[Cart]([item_ID],[item_name],[flag],[item_price],[item_image]) VALUES(@id_minishop, @Minishop_name,@flag, @Minishop_price, @ImageData)";
+                        using (SqlCommand insertCommand = new SqlCommand(query_cart, con))
+                        {
+                            insertCommand.Parameters.AddWithValue("@id_minishop", id_minishop);
+                            insertCommand.Parameters.AddWithValue("@Minishop_name", Minishop_name);
+                            insertCommand.Parameters.AddWithValue("@flag", flag);
+                            insertCommand.Parameters.AddWithValue("@Minishop_price", Minishop_price);
+
+                            if (data != null)
+                            {
+                                Console.WriteLine("Not Null Image");
+                                Console.WriteLine($"Data Size: {data.Length} bytes");
+                                insertCommand.Parameters.Add("@ImageData", SqlDbType.VarBinary).Value = data;
+                            }
+
+                            insertCommand.ExecuteNonQuery();
+
+                            // Add the item ID to the list only if it's a new item
+                            ids_cart.Add(id_minishop);
+                        }
                     }
+                }
 
-                    insertCommand.ExecuteNonQuery();
-                }
-                catch (SqlException ex)
-                {
-                    Console.WriteLine(ex.ToString());
-                }
-                finally
-                {
-                    con.Close();
-                }
+                return RedirectToPage("/MealInfo", new { id = id_minishop, identifier = Minishop_identifier });
             }
-
-            return RedirectToPage("/MealInfo", new { id = id_minishop, identifier = Minishop_identifier });
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+                // Handle the exception appropriately, e.g., display an error message to the user
+                return Page();
+            }
         }
 
 

@@ -207,39 +207,49 @@
             <div class="col-7">
                 <div class="row text-right">
                     <div class="col-4">
-                    <div class="col-4">
-                        <h6 class="mt-2">Price</h6>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        @{for (int i = 0; i < @Model.Mealcount; i++)
-        {
-            <div class="row d-flex justify-content-center border-top">
-
-
-                <div class="col-5">
-                    <div class="row d-flex">
-                        <div class="book">
-                            <img src="/img/menu/menu-item-5.png" class="menu-img img-fluid" alt="">
-                        </div>
-                        <div class="my-auto flex-column d-flex pad-left">
-                            <h6 class="mob-text">@Model.Meal_name[i]</h6>
-                        </div>
-                    </div>
-                </div>
-
-
-                <div class="my-auto col-7">
-                    <div class="row text-right">
                         <div class="col-4">
-                               <h6 class="mob-text">@Model.prices[i]</h6>
+                            <h6 class="mt-2">Price</h6>
                         </div>
                     </div>
                 </div>
             </div>
-        }}
+
+            @for (int i = 0; i < @Model.Mealcount; i++)
+            {
+                await Model.OnGetImagesAsync();
+
+                <form method="get" asp-page-handler="ImagesAsync">
+
+                    @if (Model.Images_cart[i] != null)
+                    {
+                        string base64Image = Convert.ToBase64String(Model.Images_cart[i]);
+
+                        <div class="row d-flex justify-content-center border-top">
+                            <div class="col-5">
+                                <div class="row d-flex">
+                                    <div class="book">
+                                        <img class="menu-img img-fluid circular-image" src="data:image/jpeg;base64,@base64Image" alt="Meal Image" width="500" />
+                                    </div>
+                                    <div class="my-auto flex-column d-flex pad-left">
+                                        <h6 class="mob-text">@Model.Meal_name[i]</h6>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="my-auto col-7">
+                                <div class="row text-right">
+                                    <div class="col-4">
+                                        <h6 class="mob-text">@Model.prices[i]</h6>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                    else
+                    {
+                        <p>No image available.</p>
+                    }
+                </form>
+            }
     
         <div class="row justify-content-center">
             <div class="col-lg-12">
@@ -258,7 +268,7 @@
                                 <p class="mb-1 text-left">Total (tax included)</p>
                                     <h6 class="mb-1 text-right">@Model.total EGP</h6>  
                             </div>
-                            <button class="btn-block btn-blue ">
+                            <button class="btn-block btn-blue">
                             <form method =  "post"> 
                                 <a id="checkout" asp-area="" asp-page="/Payment">Check Out</a>
                              </form>

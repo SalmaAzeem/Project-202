@@ -17,7 +17,8 @@ namespace Project_DB.Pages
         {
             try
             {
-                string connectionString = "Data Source =Tamer; Initial Catalog = Project 2.0; Integrated Security = True";
+                //string connectionString = "Data Source =Tamer; Initial Catalog = Project 2.0; Integrated Security = True";
+                string connectionString = "Data Source=Doha-PC;Initial Catalog=\"Project 2.0\";Integrated Security=True";
                 //deliveryinfo.Id = ID2;
                 using (SqlConnection con = new SqlConnection(connectionString))
                 {
