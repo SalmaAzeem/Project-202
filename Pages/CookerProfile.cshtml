@@ -95,6 +95,26 @@
         }
     </style>
 </head>
+<header id="header" class="header fixed-top d-flex align-items-center">
+    <div class="container d-flex align-items-center justify-content-between">
+
+        <a class="nav-link text-dark" asp-area="" asp-page="/CookerProfile">
+            <h1>Set Elkol</h1>
+        </a>
+
+        <nav id="navbar" class="navbar">
+
+        </nav><!-- .navbar -->
+
+ 
+
+        <div class="btn-group" role="group" aria-label="Basic outlined example">
+            <a class="btn btn-danger" asp-area="" asp-page="/Index">Log Out</a>
+
+        </div>
+
+    </div>
+</header>
 <body>
     <br />
     <br />
@@ -125,6 +145,8 @@
                                     <h4>@Model.cookerinfo.UserName</h4>
                                     <p class="text-secondary mb-1">Cooker</p>
                                     <p class="text-muted font-size-sm">@Model.cookerinfo.city,@Model.cookerinfo.street</p>
+                                    <button type="submit" class="btn btn_add_to_cart btn-danger"><a class="btn btn-danger btn-sm" href="/Shared/Password?ID3=@Model.cookerinfo.Id&&type='Cooker'">Change Password</a></button>
+
                                 </div>
                             </div>
                         </div>
@@ -194,11 +216,40 @@
                                     <h6 class="mb-0">Requested Orders</h6>
                                 </div>
                                 <div class="col-sm-9 font-weight-bold align-self-center">
-                                    <p>Lobia to Madenty</p>
-                                    <div>
-                                        <button type="button" class="btn btn-success">Accept</button>
-                                        <button type="button" class="btn btn-danger">Reject</button>
-                                    </div>
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th>Meal Name</th>
+                                                <th>Actions</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @if (Model.there)
+                                            {
+                                                @foreach (var client in Model.orderlist)
+                                                {
+                                                    <tr>
+                                                        <td>@client.meal_Name</td>
+                                                        <td>
+                                                            <form method= "Post">
+                                                                <button type="submit" class="btn btn_add_to_cart btn-danger"><a class="btn btn-danger btn-sm" href="/Shared/Pending?cooker_id=@client.cooker_Id&&order_id=@client.order_Id">Accept</a></button>
+                                                                <button type="submit" class="btn btn_add_to_cart btn-danger"><a class="btn btn-danger btn-sm" href="/Shared/Delete?order_id=@client.order_Id&ID=@client.cooker_Id">Reject</a></button>
+                                                            </form>
+                                                        </td>
+                                                    </tr>
+                                                }
+                                            }
+                                            
+                                                    <tr>
+                                                        <td>No More Requests😊😊</td>
+                                                        <td>None</td>
+                                                    </tr>
+
+                                                
+
+                                            
+                                        </tbody>
+                                    </table>
                                 </div>
                             </div>
                         </div>

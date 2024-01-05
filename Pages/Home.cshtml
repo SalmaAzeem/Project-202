@@ -2,19 +2,480 @@
 @model Project_DB.Pages.HomeModel
 @{
 }
+
+<style>
+    .image{
+        width: 400px;
+        height: 650px;
+        object-fit: cover;
+        margin: auto;
+    }
+</style>
+
+<header id="header" class="header fixed-top d-flex align-items-center">
+    <div class="container d-flex align-items-center justify-content-between">
+
+        <a class="nav-link text-dark" asp-area="" asp-page="/Home">
+            <h1>Set Elkol</h1>
+        </a>
+
+        <nav id="navbar" class="navbar">
+            <ul>
+                <li class="nav-item">
+                    <a class="nav-link text-dark" asp-area="" asp-page="/Home">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-dark" asp-area="" asp-page="/Cookers">Cookers</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-dark" asp-area="" asp-page="/Menu">Menu</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-dark" asp-area="" asp-page="/Minishop">Mini Shop</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-dark" asp-area="" asp-page="/Contact">Contact Us</a>
+                </li>
+
+            </ul>
+        </nav><!-- .navbar -->
+
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <a class="nav-link text-dark" asp-area="" asp-page="/Cart"><i class="fa fa-shopping-cart" asp-area="" asp-page="/Cart"></i></a>
+
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <a class="nav-link text-dark" asp-area="" asp-page="/Profile"><i class="bi bi-person-fill-gear"></i></a>
+
+        <i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>
+        <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
+
+        <div class="btn-group" role="group" aria-label="Basic outlined example">
+            <a class="btn btn-danger" asp-area="" asp-page="/signin">Log out</a>
+
+        </div>
+
+    </div>
+</header>
 <section id="hero" class="hero d-flex align-items-center section-bg">
     <div class="container">
         <div class="row justify-content-between gy-5">
             <div class="col-lg-5 order-2 order-lg-1 d-flex flex-column justify-content-center align-items-center align-items-lg-start text-center text-lg-start">
-                <h2 data-aos="fade-up">Enjoy Your Healthy<br>Delicious Food</h2>
-                <p data-aos="fade-up" data-aos-delay="100">Sed autem laudantium dolores. Voluptatem itaque ea consequatur eveniet. Eum quas beatae cumque eum quaerat.</p>
+                <h2 data-aos="fade-up">Enjoy Our Healthy<br>Delicious<span> Set ELkol</span> Food</h2>
+                <p data-aos="fade-up" data-aos-delay="100">We provide a diverse range of homemade dishes crafted by skilled Egyptian chefs and deliver them to any location across Egypt.</p>
                 <div class="d-flex" data-aos="fade-up" data-aos-delay="200">
-                    <a href="#book-a-table" class="btn-book-a-table">Order Now</a>
+                    <a class="btn btn-danger" asp-area="" asp-page="/Menu">Order now</a>
                 </div>
             </div>
             <div class="col-lg-5 order-1 order-lg-2 text-center text-lg-start">
-                <img src="~/img/hero-img.png" class="img-fluid" alt="" data-aos="zoom-out" data-aos-delay="300">
+                <img src="~/img/WhatsApp_Image_2023-12-23_at_14.52.20-removebg-preview (1).png" class="img-fluid" alt="" data-aos="zoom-out" data-aos-delay="300">
             </div>
         </div>
     </div>
 </section><!-- End Hero Section -->
+<!-- ======= Stats Counter Section ======= -->
+<section id="stats-counter" class="stats-counter">
+    <div class="container" data-aos="zoom-out">
+
+        <div class="row gy-4">
+
+            <div class="col-lg-3 col-md-6">
+                <div class="stats-item text-center w-100 h-100">
+                    <span data-purecounter-start="0" data-purecounter-end="13" data-purecounter-duration="1" class="purecounter"></span>
+                    <p>Cookers</p>
+                </div>
+            </div><!-- End Stats Item -->
+
+            <div class="col-lg-3 col-md-6">
+                <div class="stats-item text-center w-100 h-100">
+                    <span data-purecounter-start="0" data-purecounter-end="30" data-purecounter-duration="1" class="purecounter"></span>
+                    <p>Meals</p>
+                </div>
+            </div><!-- End Stats Item -->
+
+            <div class="col-lg-3 col-md-6">
+                <div class="stats-item text-center w-100 h-100">
+                    <span data-purecounter-start="0" data-purecounter-end="1453" data-purecounter-duration="1" class="purecounter"></span>
+                    <p>Hours Of Support</p>
+                </div>
+            </div><!-- End Stats Item -->
+
+            <div class="col-lg-3 col-md-6">
+                <div class="stats-item text-center w-100 h-100">
+                    <span data-purecounter-start="0" data-purecounter-end="28" data-purecounter-duration="1" class="purecounter"></span>
+                    <p>Workers</p>
+                </div>
+            </div><!-- End Stats Item -->
+
+        </div>
+
+    </div>
+</section><!-- End Stats Counter Section -->
+<section id="menu" class="menu">
+    <div class="container" data-aos="fade-up">
+
+        <div class="section-header">
+            <h2>Our Menu</h2>
+            <p>Check Our <span>Set ELkol </span>Menu</p>
+        </div>
+
+        <ul class="nav nav-tabs d-flex justify-content-center" data-aos="fade-up" data-aos-delay="200">
+
+            <li class="nav-item">
+                <a class="nav-link active show" data-bs-toggle="tab" data-bs-target="#menu-maincourses">
+                    <h4>Main Courses</h4>
+                </a>
+            </li><!-- End tab nav item -->
+
+            <li class="nav-item">
+                <a class="nav-link" data-bs-toggle="tab" data-bs-target="#menu-breakfast">
+                    <h4>Breakfast</h4>
+                </a><!-- End tab nav item -->
+
+            <li class="nav-item">
+                <a class="nav-link" data-bs-toggle="tab" data-bs-target="#menu-appetizers">
+                    <h4>Appetizers</h4>
+                </a>
+            </li><!-- End tab nav item -->
+
+            <li class="nav-item">
+                <a class="nav-link" data-bs-toggle="tab" data-bs-target="#menu-dessert">
+                    <h4>Dessert</h4>
+                </a>
+            </li><!-- End tab nav item -->
+            <li class="nav-item">
+                <a class="nav-link" data-bs-toggle="tab" data-bs-target="#menu-others">
+                    <h4>Others</h4>
+                </a>
+            </li>
+
+        </ul>
+
+        <div class="tab-content" data-aos="fade-up" data-aos-delay="300">
+
+            <div class="tab-pane fade active show" id="menu-maincourses">
+
+                <div class="tab-header text-center">
+                    <p>Menu</p>
+                    <h3>Main Courses</h3>
+                </div>
+
+                <div class="row gy-5">
+                    @for (int i = 0; i < 3; i++)
+                    {
+                        <div class="col-lg-4 menu-item">
+                            @{
+                                await Model.OnGetImagesAsync("Main");
+                            }
+                            <form method="get" asp-page-handler="ImagesAsync">
+
+                                @if (Model.Images_Main[i] != null)
+                                {
+                                    string base64Image = Convert.ToBase64String(Model.Images_Main[i]);
+                                    <a asp-page="/MealInfo" asp-route-id="@Model.ids_Main_Courses[i]" asp-route-identifier="@Model.identifier">
+
+                                        <img class="menu-img img-fluid circular-image" src="data:image/jpeg;base64,@base64Image" alt="Meal Image" width="500" />
+                                    </a>
+
+                                    <h4>@Model.Main_Courses_Meal_names[i]</h4>
+                                    <p class="ingredients">
+                                        @Model.Main_Courses_Meal_ingredients[i]
+                                    </p>
+                                    <p class="price">
+                                        @Model.prices_Main_Courses[i] EGP
+                                    </p>
+                                }
+                                else
+                                {
+                                    <p>No image available.</p>
+                                }
+                            </form>
+
+                        </div>
+
+                        <!-- Menu Item -->
+                    }
+
+
+
+                </div>
+            </div><!-- End Starter Menu Content -->
+
+            <div class="tab-pane fade" id="menu-breakfast">
+
+                <div class="tab-header text-center">
+                    <p>Menu</p>
+                    <h3>Breakfast</h3>
+                </div>
+
+                <div class="row gy-5">
+                    @for (int i = 0; i <2; i++)
+                    {
+
+                        <div class="col-lg-4 menu-item">
+                            @{
+                                await Model.OnGetImagesAsync("Breakfast");
+                            }
+                            <form method="get" asp-page-handler="ImagesAsync">
+
+                                @if (Model.Images_Breakfast[i] != null)
+                                {
+                                    string base64Image = Convert.ToBase64String(Model.Images_Breakfast[i]);
+
+                                    <a asp-page="/MealInfo" asp-route-id="@Model.ids_Breakfast[i]" asp-route-identifier="@Model.identifier">
+                                        <img class="menu-img img-fluid circular-image" src="data:image/jpeg;base64,@base64Image" alt="Meal Image" width="500" />
+                                    </a>
+                                    <h4>@Model.Breakfast_Meal_names[i]</h4>
+                                    <p class="ingredients">
+                                        @Model.Breakfast_Meal_ingredients[i]
+                                    </p>
+                                    <p class="price">
+                                        @Model.prices_Breakfast[i] EGP
+                                    </p>
+                                }
+                                else
+                                {
+                                    <p>No image available.</p>
+                                }
+                            </form>
+
+
+                        </div>
+
+                        <!-- Menu Item -->
+                    }
+
+
+
+                </div>
+            </div><!-- End Breakfast Menu Content -->
+
+            <div class="tab-pane fade" id="menu-appetizers">
+
+                <div class="tab-header text-center">
+                    <p>Menu</p>
+                    <h3>Appetizers</h3>
+                </div>
+
+                <div class="row gy-5">
+                    @for (int i = 0; i < 2; i++)
+                    {
+
+                        <div class="col-lg-4 menu-item">
+                            @{
+                                await Model.OnGetImagesAsync("Appetizers");
+                            }
+                            <form method="get" asp-page-handler="ImagesAsync">
+
+                                @if (Model.Images_Appetizers[i] != null)
+                                {
+                                    string base64Image = Convert.ToBase64String(Model.Images_Appetizers[i]);
+
+                                    <a asp-page="/MealInfo" asp-route-id="@Model.ids_Appetizers[i]" asp-route-identifier="@Model.identifier">
+                                        <img class="menu-img img-fluid circular-image" src="data:image/jpeg;base64,@base64Image" alt="Meal Image" width="500" />
+                                    </a>
+                                    <h4>@Model.Appetizers_Meal_names[i]</h4>
+                                    <p class="ingredients">
+                                        @Model.Appetizers_Meal_ingredients[i]
+                                    </p>
+                                    <p class="price">
+                                        @Model.prices_Appetizers[i] EGP
+                                    </p>
+                                }
+                                else
+                                {
+                                    <p>No image available.</p>
+                                }
+                            </form>
+
+
+                        </div>
+
+                        <!-- Menu Item -->
+                    }
+
+
+
+                </div>
+            </div><!-- End Lunch Menu Content -->
+
+            <div class="tab-pane fade" id="menu-dessert">
+
+                <div class="tab-header text-center">
+                    <p>Menu</p>
+                    <h3>Dessert</h3>
+                </div>
+
+                <div class="row gy-5">
+                    @for (int i = 0; i < 2; i++)
+                    {
+                        <div class="col-lg-4 menu-item">
+                            @{
+                                await Model.OnGetImagesAsync("Dessert");
+                            }
+                            <form method="get" asp-page-handler="ImagesAsync">
+
+                                @if (Model.Images_Desserts[i] != null)
+                                {
+                                    string base64Image = Convert.ToBase64String(Model.Images_Desserts[i]);
+
+                                    <a asp-page="/MealInfo" asp-route-id="@Model.ids_Desserts[i]" asp-route-identifier="@Model.identifier">
+                                        <img class="menu-img img-fluid circular-image" src="data:image/jpeg;base64,@base64Image" alt="Meal Image" width="500" />
+                                    </a>
+                                    <h4>@Model.Desserts_Meal_names[i]</h4>
+                                    <p class="ingredients">
+                                        @Model.Desserts_Meal_ingredients[i]
+                                    </p>
+                                    <p class="price">
+                                        @Model.prices_Desserts[i] EGP
+                                    </p>
+                                }
+                                else
+                                {
+                                    <p>No image available.</p>
+                                }
+                            </form>
+
+
+                        </div>
+
+                        <!-- Menu Item -->
+                    }
+
+
+                </div>
+            </div><!-- End Dinner Menu Content -->
+
+            <div class="tab-pane fade" id="menu-others">
+
+                <div class="tab-header text-center">
+                    <p>Menu</p>
+                    <h3>Others</h3>
+                </div>
+
+                <div class="row gy-5">
+                    @{
+                        await Model.OnGetImagesAsync("Others");
+                    }
+                    @for (int i = 0; i < 1; i++)
+                    {
+                        <div class="col-lg-4 menu-item">
+                            <form method="get" asp-page-handler="ImagesAsync">
+
+                                @if (Model.Images_Others[i] != null)
+                                {
+                                    string base64Image = Convert.ToBase64String(Model.Images_Others[i]);
+
+                                    <a asp-page="/MealInfo" asp-route-id="@Model.ids_Others[i]" asp-route-identifier="@Model.identifier">
+                                        <img class="menu-img img-fluid circular-image1` vc" src="data:image/jpeg;base64,@base64Image" alt="Meal Image" width="500" />
+                                    </a>
+                                    <h4>@Model.Others_Meal_names[i]</h4>
+                                    <p class="ingredients">
+                                        @Model.Others_Meal_ingredients[i]
+                                    </p>
+                                    <p class="price">
+                                        @Model.prices_Others[i] EGP
+                                    </p>
+                                }
+                                else
+                                {
+                                    <p>No image available.</p>
+                                }
+                            </form>
+
+
+
+                        </div>
+
+                        <!-- Menu Item -->
+                    }
+
+
+                </div>
+            </div><!-- End Dinner Menu Content -->
+
+        </div>
+
+
+    </div>
+</section><!-- End Menu Section -->
+<!-- ======= Chefs Section ======= -->
+<section id="chefs" class="chefs section-bg">
+    <div class="container" data-aos="fade-up">
+
+        <div class="section-header">
+            <h2>Cookers</h2>
+            <p>Our <span>Proffesional</span> Cookers</p>
+        </div>
+
+        <div class="row gy-4">
+            <div class="col-lg-4 col-md-6 d-flex align-items-stretch tab-content" data-aos="fade-up" data-aos-delay="100">
+                <div class="chef-member">
+
+
+                    <a asp-page="/Cooker_interface" asp-route-name="Mariam" asp-route-email="mariam@gmail.com" asp-route-phone="1167334097" asp-route-id="4"> <img src="~/img/chefs/4.jpg" class="menu-img img-fluid image" alt=""></a>
+                    <div class="social">
+                        <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"><i class="bi bi-twitter"></i></a>
+                        <a href=""><i class="bi bi-facebook"></i></a>
+                        <a href=""><i class="bi bi-instagram"></i></a>
+                        <a href=""><i class="bi bi-linkedin"></i></a>
+                    </div>
+                    <div class="member-info">
+                        <h4>Mariam</h4>
+                        <span>Master Chef</span>
+                        <p>Mariam, a seasoned chef, effortlessly combines traditional and modern flavors to create culinary masterpieces. With years of experience, her kitchen finesse is unmatched, making every meal a delightful journey for the taste buds.</p>
+                    </div>
+                </div>
+            </div><!-- End Chefs Member -->
+
+            <div class="col-lg-4 col-md-6 d-flex align-items-stretch tab-content" data-aos="fade-up" data-aos-delay="200">
+                <div class="chef-member">
+
+                    <a asp-page="/Cooker_interface" asp-route-name="Lily" asp-route-email="Lily@gmail.com" asp-route-phone="1118911198" asp-route-id="15"> <img src="~/img/chefs/15.jpg" class="img-fluid image" alt=""></a>
+                    <div class="social">
+                        <a href=""><i class="bi bi-twitter"></i></a>
+                        <a href=""><i class="bi bi-facebook"></i></a>
+                        <a href=""><i class="bi bi-instagram"></i></a>
+                        <a href=""><i class="bi bi-linkedin"></i></a>
+
+                    </div>
+                    <div class="member-info">
+                        <h4>Lily</h4>
+                        <span>Cook</span>
+                        <p>Lily's mastery lies in seamlessly fusing diverse culinary traditions into a singular, unforgettable experience. Each dish tells a story of cultural richness and innovation, reflecting her dedication to pushing the boundaries of flavor.</p>
+                    </div>
+                </div>
+            </div><!-- End Chefs Member -->
+
+            <div class="col-lg-4 col-md-6 d-flex align-items-stretch tab-content" data-aos="fade-up" data-aos-delay="300">
+                <div class="chef-member">
+
+                    <a asp-page="/Cooker_interface" asp-route-name="Sohair" asp-route-email="Aaron@gmail.com" asp-route-phone="1129376911" asp-route-id="30"> <img src="~/img/chefs/30.jpg" class="img-fluid image" alt=""></a>
+
+                    <div class="social">
+                        <a href=""><i class="bi bi-twitter"></i></a>
+                        <a href=""><i class="bi bi-facebook"></i></a>
+                        <a href=""><i class="bi bi-instagram"></i></a>
+                        <a href=""><i class="bi bi-linkedin"></i></a>
+
+                    </div>
+                    <div class="member-info">
+                        <h4>Sohair</h4>
+                        <span>Cook</span>
+                        <p>Sohair, a culinary ambassador, brings the world to the table through her expertise in diverse cultural cuisines. Her kitchen is a celebration of global flavors, showcasing the richness and diversity of culinary traditions from around the world.</p>
+                    </div>
+                </div>
+            </div><!-- End Chefs Member -->
+
+        </div>
+
+    </div>
+</section><!-- End Chefs Section -->
+
+
+
+
+
+
+<a href="#" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+<div id="preloader"></div>

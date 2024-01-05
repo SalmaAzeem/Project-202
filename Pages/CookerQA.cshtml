@@ -29,7 +29,7 @@
 <header id="header" class="header fixed-top d-flex align-items-center">
     <div class="container d-flex align-items-center justify-content-between">
 
-        <a class="nav-link text-dark" asp-area="" asp-page="/index">
+        <a class="nav-link text-dark" asp-area="" asp-page="/Index">
             <h1>Set Elkol</h1>
         </a>
 
@@ -123,7 +123,10 @@
                     }
                 </style>
 
-                <button class="btngreen btn-success" type="submit">Sign Up</button>
+                <a asp-page="/CookerQA" asp-route-id="@Model.ID">
+                    <button class="btngreen btn-success" type="submit">Sign Up</button>>
+                </a>
+                
             </form>
         </div><!-- End Reservation Form -->
 
