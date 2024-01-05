@@ -12,6 +12,7 @@ namespace Project_DB.Pages
 
         public List<string> Meal_name = new List<string>();
         public List<double> prices = new List<double>();
+        public List<double> quantities = new List<double>();
 
 
 
@@ -54,8 +55,9 @@ namespace Project_DB.Pages
                 {
                     ids_Cart.Add(reader[0].ToString());
                     Meal_name.Add(reader[1].ToString());
-                    prices.Add(Convert.ToDouble(reader[3]));
-                    total_price += Convert.ToDouble(reader[3]);
+                    prices.Add(Convert.ToDouble(reader[3]) *Convert.ToDouble(reader[5]));
+                    quantities.Add(Convert.ToDouble(reader[5]));
+                    total_price += Convert.ToDouble(reader[3])*Convert.ToDouble(reader[5]);
                 }
                 reader.Close();
 
