@@ -16,9 +16,9 @@ namespace Project_DB.Pages
         public void OnGet()
         {
             identifier= "MiniShop";
-            //string connectionString = "Data Source=Tamer;Initial Catalog=\"Project 2.0\";Integrated Security=True";
-            string connectionString = "Data Source=Doha-PC;Initial Catalog=\"Project 2.0\";Integrated Security=True";
-            SqlConnection con = new SqlConnection(connectionString);
+            string connectionString = "Data Source=Tamer;Initial Catalog=\"Project 2.0\";Integrated Security=True";
+            //string connectionString = "Data Source=Doha-PC;Initial Catalog=\"Project 2.0\";Integrated Security=True";
+            SqlConnection con = new SqlConnection(connectionString);    
             con.Open();
             string query = "SELECT COUNT(*) FROM MiniShop";
             SqlCommand countCommand = new SqlCommand(query, con);
@@ -80,14 +80,14 @@ namespace Project_DB.Pages
         public async Task<IActionResult> OnGetImagesAsync()
         {
 
-            //string connection = "Data Source=Tamer;Initial Catalog=\"Project 2.0\";Integrated Security=True";
-            string connection = "Data Source=Doha-PC;Initial Catalog=\"Project 2.0\";Integrated Security=True";
+            string connection = "Data Source=Tamer;Initial Catalog=\"Project 2.0\";Integrated Security=True";
+            //string connection = "Data Source=Doha-PC;Initial Catalog=\"Project 2.0\";Integrated Security=True";
 
 
             using (SqlConnection con = new SqlConnection(connection))
             {
                 await con.OpenAsync();
-                string query4 = "select MinisShop_Image from MiniShop where minishop_id = @Id";
+                string query4 = "select MiniShop_Image from MiniShop where minishop_id = @Id";
                 using (SqlCommand cmd_4 = new SqlCommand(query4, con))
                 {
                     cmd_4.Parameters.Add(new SqlParameter("@Id", SqlDbType.VarChar));

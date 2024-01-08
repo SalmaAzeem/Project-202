@@ -29,7 +29,7 @@ namespace Project_DB.Pages
         public int flag2 { get; set; }
         public byte[] data { get; set; }
         public byte[] data2 { get; set; }
-        string query4 = "select MinisShop_Image from MiniShop where minishop_id = @Id";
+        string query4 = "select MiniShop_Image from MiniShop where minishop_id = @Id";
         string query5 = "select Meal_Image from Meals where meal_id = @Id";
 
 
