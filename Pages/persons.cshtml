@@ -1,0 +1,24 @@
+﻿@*@page
+@using Project_DB.Models
+@model Project_DB.Pages.personsModel
+@{
+}
+<table class="table">
+    <tr>
+        <th>Name</th>
+        <th>Title</th>
+        <th>Description</th>
+    </tr>
+    @foreach (var person in ViewData["personList"] as List<Personn>)
+    {
+        <tr>
+            <td>@person.Name</td>
+            <td>@person.Title</td>
+            <td>@person.Description</td>
+        </tr>
+    }
+</table>
+<form method="post">
+    <button type="submit">print</button>
+</form>
+*@
